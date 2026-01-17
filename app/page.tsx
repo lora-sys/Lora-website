@@ -1,8 +1,12 @@
+import dynamic from 'next/dynamic';
 import { HeroSection } from "@/components/section/hero";
-import { SkillsSection } from "@/components/section/skills";
-import { ProjectsSection } from "@/components/section/projects";
-import { AboutSection } from "@/components/section/about";
-import { LifeSection } from "@/components/section/life";
+
+const SkillsSection = dynamic(() => import("@/components/section/skills").then(mod => mod.SkillsSection));
+const ProjectsSection = dynamic(() => import("@/components/section/projects").then(mod => mod.ProjectsSection));
+const BlogSection = dynamic(() => import("@/components/section/blog").then(mod => mod.BlogSection));
+const AboutSection = dynamic(() => import("@/components/section/about").then(mod => mod.AboutSection));
+const LifeSection = dynamic(() => import("@/components/section/life").then(mod => mod.LifeSection));
+const ContactSection = dynamic(() => import("@/components/section/contact").then(mod => mod.ContactSection));
 
 export default function Home() {
   return (
@@ -10,8 +14,10 @@ export default function Home() {
       <HeroSection />
       <SkillsSection />
       <ProjectsSection />
+      <BlogSection />
       <AboutSection/>
       <LifeSection />
+      <ContactSection />
     </main>
   );
 }

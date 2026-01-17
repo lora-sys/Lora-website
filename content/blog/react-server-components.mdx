@@ -1,0 +1,44 @@
+---
+title: "Understanding React Server Components"
+date: 2024-03-20
+description: "A comprehensive guide to React Server Components and how they change the way we build web applications."
+tags: ["React", "Next.js", "Server Components"]
+author: "Lora"
+---
+
+# Understanding React Server Components
+
+React Server Components (RSC) represent a paradigm shift in how we build React applications. By allowing components to render exclusively on the server, we can reduce the amount of JavaScript sent to the client and improve performance.
+
+## Key Benefits
+
+1. **Zero Bundle Size**: Server components are not included in the client bundle.
+2. **Direct Backend Access**: Access databases and filesystems directly from your components.
+3. **Automatic Code Splitting**: Client components imported by server components are automatically code-split.
+
+```tsx
+// Server Component
+async function ProductList() {
+  const products = await db.products.findMany();
+  
+  return (
+    <ul>
+      {products.map(product => (
+        <li key={product.id}>{product.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+## When to use Client Components?
+
+Use Client Components when you need:
+- Interactivity (onClick, onChange)
+- Component State (useState, useReducer)
+- Lifecycle Effects (useEffect, useLayoutEffect)
+- Browser-only APIs
+
+## Conclusion
+
+RSC is the future of React development, especially when combined with frameworks like Next.js.

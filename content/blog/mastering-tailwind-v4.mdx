@@ -1,0 +1,43 @@
+---
+title: "Mastering Tailwind CSS v4"
+date: 2024-03-25
+description: "Explore the new features and improvements in Tailwind CSS v4, from the new engine to simplified configuration."
+tags: ["CSS", "Tailwind", "Web Design"]
+author: "Lora"
+---
+
+# Mastering Tailwind CSS v4
+
+Tailwind CSS v4 brings a brand new engine written in Rust, offering incredible performance improvements and a simplified configuration experience.
+
+## What's New?
+
+### 1. The Oxide Engine
+The new engine is significantly faster, making build times almost instant.
+
+### 2. Zero Configuration
+No more `tailwind.config.js` by default. You can configure everything directly in your CSS.
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3b82f6;
+  --font-sans: "Inter", sans-serif;
+}
+```
+
+### 3. CSS-first Configuration
+Variables are now first-class citizens.
+
+## Migrating from v3
+
+Migration is straightforward for most projects. The main change is how you configure your theme and plugins.
+
+## Best Practices
+
+- Use semantic class names where possible
+- Leverage the `@apply` directive sparingly
+- embrace arbitrary values for one-off styles
+
+Happy styling!

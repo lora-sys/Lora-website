@@ -39,7 +39,9 @@ export function TypingAnimation({
   cursorStyle = "line",
   ...props
 }: TypingAnimationProps) {
-  // eslint-disable-next-line react-hooks/static-components
+  const ref = useRef<HTMLElement>(null)
+  const isInView = useInView(ref, { once: true })
+  
   const MotionComponent = useMemo(() => motion.create(Component, {
     forwardMotionProps: true,
   }), [Component])
@@ -48,12 +50,7 @@ export function TypingAnimation({
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [currentCharIndex, setCurrentCharIndex] = useState(0)
   const [phase, setPhase] = useState<"typing" | "pause" | "deleting">("typing")
-  const elementRef = useRef<HTMLElement | null>(null)
-  const isInView = useInView(elementRef as React.RefObject<Element>, {
-    amount: 0.3,
-    once: true,
-  })
-
+  
   const wordsToAnimate = useMemo(
     () => words || (children ? [children] : []),
     [words, children]
@@ -68,14 +65,11 @@ export function TypingAnimation({
   useEffect(() => {
     if (!shouldStart || wordsToAnimate.length === 0) return
 
-    const timeoutDelay =
-      delay > 0 && displayedText === ""
-        ? delay
-        : phase === "typing"
-          ? typingSpeed
-          : phase === "deleting"
-            ? deletingSpeed
-            : pauseDelay
+    const timeoutDelay = phase === "typing" 
+      ? (currentCharIndex === 0 ? delay : typingSpeed)
+      : phase === "deleting" 
+        ? deletingSpeed 
+        : pauseDelay
 
     const timeout = setTimeout(() => {
       const currentWord = wordsToAnimate[currentWordIndex] || ""
@@ -88,10 +82,7 @@ export function TypingAnimation({
             setCurrentCharIndex(currentCharIndex + 1)
           } else {
             if (hasMultipleWords || loop) {
-              const isLastWord = currentWordIndex === wordsToAnimate.length - 1
-              if (!isLastWord || loop) {
-                setPhase("pause")
-              }
+              setPhase("pause")
             }
           }
           break
@@ -105,9 +96,8 @@ export function TypingAnimation({
             setDisplayedText(graphemes.slice(0, currentCharIndex - 1).join(""))
             setCurrentCharIndex(currentCharIndex - 1)
           } else {
-            const nextIndex = (currentWordIndex + 1) % wordsToAnimate.length
-            setCurrentWordIndex(nextIndex)
             setPhase("typing")
+            setCurrentWordIndex((prev) => (prev + 1) % wordsToAnimate.length)
           }
           break
       }
@@ -115,59 +105,37 @@ export function TypingAnimation({
 
     return () => clearTimeout(timeout)
   }, [
-    shouldStart,
-    phase,
     currentCharIndex,
     currentWordIndex,
-    displayedText,
+    phase,
+    shouldStart,
     wordsToAnimate,
-    hasMultipleWords,
-    loop,
     typingSpeed,
     deletingSpeed,
     pauseDelay,
     delay,
+    hasMultipleWords,
+    loop
   ])
-
-  const currentWordGraphemes = Array.from(
-    wordsToAnimate[currentWordIndex] || ""
-  )
-  const isComplete =
-    !loop &&
-    currentWordIndex === wordsToAnimate.length - 1 &&
-    currentCharIndex >= currentWordGraphemes.length &&
-    phase !== "deleting"
-
-  const shouldShowCursor =
-    showCursor &&
-    !isComplete &&
-    (hasMultipleWords || loop || currentCharIndex < currentWordGraphemes.length)
-
-  const getCursorChar = () => {
-    switch (cursorStyle) {
-      case "block":
-        return "▌"
-      case "underscore":
-        return "_"
-      case "line":
-      default:
-        return "|"
-    }
-  }
 
   return (
     <MotionComponent
-      ref={elementRef}
-      className={cn("leading-[5rem] tracking-[-0.02em]", className)}
+      ref={ref}
+      className={cn("inline-block", className)}
       {...props}
     >
       {displayedText}
-      {shouldShowCursor && (
-        <span
-          className={cn("inline-block", blinkCursor && "animate-blink-cursor")}
-        >
-          {getCursorChar()}
-        </span>
+      {showCursor && (
+        <motion.span
+          animate={blinkCursor ? { opacity: [1, 0] } : {}}
+          transition={blinkCursor ? { duration: 0.5, repeat: Infinity, repeatType: "reverse" } : {}}
+          className={cn(
+            "inline-block ml-0.5 bg-current",
+            cursorStyle === "line" && "w-[2px] h-[1.1em] align-middle",
+            cursorStyle === "block" && "w-[0.6em] h-[1.1em] align-middle",
+            cursorStyle === "underscore" && "w-[0.6em] h-[2px] align-baseline"
+          )}
+        />
       )}
     </MotionComponent>
   )

@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ResizableNavbar } from "@/components/layout/resizable-navbar";
+import { Footer } from "@/components/layout/footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,8 +19,19 @@ export default function RootLayout({
       <body
         className={` antialiased
         bg-background text-foreground`}
+        style={{ overflowX: "hidden" }}
+        suppressHydrationWarning
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ResizableNavbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

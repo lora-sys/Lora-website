@@ -21,13 +21,13 @@ export const life = {
       background: "/images/life/ethereum.jpg",
     },
     {
-      name: "Interstellar",
-      description: "Love is the one thing that transcends time and space.",
+      name: "The Shawshank Redemption",
+      description: "Fear can hold you prisoner. Hope can set you free.",
       Icon: Clapperboard,
       className: "col-span-3 lg:col-span-1 text-white",
-      href: "https://www.imdb.com/title/tt0816692/",
+      href: "https://www.imdb.com/title/tt0111161/",
       cta: "Watch Trailer",
-      background: "/images/life/interstellar.jpg",
+      background: "/images/life/shawshank.jpg", 
     },
     {
       name: "Steve Jobs",
@@ -91,6 +91,46 @@ export const life = {
       text: "The world isn't perfect. But it's there for us, doing the best it can....that's what makes it so damn beautiful.",
       author: "Roy Mustang",
       from: "Fullmetal Alchemist",
+    },
+  ],
+};
+
+export const blog = {
+  hero: {
+    title: "Thoughts & Ideas",
+    subtitle: "Exploring the frontiers of web development, design, and technology.",
+  },
+  tags: [
+    "React", "Next.js", "TypeScript", "Tailwind CSS", "Design", "Web3", "Animation", "UI/UX", "Performance", "Testing"
+  ],
+  posts: [
+    {
+      title: "Mastering Tailwind v4",
+      description: "Deep dive into the new engine and features of Tailwind CSS v4.",
+      date: "2024-03-15",
+      tag: "CSS",
+      color: "bg-blue-500/10 text-blue-500",
+    },
+    {
+      title: "The Art of 3D Web Design",
+      description: "Creating immersive experiences with Three.js and React Three Fiber.",
+      date: "2024-03-10",
+      tag: "3D",
+      color: "bg-purple-500/10 text-purple-500",
+    },
+    {
+      title: "React Server Components",
+      description: "Understanding the paradigm shift in React architecture.",
+      date: "2024-03-05",
+      tag: "React",
+      color: "bg-cyan-500/10 text-cyan-500",
+    },
+    {
+      title: "Hello World",
+      description: "Welcome to my new digital garden.",
+      date: "2024-03-01",
+      tag: "General",
+      color: "bg-green-500/10 text-green-500",
     },
   ],
 };
