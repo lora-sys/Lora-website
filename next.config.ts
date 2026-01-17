@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { withContentlayer } from "next-contentlayer";
+import { withIntlayer } from "next-intlayer/server";
 
 const nextConfig: NextConfig = {
   /* config options here - trigger reload */
@@ -29,4 +30,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withContentlayer(nextConfig);
+export default withIntlayer(withContentlayer(nextConfig));

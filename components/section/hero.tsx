@@ -5,14 +5,17 @@ import { CometCard } from "@/components/ui/comet-card";
 import { heroData } from "@/config/site-data";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import { Icons } from "@/components/ui/icons";
+import { useIntlayer } from "react-intlayer";
 
 export function HeroSection() {
+  const { typingText, cardTexts } = useIntlayer("hero");
+
   return (
     <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden py-20">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
       <div className="relative z-30 mb-12 text-center">
         <TypingAnimation
-          words={heroData.typingText}
+          words={typingText.value}
           duration={80}
           startOnView={false}
           className="text-3xl md:text-5xl font-bold tracking-tight text-foreground"
@@ -49,13 +52,13 @@ export function HeroSection() {
             <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-border">
               <div className="space-y-3 text-center">
                 <p className="text-lg font-medium text-primary">
-                  {heroData.cardTexts[0]}
+                  {cardTexts[0].value}
                 </p>
                 <p className="text-lg font-medium text-accent">
-                  {heroData.cardTexts[1]}
+                  {cardTexts[1].value}
                 </p>
                 <p className="text-lg font-medium text-secondary-foreground">
-                  {heroData.cardTexts[2]}
+                  {cardTexts[2].value}
                 </p>
               </div>
             </div>
