@@ -13,9 +13,9 @@ export const siteConfig = {
   ],
   socials: {
     github: "https://github.com/lora-sys",
-    x: "https://twitter.com/lora_sys",
-    instagram: "https://instagram.com/lora_sys",
-    bilibili: "https://space.bilibili.com/lora_sys",
-    douyin: "https://v.douyin.com/lora_sys",
+    x: "https://twitter.com/lora1979391",
+    instagram: "https://instagram.com/lora",
+    bilibili: "https://space.bilibili.com/lora",
+    douyin: "https://v.douyin.com/lora",
   },
 };

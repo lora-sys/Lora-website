@@ -1,0 +1,122 @@
+---
+title: "为什么我选择 Intlayer 而不是 Next.js 原生 i18n：全栈国际化实战"
+date: 2026-01-18
+description: "深入探讨 Intlayer 在 Next.js 项目中的应用，对比原生 i18n 的优缺点，并分享在 Cloudflare 上的部署实践。"
+tags: ["Next.js", "Intlayer", "i18n", "Cloudflare", "OpenNext"]
+author: "Lora"
+---
+
+# 为什么我选择 Intlayer 而不是 Next.js 原生 i18n：全栈国际化实战
+
+在构建多语言 Web 应用时，国际化（i18n）往往是一个令人头疼的问题。Next.js 虽然提供了原生的 i18n 支持，但在实际开发中，尤其是在追求极致开发体验（DX）和类型安全的情况下，它可能显得有些力不从心。
+
+今天，我想分享一下为什么我在我的个人项目 [loralg](https://github.com/loralora/loralg) 中选择了 **Intlayer**，以及如何将其与 Cloudflare 完美集成。
+
+---
+
+## 1. Intlayer vs. Next.js 原生 i18n
+
+### Next.js 原生 i18n 的痛点
+Next.js 的原生 i18n 主要聚焦于**路由（Routing）**。它能帮你处理 `/en/about` 或 `/zh/about` 这样的路径，但对于**内容管理**，你通常需要：
+- 手动维护庞大的 JSON 字典文件。
+- 手动编写中间件（Middleware）来检测语言偏好。
+- 缺乏开箱即用的类型安全，引用键名时容易出错。
+- 内容与组件分离，开发时需要频繁切换文件。
+
+### Intlayer 的优势
+**Intlayer** 采用了一种更现代、更符合开发者直觉的方式：
+
+1.  **内容协同定位（Co-location）**: 你可以将翻译内容定义在 `*.content.ts` 文件中，并将其放在对应的组件目录下。再也不用在巨大的 `zh.json` 中翻找某一行文字了。
+2.  **全自动类型安全**: Intlayer 会根据你的内容定义自动生成 TypeScript 类型。如果你修改了某个键名，IDE 会立即报错。
+3.  **声明式配置**: 通过 `intlayer.config.ts` 统一管理语言配置，极其简洁。
+4.  **无缝集成 App Router**: 完美支持 Server Components 和 Client Components。
+
+---
+
+## 2. 项目中的配置实践
+
+在我的项目中，Intlayer 的集成非常简单。
+
+### 核心配置 `intlayer.config.ts`
+我们只需要定义支持的语言和默认语言：
+
+```typescript
+import { Locales, type IntlayerConfig } from "intlayer";
+
+const config: IntlayerConfig = {
+  internationalization: {
+    locales: [Locales.ENGLISH, Locales.CHINESE],
+    defaultLocale: Locales.ENGLISH,
+  },
+};
+
+export default config;
+```
+
+### 定义翻译内容
+以 `Hero` 组件为例，我们在 [hero.content.ts](file:///Users/loralora/repos/loralg/components/section/hero.content.ts) 中定义内容：
+
+```typescript
+import { t, type Dictionary } from "intlayer";
+
+const heroContent = {
+  key: "hero",
+  content: {
+    typingText: t({
+      en: ["Hi, I'm lora", "I build things for the web"],
+      zh: ["你好，我是 lora", "我为 Web 构建应用"],
+    }),
+    // ... 其他内容
+  },
+} satisfies Dictionary;
+
+export default heroContent;
+```
+
+### 在组件中使用
+在 [hero.tsx](file:///Users/loralora/repos/loralg/components/section/hero.tsx) 中，通过 `useIntlayer` 钩子即可获取类型安全的内容：
+
+```tsx
+"use client";
+import { useIntlayer } from "react-intlayer";
+
+export function HeroSection() {
+  const { typingText } = useIntlayer("hero");
+  return <h1>{typingText.value[0]}</h1>;
+}
+```
+
+---
+
+## 3. 迈向生产环境：Cloudflare 与 OpenNext
+
+将 Next.js 项目部署到 Cloudflare Workers/Pages 是一件具有挑战性的事，因为 Next.js 默认是为 Node.js 环境设计的。为了实现这一目标，我们使用了 **OpenNext** (通过 `@opennextjs/cloudflare`)。
+
+### 部署流程
+1.  **构建字典**: 运行 `intlayer build` 生成生成的 JSON 和类型定义。
+2.  **适配 Cloudflare**: 运行 `opennextjs-cloudflare build`。这一步会将 Next.js 的构建产物转换为 Cloudflare Workers 兼容的格式。
+3.  **部署**: 使用 `wrangler deploy` 推送到 Cloudflare。
+
+在 `package.json` 中，我们的构建脚本如下：
+
+```json
+{
+  "scripts": {
+    "build:cf": "intlayer build && opennextjs-cloudflare build",
+    "deploy:cf": "wrangler deploy"
+  }
+}
+```
+
+### 为什么选择 Cloudflare？
+- **极致的边缘性能**: 全球分发，毫秒级响应。
+- **极低的成本**: 相比 Vercel，Cloudflare 的 Workers 计划对于个人开发者非常友好。
+- **完美的 i18n 支持**: 结合 Intlayer 的静态内容生成，大部分翻译内容在边缘侧就已经准备就绪，几乎没有性能损耗。
+
+---
+
+## 结语
+
+Intlayer 改变了我处理国际化的方式。它不仅提升了开发效率，更重要的是，它让代码库变得更加整洁 and 可维护。如果你也在使用 Next.js 构建多语言应用，我强烈建议你尝试一下 Intlayer。
+
+你可以在我的 [GitHub 仓库](https://github.com/lora-sys/lora-website) 中看到完整的配置代码。Happy coding!

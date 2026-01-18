@@ -1,4 +1,5 @@
 import _LrYHXf5aPWKUrva9JGaa from '../unmerged_dictionary/about.json' with { type: 'json' };
+import _Uwk9ZNqj2u4340Hhp29n from '../unmerged_dictionary/blog.json' with { type: 'json' };
 import _VDVV7QWmXZdaVMkLDTPL from '../unmerged_dictionary/contact.json' with { type: 'json' };
 import _KJJV8Qk8AkL1GGEKEbfz from '../unmerged_dictionary/footer.json' with { type: 'json' };
 import _OdTTsOk8k1nEeZmUpwA8 from '../unmerged_dictionary/hero.json' with { type: 'json' };
@@ -8,6 +9,7 @@ import _jkdedkRivRnin4r4PqhG from '../unmerged_dictionary/skills.json' with { ty
 
 const dictionaries = {
   "about": _LrYHXf5aPWKUrva9JGaa,
+  "blog": _Uwk9ZNqj2u4340Hhp29n,
   "contact": _VDVV7QWmXZdaVMkLDTPL,
   "footer": _KJJV8Qk8AkL1GGEKEbfz,
   "hero": _OdTTsOk8k1nEeZmUpwA8,

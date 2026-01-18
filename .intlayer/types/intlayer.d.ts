@@ -1,5 +1,6 @@
 import "intlayer";
 import _kl09n4ntyKll4Cn1YbmZ from './about.ts';
+import _g22zFku5Y49BkUQLcp3j from './blog.ts';
 import _PGdLB9lLrNHUpCg1Wkjv from './contact.ts';
 import _BgR5ABHrpesklPstsIPZ from './footer.ts';
 import _8MyikKN2rftQy8ppSL3s from './hero.ts';
@@ -10,6 +11,7 @@ import _E2J9gguNTBEQymIuN6Au from './skills.ts';
 declare module 'intlayer' {
   interface __DictionaryRegistry {
     "about": typeof _kl09n4ntyKll4Cn1YbmZ;
+    "blog": typeof _g22zFku5Y49BkUQLcp3j;
     "contact": typeof _PGdLB9lLrNHUpCg1Wkjv;
     "footer": typeof _BgR5ABHrpesklPstsIPZ;
     "hero": typeof _8MyikKN2rftQy8ppSL3s;
