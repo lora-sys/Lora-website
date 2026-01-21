@@ -7,7 +7,7 @@ import { Meteors } from "@/components/ui/meteors";
 
 export function LifeSection() {
   return (
-    <section id="life" className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden py-20">
+    <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden py-20">
       <div className="absolute inset-0 -z-10">
         <Meteors number={20} />
       </div>

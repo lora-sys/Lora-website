@@ -4,8 +4,59 @@ import * as React from 'react';
 import * as _jsx_runtime from 'react/jsx-runtime';
   import * as _jsx_dev_runtime from 'react/jsx-dev-runtime';
 import { useMemo, Component, ErrorInfo, ReactNode } from 'react';
+import { cn } from '@/lib/utils';
 
 const customComponents = {
+  a: ({
+    href,
+    className,
+    ...props
+  }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+    const isExternal = typeof href === 'string' && /^https?:\/\//i.test(href);
+    return (
+      <a
+        href={href}
+        {...props}
+        target={isExternal ? '_blank' : props.target}
+        rel={isExternal ? 'noopener noreferrer' : props.rel}
+        className={cn(
+          'underline underline-offset-4 decoration-primary/40 hover:decoration-primary',
+          className
+        )}
+      />
+    );
+  },
+  h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h2
+      {...props}
+      className={cn('scroll-mt-28 border-b border-border/60 pb-2', className)}
+    />
+  ),
+  h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h3 {...props} className={cn('scroll-mt-28', className)} />
+  ),
+  pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
+    <pre
+      {...props}
+      className={cn(
+        'not-prose overflow-x-auto rounded-xl border bg-muted/30 p-4',
+        className
+      )}
+    />
+  ),
+  code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
+    <code
+      {...props}
+      className={
+        typeof className === 'string' && className.includes('language-')
+          ? cn('block text-sm', className)
+          : cn(
+              'rounded-md border border-border/60 bg-muted/40 px-1.5 py-0.5 text-[0.95em]',
+              className
+            )
+      }
+    />
+  ),
 };
 
 interface ErrorBoundaryProps {

@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
     root: __dirname,
   },
   experimental: {},
+  output: "export",
+  trailingSlash: true,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

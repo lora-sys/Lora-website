@@ -36,6 +36,16 @@ export const LinkPreview = ({
   isStatic = false,
   imageSrc = "",
 }: LinkPreviewProps) => {
+  const isHttpUrl = /^https?:\/\//i.test(url);
+
+  if (!isHttpUrl && !isStatic) {
+    return (
+      <a href={url} className={cn("text-black dark:text-white", className)}>
+        {children}
+      </a>
+    );
+  }
+
   let src;
   if (!isStatic) {
     const params = encode({

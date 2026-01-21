@@ -1,12 +1,9 @@
 "use client";
-
-import React from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { HyperText } from "@/components/ui/hyper-text";
-import { Icons } from "@/components/ui/icons";
-import { Github, Twitter, Instagram, Linkedin, Mail } from "lucide-react";
+import { Github, Twitter, Instagram, Mail } from "lucide-react";
 import { SiBilibili, SiTiktok } from "react-icons/si";
 import { ShineBorder } from "@/components/ui/shine-border";
 import dynamic from "next/dynamic";
@@ -20,17 +17,20 @@ export function ContactSection() {
   const { title, description, emailLabel } = useIntlayer("contact");
 
   return (
-    <section id="contact" className="relative h-screen w-full overflow-hidden bg-background">
-      <div className="grid h-full w-full grid-cols-1 lg:grid-cols-2">
+    <section
+      id="contact"
+      className="relative w-full bg-background overflow-x-hidden min-h-[100svh] lg:h-screen"
+    >
+      <div className="grid w-full grid-cols-1 lg:grid-cols-2 lg:h-full">
         {/* Globe Column */}
-        <div className="relative flex h-[300px] lg:h-full w-full items-center justify-center order-1 lg:order-none">
+        <div className="relative flex h-[260px] sm:h-[320px] lg:h-full w-full items-center justify-center order-1 lg:order-none">
           <div className="absolute inset-0 flex items-center justify-center overflow-hidden h-full w-full">
              <Globe className="opacity-100 h-full w-full" />
           </div>
         </div>
 
         {/* Content Column */}
-        <div className="z-10 flex h-full w-full flex-col items-center justify-center gap-8 px-4 bg-background/50 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none order-2 lg:order-none pb-20 lg:pb-0">
+        <div className="z-10 flex w-full flex-col items-center justify-start lg:justify-center gap-8 px-4 pt-10 pb-[calc(9rem+env(safe-area-inset-bottom))] bg-background/50 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none order-2 lg:order-none lg:h-full lg:pt-0 lg:pb-0">
           {/* Contact Card */}
           <div className="relative flex w-full max-w-[400px] flex-col items-center justify-center overflow-hidden rounded-xl bg-background/30 backdrop-blur-md border border-white/10 p-8 shadow-2xl">
             <BorderBeam size={250} duration={12} delay={9} />
@@ -42,7 +42,7 @@ export function ContactSection() {
 
             <div className="grid grid-cols-3 gap-4 w-full">
                 {siteConfig.socials.github && (
-                    <Link href={siteConfig.socials.github} target="_blank" className="flex flex-col items-center gap-2 group">
+                    <Link href={siteConfig.socials.github} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
                         <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
                              <Github className="w-6 h-6" />
                         </div>
@@ -50,7 +50,7 @@ export function ContactSection() {
                     </Link>
                 )}
                 {siteConfig.socials.x && (
-                     <Link href={siteConfig.socials.x} target="_blank" className="flex flex-col items-center gap-2 group">
+                     <Link href={siteConfig.socials.x} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
                         <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
                              <Twitter className="w-6 h-6" />
                         </div>
@@ -58,7 +58,7 @@ export function ContactSection() {
                     </Link>
                 )}
                  {siteConfig.socials.instagram && (
-                     <Link href={siteConfig.socials.instagram} target="_blank" className="flex flex-col items-center gap-2 group">
+                     <Link href={siteConfig.socials.instagram} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
                         <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
                              <Instagram className="w-6 h-6" />
                         </div>
@@ -66,7 +66,7 @@ export function ContactSection() {
                     </Link>
                 )}
                  {siteConfig.socials.bilibili && (
-                     <Link href={siteConfig.socials.bilibili} target="_blank" className="flex flex-col items-center gap-2 group">
+                     <Link href={siteConfig.socials.bilibili} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
                         <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
                              <SiBilibili className="w-6 h-6" />
                         </div>
@@ -74,7 +74,7 @@ export function ContactSection() {
                     </Link>
                 )}
                  {siteConfig.socials.douyin && (
-                     <Link href={siteConfig.socials.douyin} target="_blank" className="flex flex-col items-center gap-2 group">
+                     <Link href={siteConfig.socials.douyin} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
                         <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
                              <SiTiktok className="w-6 h-6" />
                         </div>
@@ -113,9 +113,9 @@ export function ContactSection() {
       </div>
       
       {/* Bottom Hyper Text */}
-      <div className="absolute bottom-8 z-10">
+      <div className="z-10 flex justify-center px-4 mt-10 pb-[env(safe-area-inset-bottom)] lg:pb-0 lg:absolute lg:bottom-8 lg:left-1/2 lg:-translate-x-1/2 lg:mt-0">
         <HyperText
-            className="text-4xl font-bold text-foreground/80"
+            className="text-3xl sm:text-4xl font-bold text-foreground/80 text-center"
             text="Let's Build Something Amazing"
         />
       </div>

@@ -1,6 +1,7 @@
 "use client";
-import { ComponentPropsWithoutRef, ReactNode, ElementType } from "react";
+import { ComponentPropsWithoutRef, ReactNode } from "react";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -82,13 +83,15 @@ const BentoCard = ({
             size="sm"
             className="pointer-events-auto p-0"
           >
-            <span
+            <Link
+              href={href}
               className="cursor-pointer"
-              onClick={() => window.open(href!, "_blank")}
+              target={/^https?:\/\//i.test(href) ? "_blank" : undefined}
+              rel={/^https?:\/\//i.test(href) ? "noopener noreferrer" : undefined}
             >
               {cta}
               <ArrowRightIcon className="ms-2 h-4 w-4" />
-            </span>
+            </Link>
           </Button>
         )}
       </div>

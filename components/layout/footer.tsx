@@ -30,7 +30,7 @@ export function Footer() {
   return (
     <footer className="relative w-full overflow-hidden border-t border-border/40 bg-background">
       <WavyBackground 
-        className="max-w-4xl mx-auto pb-40" 
+        className="max-w-4xl mx-auto pb-[calc(10rem+env(safe-area-inset-bottom))]" 
         containerClassName="h-[600px]"
         colors={["#38bdf8", "#818cf8", "#c084fc", "#e879f9", "#22d3ee"]}
         waveWidth={50}

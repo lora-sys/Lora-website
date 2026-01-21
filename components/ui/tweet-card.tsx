@@ -100,7 +100,7 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
       <a
         href={tweet.user.url}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className="shrink-0"
       >
         <img
@@ -116,7 +116,7 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
         <a
           href={tweet.user.url}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="text-foreground flex items-center font-medium whitespace-nowrap transition-opacity hover:opacity-80"
         >
           {truncate(tweet.user.name, 20)}
@@ -129,7 +129,7 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
           <a
             href={tweet.user.url}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground text-sm transition-colors"
           >
             @{truncate(tweet.user.screen_name, 16)}
@@ -137,7 +137,7 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
         </div>
       </div>
     </div>
-    <a href={tweet.url} target="_blank" rel="noreferrer">
+    <a href={tweet.url} target="_blank" rel="noopener noreferrer">
       <span className="sr-only">Link to tweet</span>
       <Twitter className="text-muted-foreground hover:text-foreground size-5 items-start transition-all ease-in-out hover:scale-105" />
     </a>

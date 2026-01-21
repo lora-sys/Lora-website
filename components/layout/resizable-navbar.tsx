@@ -1,15 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { motion, useMotionValue } from "motion/react";
+import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
-import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import Image from "next/image";
-import { GripVertical, Menu, X } from "lucide-react";
+import { GripVertical } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { LocaleSwitcher } from "./locale-switcher";
-import { AnimatePresence } from "motion/react";
 import { useIntlayer } from "react-intlayer";
 
 export function ResizableNavbar() {
@@ -17,16 +15,32 @@ export function ResizableNavbar() {
     const navItems = navbar?.navItems ?? [];
     const pathname = usePathname();
     const [width, setWidth] = useState(850); // Default width increased for visibility
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const minWidth = 320;
     const maxWidth = 1200; // Increased max width
     
     // Handle drag to resize
-    const handleDrag = (event: any, info: any) => {
+    const handleDrag = (_event: any, info: any) => {
         const newWidth = width + info.delta.x * 2; 
         
         if (newWidth >= minWidth && newWidth <= maxWidth) {
             setWidth(newWidth);
+        }
+    };
+
+    const handleResizeKeyDown = (event: React.KeyboardEvent) => {
+        const step = 20;
+        if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            setWidth((w) => Math.max(minWidth, w - step));
+        } else if (event.key === "ArrowRight") {
+            event.preventDefault();
+            setWidth((w) => Math.min(maxWidth, w + step));
+        } else if (event.key === "Home") {
+            event.preventDefault();
+            setWidth(minWidth);
+        } else if (event.key === "End") {
+            event.preventDefault();
+            setWidth(maxWidth);
         }
     };
 
@@ -68,7 +82,7 @@ export function ResizableNavbar() {
                                 key={`${name}-${idx}`} 
                                 href={link}
                                 className={cn(
-                                    "text-sm font-medium transition-colors hover:text-primary whitespace-nowrap px-3 py-1.5 rounded-full hover:bg-muted",
+                                    "text-sm font-medium transition-colors hover:text-primary whitespace-nowrap px-3 py-1.5 rounded-full hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
                                     isActive(link) ? "text-primary bg-muted/50" : "text-muted-foreground"
                                 )}
                             >
@@ -92,6 +106,7 @@ export function ResizableNavbar() {
                     dragElastic={0}
                     dragMomentum={false}
                     onDrag={handleDrag}
+                    onKeyDown={handleResizeKeyDown}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     aria-label="Resize navigation bar"

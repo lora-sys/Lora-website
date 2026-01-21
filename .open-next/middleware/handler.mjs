@@ -3328,11 +3328,176 @@ Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime`;
         return { response: N2, waitUntil: ("internal" === w2[y].kind ? Promise.all(w2[y].promises).then(() => {
         }) : void 0) ?? Promise.resolve(), fetchMetrics: A2.fetchMetrics };
       }
-      var tc = e.i(61073);
-      let td = /^\s*([^\s\-;]+)(?:-([^\s;]+))?\s*(?:;(.*))?$/;
-      var tp = ((V = tp || {})[V.None = 0] = "None", V[V.Broad = 1] = "Broad", V[V.Prefix = 2] = "Prefix", V[V.Exact = 4] = "Exact", V);
-      let th = (e10, t10) => {
-        let r10 = td.exec(e10);
+      var tc = e.i(61073), td = Object.defineProperty, tp = (e10, t10) => {
+        let r10 = {};
+        for (var n10 in e10) td(r10, n10, { get: e10[n10], enumerable: true });
+        return t10 && td(r10, Symbol.toStringTag, { value: "Module" }), r10;
+      }, th = tp({ BUILD_MODE: () => tf, CACHE: () => tb, IMPORT_MODE: () => t_, OPTIMIZE: () => tg, OUTPUT_FORMAT: () => tv, TRAVERSE_PATTERN: () => tm });
+      let tf = "auto", tg, t_ = "static", tm = ["**/*.{tsx,ts,js,mjs,cjs,jsx,mjx,cjx,vue,svelte,svte}", "!**/node_modules/**"], tv = ["cjs", "esm"], tb = true;
+      var ty = tp({ CACHE_DIR: () => tM, CONFIG_DIR: () => tD, CONTENT_DIR: () => tS, DICTIONARIES_DIR: () => tR, DYNAMIC_DICTIONARIES_DIR: () => tx, EXCLUDED_PATHS: () => tE, FETCH_DICTIONARIES_DIR: () => tO, FILE_EXTENSIONS: () => tA, I18NEXT_DICTIONARIES_DIR: () => tP, MAIN_DIR: () => tw, MASKS_DIR: () => tI, MODULE_AUGMENTATION_DIR: () => tL, REACT_INTL_MESSAGES_DIR: () => tk, REMOTE_DICTIONARIES_DIR: () => tN, TYPES_DIR: () => tT, UNMERGED_DICTIONARIES_DIR: () => tC, WATCH: () => tU });
+      let tA = [".content.ts", ".content.js", ".content.cjs", ".content.cjx", ".content.mjs", ".content.mjx", ".content.json", ".content.json5", ".content.jsonc", ".content.tsx", ".content.jsx"], tE = ["**/node_modules/**", "**/dist/**", "**/build/**", "**/.intlayer/**", "**/.next/**", "**/.nuxt/**", "**/.expo/**", "**/.vercel/**", "**/.turbo/**", "**/.tanstack/**"], tS = ["."], tw = ".intlayer/main", tR = ".intlayer/dictionary", tI = ".intlayer/mask", tN = ".intlayer/remote_dictionary", tC = ".intlayer/unmerged_dictionary", tx = ".intlayer/dynamic_dictionary", tO = ".intlayer/fetch_dictionary", tT = ".intlayer/types", tL = ".intlayer/types", tP = "i18next_resources", tk = "intl_messages", tD = ".intlayer/config", tM = ".intlayer/cache", tU = true;
+      var tH = tp({ APPLICATION_URL: () => tB, BACKEND_URL: () => t$, CMS_URL: () => tG, DICTIONARY_PRIORITY_STRATEGY: () => tV, EDITOR_URL: () => tj, IS_ENABLED: () => tW, LIVE_SYNC: () => tK, LIVE_SYNC_PORT: () => tF, PORT: () => tq });
+      let tB = "", tj = "http://localhost:8000", tG = "https://app.intlayer.org", t$ = "https://back.intlayer.org", tq = 8e3, tW = true, tK = true, tV = "local_first", tF = 4e3;
+      var tY = Object.defineProperty, tz = ((e10, t10) => {
+        let r10 = {};
+        for (var n10 in e10) tY(r10, n10, { get: e10[n10], enumerable: true });
+        return t10 && tY(r10, Symbol.toStringTag, { value: "Module" }), r10;
+      })({ AFRIKAANS: () => tZ, AFRIKAANS_SOUTH_AFRICA: () => tX, ALBANIAN: () => i7, ALBANIAN_ALBANIA: () => oe, ALL_LOCALES: () => aP, AMHARIC: () => o9, AMHARIC_ETHIOPIA: () => o8, ARABIC: () => tJ, ARABIC_ALGERIA: () => t1, ARABIC_BAHRAIN: () => t0, ARABIC_CHAD: () => aT, ARABIC_COMOROS: () => aL, ARABIC_DJIBOUTI: () => ax, ARABIC_EGYPT: () => t2, ARABIC_IRAQ: () => t3, ARABIC_JORDAN: () => t4, ARABIC_KUWAIT: () => t6, ARABIC_LEBANON: () => t5, ARABIC_LIBYA: () => t9, ARABIC_MAURITANIA: () => aI, ARABIC_MOROCCO: () => t8, ARABIC_OMAN: () => t7, ARABIC_PALESTINE: () => aN, ARABIC_QATAR: () => re, ARABIC_SAUDI_ARABIA: () => rt, ARABIC_SOMALIA: () => aO, ARABIC_SUDAN: () => aC, ARABIC_SYRIA: () => rr, ARABIC_TUNISIA: () => rn, ARABIC_UNITED_ARAB_EMIRATES: () => tQ, ARABIC_YEMEN: () => ri, ARMENIAN: () => nM, ARMENIAN_ARMENIA: () => nU, AZERI_LATIN: () => ro, AZERI_LATIN_AZERBAIJAN: () => ra, BASQUE: () => ni, BASQUE_SPAIN: () => no, BELARUSIAN: () => rs, BELARUSIAN_BELARUS: () => rl, BENGALI: () => oF, BENGALI_BANGLADESH: () => oY, BENGALI_INDIA: () => oz, BENGALI_MYANMAR: () => oZ, BOSNIAN: () => rd, BOSNIAN_BOSNIA_AND_HERZEGOVINA: () => rp, BULGARIAN: () => ru, BULGARIAN_BULGARIA: () => rc, BURMESE: () => oX, BURMESE_MYANMAR: () => oJ, CATALAN: () => rh, CATALAN_SPAIN: () => rf, CHINESE: () => oH, CHINESE_HONG_KONG: () => oG, CHINESE_MACAU: () => o$, CHINESE_SIMPLIFIED: () => oB, CHINESE_SIMPLIFIED_CHINA: () => oj, CHINESE_SINGAPORE: () => oq, CHINESE_TAIWAN: () => aR, CHINESE_TRADITIONAL: () => oW, CROATIAN: () => nT, CROATIAN_BOSNIA_AND_HERZEGOVINA: () => nL, CROATIAN_CROATIA: () => nP, CZECH: () => rg, CZECH_CZECH_REPUBLIC: () => r_, DANISH: () => rb, DANISH_DENMARK: () => ry, DIVEHI: () => rN, DIVEHI_MALDIVES: () => rC, DUTCH: () => iA, DUTCH_BELGIUM: () => iE, DUTCH_NETHERLANDS: () => iS, ENGLISH: () => rT, ENGLISH_AUSTRALIA: () => rL, ENGLISH_BELIZE: () => rP, ENGLISH_BOTSWANA: () => ap, ENGLISH_CANADA: () => rk, ENGLISH_CARIBBEAN: () => rD, ENGLISH_GHANA: () => ag, ENGLISH_HONG_KONG: () => al, ENGLISH_INDIA: () => aa, ENGLISH_IRELAND: () => rU, ENGLISH_JAMAICA: () => rH, ENGLISH_KENYA: () => ah, ENGLISH_MALAYSIA: () => ad, ENGLISH_NEW_ZEALAND: () => rB, ENGLISH_NIGERIA: () => au, ENGLISH_PAKISTAN: () => ac, ENGLISH_PHILIPPINES: () => rj, ENGLISH_SINGAPORE: () => as, ENGLISH_SOUTH_AFRICA: () => rq, ENGLISH_TANZANIA: () => af, ENGLISH_TRINIDAD_AND_TOBAGO: () => rG, ENGLISH_UGANDA: () => a_, ENGLISH_UNITED_KINGDOM: () => rM, ENGLISH_UNITED_STATES: () => r$, ENGLISH_ZIMBABWE: () => rW, ESPERANTO: () => rK, ESTONIAN: () => nr, ESTONIAN_ESTONIA: () => nn, FAROESE: () => nc, FAROESE_FAROE_ISLANDS: () => nd, FARSI: () => na, FARSI_IRAN: () => ns, FINNISH: () => nl, FINNISH_FINLAND: () => nu, FRENCH: () => np, FRENCH_BELGIUM: () => nh, FRENCH_CANADA: () => nf, FRENCH_FRANCE: () => n_, FRENCH_LUXEMBOURG: () => nm, FRENCH_PRINCIPALITY_OF_MONACO: () => nv, FRENCH_SWITZERLAND: () => ng, FYRO_MACEDONIAN: () => ii, FYRO_MACEDONIAN_MACEDONIA: () => io, GALICIAN: () => nS, GALICIAN_SPAIN: () => nw, GEORGIAN: () => nF, GEORGIAN_GEORGIA: () => nY, GERMAN: () => rA, GERMAN_AUSTRIA: () => rE, GERMAN_GERMANY: () => rw, GERMAN_LIECHTENSTEIN: () => rR, GERMAN_LUXEMBOURG: () => rI, GERMAN_SWITZERLAND: () => rS, GREEK: () => rx, GREEK_GREECE: () => rO, GUJARATI: () => nR, GUJARATI_INDIA: () => nI, HEBREW: () => nN, HEBREW_ISRAEL: () => nC, HINDI: () => nx, HINDI_INDIA: () => nO, HUNGARIAN: () => nk, HUNGARIAN_HUNGARY: () => nD, ICELANDIC: () => nj, ICELANDIC_ICELAND: () => nG, INDONESIAN: () => nH, INDONESIAN_INDONESIA: () => nB, IRISH: () => nb, IRISH_IRELAND: () => ny, ITALIAN: () => n$, ITALIAN_ITALY: () => nW, ITALIAN_SWITZERLAND: () => nq, JAPANESE: () => nK, JAPANESE_JAPAN: () => nV, KANNADA: () => nX, KANNADA_INDIA: () => nJ, KAZAKH: () => nz, KAZAKH_KAZAKHSTAN: () => nZ, KHMER: () => oQ, KHMER_CAMBODIA: () => o0, KONKANI: () => n1, KONKANI_INDIA: () => n2, KOREAN: () => nQ, KOREAN_KOREA: () => n0, KURDISH: () => n3, KURDISH_TURKEY: () => n4, KYRGYZ: () => n6, KYRGYZ_KYRGYZSTAN: () => n5, LAO: () => o1, LAO_LAOS: () => o2, LATVIAN: () => n7, LATVIAN_LATVIA: () => ie, LITHUANIAN: () => n9, LITHUANIAN_LITHUANIA: () => n8, LOWER_SORBIAN: () => i3, LOWER_SORBIAN_GERMANY: () => i4, MALAY: () => ic, MALAYALAM: () => i_, MALAYALAM_INDIA: () => im, MALAY_BRUNEI_DARUSSALAM: () => id, MALAY_MALAYSIA: () => ip, MALTESE: () => ih, MALTESE_MALTA: () => ig, MAORI: () => it, MAORI_NEW_ZEALAND: () => ir, MARATHI: () => il, MARATHI_INDIA: () => iu, MONGOLIAN: () => ia, MONGOLIAN_MONGOLIA: () => is, NEPALI: () => o7, NEPALI_NEPAL: () => ae, NORTHERN_SOTHO: () => iI, NORTHERN_SOTHO_SOUTH_AFRICA: () => iN, NORWEGIAN: () => iv, NORWEGIAN_BOKMAL: () => ib, NORWEGIAN_BOKMAL_NORWAY: () => iy, NORWEGIAN_NYNORSK: () => iw, NORWEGIAN_NYNORSK_NORWAY: () => iR, PASHTO: () => iL, PASHTO_AFGHANISTAN: () => iP, POLISH: () => iO, POLISH_POLAND: () => iT, PORTUGUESE: () => ik, PORTUGUESE_BRAZIL: () => iD, PORTUGUESE_CAPE_VERDE: () => aE, PORTUGUESE_GUINEA_BISSAU: () => ab, PORTUGUESE_MACAU: () => aw, PORTUGUESE_MOZAMBIQUE: () => ay, PORTUGUESE_PORTUGAL: () => iM, PORTUGUESE_SAO_TOME_AND_PRINCIPE: () => aA, PORTUGUESE_TIMOR_LESTE: () => aS, PUNJABI: () => iC, PUNJABI_INDIA: () => ix, QUECHUA: () => iU, QUECHUA_BOLIVIA: () => iH, QUECHUA_ECUADOR: () => iB, QUECHUA_PERU: () => ij, ROMANIAN: () => iG, ROMANIAN_MOLDOVA: () => iq, ROMANIAN_ROMANIA: () => i$, ROMANSH: () => iW, ROMANSH_SWITZERLAND: () => iK, RUSSIAN: () => iV, RUSSIAN_MOLDOVA: () => iY, RUSSIAN_RUSSIA: () => iF, SAMI_NORTHERN: () => iX, SAMI_NORTHERN_FINLAND: () => iJ, SAMI_NORTHERN_NORWAY: () => iQ, SAMI_NORTHERN_SWEDEN: () => i0, SANSKRIT: () => iz, SANSKRIT_INDIA: () => iZ, SCOTTISH_GAELIC: () => nA, SCOTTISH_GAELIC_UNITED_KINGDOM: () => nE, SERBIAN_CYRILLIC: () => an, SERBIAN_CYRILLIC_BOSNIA_AND_HERZEGOVINA: () => ao, SERBIAN_CYRILLIC_SERBIA: () => ai, SERBIAN_LATIN: () => ot, SERBIAN_LATIN_BOSNIA_AND_HERZEGOVINA: () => or, SERBIAN_LATIN_SERBIA_AND_MONTENEGRO: () => on, SINHALA: () => at, SINHALA_SRI_LANKA: () => ar, SLOVAK: () => i6, SLOVAK_SLOVAKIA: () => i5, SLOVENIAN: () => i9, SLOVENIAN_SLOVENIA: () => i8, SPANISH: () => rV, SPANISH_ARGENTINA: () => rF, SPANISH_BOLIVIA: () => rY, SPANISH_CHILE: () => rz, SPANISH_COLOMBIA: () => rZ, SPANISH_COSTA_RICA: () => rX, SPANISH_CUBA: () => am, SPANISH_DOMINICAN_REPUBLIC: () => rJ, SPANISH_ECUADOR: () => rQ, SPANISH_EL_SALVADOR: () => r7, SPANISH_GUATEMALA: () => r1, SPANISH_HONDURAS: () => r2, SPANISH_MEXICO: () => r3, SPANISH_NICARAGUA: () => r4, SPANISH_PANAMA: () => r6, SPANISH_PARAGUAY: () => r8, SPANISH_PERU: () => r5, SPANISH_PUERTO_RICO: () => r9, SPANISH_SPAIN: () => r0, SPANISH_UNITED_STATES: () => av, SPANISH_URUGUAY: () => ne, SPANISH_VENEZUELA: () => nt, SWAHILI: () => os, SWAHILI_KENYA: () => ol, SWEDISH: () => oi, SWEDISH_FINLAND: () => oo, SWEDISH_SWEDEN: () => oa, SYRIAC: () => ou, SYRIAC_SYRIA: () => oc, TAGALOG: () => om, TAGALOG_PHILIPPINES: () => ov, TAMIL: () => od, TAMIL_INDIA: () => op, TATAR: () => oS, TATAR_RUSSIA: () => ow, TELUGU: () => oh, TELUGU_INDIA: () => of, THAI: () => og, THAI_THAILAND: () => o_, TSOGA: () => oR, TSWANA: () => ob, TSWANA_SOUTH_AFRICA: () => oy, TURKISH: () => oA, TURKISH_TURKEY: () => oE, UKRAINIAN: () => oI, UKRAINIAN_UKRAINE: () => oN, UPPER_SORBIAN: () => i1, UPPER_SORBIAN_GERMANY: () => i2, URDU: () => oC, URDU_ISLAMIC_REPUBLIC_OF_PAKISTAN: () => ox, UZBEK_LATIN: () => oO, UZBEK_LATIN_UZBEKISTAN: () => oT, VENDA: () => ok, VENDA_SOUTH_AFRICA: () => oD, VIETNAMESE: () => oL, VIETNAMESE_VIET_NAM: () => oP, WELSH: () => rm, WELSH_UNITED_KINGDOM: () => rv, XHOSA: () => oM, XHOSA_SOUTH_AFRICA: () => oU, YIDDISH: () => o6, YIDDISH_WORLD: () => o5, YORUBA: () => o3, YORUBA_NIGERIA: () => o4, ZULU: () => oK, ZULU_SOUTH_AFRICA: () => oV });
+      let tZ = "af", tX = "af-ZA", tJ = "ar", tQ = "ar-AE", t0 = "ar-BH", t1 = "ar-DZ", t2 = "ar-EG", t3 = "ar-IQ", t4 = "ar-JO", t6 = "ar-KW", t5 = "ar-LB", t9 = "ar-LY", t8 = "ar-MA", t7 = "ar-OM", re = "ar-QA", rt = "ar-SA", rr = "ar-SY", rn = "ar-TN", ri = "ar-YE", ro = "az", ra = "az-AZ", rs = "be", rl = "be-BY", ru = "bg", rc = "bg-BG", rd = "bs", rp = "bs-BA", rh = "ca", rf = "ca-ES", rg = "cs", r_ = "cs-CZ", rm = "cy", rv = "cy-GB", rb = "da", ry = "da-DK", rA = "de", rE = "de-AT", rS = "de-CH", rw = "de-DE", rR = "de-LI", rI = "de-LU", rN = "dv", rC = "dv-MV", rx = "el", rO = "el-GR", rT = "en", rL = "en-AU", rP = "en-BZ", rk = "en-CA", rD = "en-CB", rM = "en-GB", rU = "en-IE", rH = "en-JM", rB = "en-NZ", rj = "en-PH", rG = "en-TT", r$ = "en-US", rq = "en-ZA", rW = "en-ZW", rK = "eo", rV = "es", rF = "es-AR", rY = "es-BO", rz = "es-CL", rZ = "es-CO", rX = "es-CR", rJ = "es-DO", rQ = "es-EC", r0 = "es-ES", r1 = "es-GT", r2 = "es-HN", r3 = "es-MX", r4 = "es-NI", r6 = "es-PA", r5 = "es-PE", r9 = "es-PR", r8 = "es-PY", r7 = "es-SV", ne = "es-UY", nt = "es-VE", nr = "et", nn = "et-EE", ni = "eu", no = "eu-ES", na = "fa", ns = "fa-IR", nl = "fi", nu = "fi-FI", nc = "fo", nd = "fo-FO", np = "fr", nh = "fr-BE", nf = "fr-CA", ng = "fr-CH", n_ = "fr-FR", nm = "fr-LU", nv = "fr-MC", nb = "ga", ny = "ga-IE", nA = "gd", nE = "gd-GB", nS = "gl", nw = "gl-ES", nR = "gu", nI = "gu-IN", nN = "he", nC = "he-IL", nx = "hi", nO = "hi-IN", nT = "hr", nL = "hr-BA", nP = "hr-HR", nk = "hu", nD = "hu-HU", nM = "hy", nU = "hy-AM", nH = "id", nB = "id-ID", nj = "is", nG = "is-IS", n$ = "it", nq = "it-CH", nW = "it-IT", nK = "ja", nV = "ja-JP", nF = "ka", nY = "ka-GE", nz = "kk", nZ = "kk-KZ", nX = "kn", nJ = "kn-IN", nQ = "ko", n0 = "ko-KR", n1 = "kok", n2 = "kok-IN", n3 = "ku", n4 = "ku-TR", n6 = "ky", n5 = "ky-KG", n9 = "lt", n8 = "lt-LT", n7 = "lv", ie = "lv-LV", it = "mi", ir = "mi-NZ", ii = "mk", io = "mk-MK", ia = "mn", is = "mn-MN", il = "mr", iu = "mr-IN", ic = "ms", id = "ms-BN", ip = "ms-MY", ih = "mt", ig = "mt-MT", i_ = "ml", im = "ml-IN", iv = "no", ib = "nb", iy = "nb-NO", iA = "nl", iE = "nl-BE", iS = "nl-NL", iw = "nn", iR = "nn-NO", iI = "ns", iN = "ns-ZA", iC = "pa", ix = "pa-IN", iO = "pl", iT = "pl-PL", iL = "ps", iP = "ps-AR", ik = "pt", iD = "pt-BR", iM = "pt-PT", iU = "qu", iH = "qu-BO", iB = "qu-EC", ij = "qu-PE", iG = "ro", i$ = "ro-RO", iq = "ro-MD", iW = "rm", iK = "rm-CH", iV = "ru", iF = "ru-RU", iY = "ru-MD", iz = "sa", iZ = "sa-IN", iX = "se", iJ = "se-FI", iQ = "se-NO", i0 = "se-SE", i1 = "hsb", i2 = "hsb-DE", i3 = "dsb", i4 = "dsb-DE", i6 = "sk", i5 = "sk-SK", i9 = "sl", i8 = "sl-SI", i7 = "sq", oe = "sq-AL", ot = "sr", or = "sr-BA", on = "sr-SP", oi = "sv", oo = "sv-FI", oa = "sv-SE", os = "sw", ol = "sw-KE", ou = "syr", oc = "syr-SY", od = "ta", op = "ta-IN", oh = "te", of = "te-IN", og = "th", o_ = "th-TH", om = "tl", ov = "tl-PH", ob = "tn", oy = "tn-ZA", oA = "tr", oE = "tr-TR", oS = "tt", ow = "tt-RU", oR = "ts", oI = "uk", oN = "uk-UA", oC = "ur", ox = "ur-PK", oO = "uz", oT = "uz-UZ", oL = "vi", oP = "vi-VN", ok = "ve", oD = "ve-ZA", oM = "xh", oU = "xh-ZA", oH = "zh", oB = "zh-Hans", oj = "zh-CN", oG = "zh-HK", o$ = "zh-MO", oq = "zh-SG", oW = "zh-Hant", oK = "zu", oV = "zu-ZA", oF = "bn", oY = "bn-BD", oz = "bn-IN", oZ = "bn-MM", oX = "my", oJ = "my-MM", oQ = "km", o0 = "km-KH", o1 = "lo", o2 = "lo-LA", o3 = "yo", o4 = "yo-NG", o6 = "yi", o5 = "yi-001", o9 = "am", o8 = "am-ET", o7 = "ne", ae = "ne-NP", at = "si", ar = "si-LK", an = "sr-Cyrl", ai = "sr-RS", ao = "sr-BA", aa = "en-IN", as = "en-SG", al = "en-HK", au = "en-NG", ac = "en-PK", ad = "en-MY", ap = "en-BW", ah = "en-KE", af = "en-TZ", ag = "en-GH", a_ = "en-UG", am = "es-CU", av = "es-US", ab = "pt-GW", ay = "pt-MZ", aA = "pt-ST", aE = "pt-CV", aS = "pt-TL", aw = "pt-MO", aR = "zh-TW", aI = "ar-MR", aN = "ar-PS", aC = "ar-SD", ax = "ar-DJ", aO = "ar-SO", aT = "ar-TD", aL = "ar-KM", aP = { AFRIKAANS: tZ, AFRIKAANS_SOUTH_AFRICA: tX, ARABIC: tJ, ARABIC_UNITED_ARAB_EMIRATES: tQ, ARABIC_BAHRAIN: t0, ARABIC_ALGERIA: t1, ARABIC_EGYPT: t2, ARABIC_IRAQ: t3, ARABIC_JORDAN: t4, ARABIC_KUWAIT: t6, ARABIC_LEBANON: t5, ARABIC_LIBYA: t9, ARABIC_MOROCCO: t8, ARABIC_OMAN: t7, ARABIC_QATAR: re, ARABIC_SAUDI_ARABIA: rt, ARABIC_SYRIA: rr, ARABIC_TUNISIA: rn, ARABIC_YEMEN: ri, AZERI_LATIN: ro, AZERI_LATIN_AZERBAIJAN: ra, BELARUSIAN: rs, BELARUSIAN_BELARUS: rl, BULGARIAN: ru, BULGARIAN_BULGARIA: rc, BOSNIAN: rd, BOSNIAN_BOSNIA_AND_HERZEGOVINA: rp, CATALAN: rh, CATALAN_SPAIN: rf, CZECH: rg, CZECH_CZECH_REPUBLIC: r_, WELSH: rm, WELSH_UNITED_KINGDOM: rv, DANISH: rb, DANISH_DENMARK: ry, GERMAN: rA, GERMAN_AUSTRIA: rE, GERMAN_SWITZERLAND: rS, GERMAN_GERMANY: rw, GERMAN_LIECHTENSTEIN: rR, GERMAN_LUXEMBOURG: rI, DIVEHI: rN, DIVEHI_MALDIVES: rC, GREEK: rx, GREEK_GREECE: rO, ENGLISH: rT, ENGLISH_AUSTRALIA: rL, ENGLISH_BELIZE: rP, ENGLISH_CANADA: rk, ENGLISH_CARIBBEAN: rD, ENGLISH_UNITED_KINGDOM: rM, ENGLISH_IRELAND: rU, ENGLISH_JAMAICA: rH, ENGLISH_NEW_ZEALAND: rB, ENGLISH_PHILIPPINES: rj, ENGLISH_TRINIDAD_AND_TOBAGO: rG, ENGLISH_UNITED_STATES: r$, ENGLISH_SOUTH_AFRICA: rq, ENGLISH_ZIMBABWE: rW, ESPERANTO: rK, SPANISH: rV, SPANISH_ARGENTINA: rF, SPANISH_BOLIVIA: rY, SPANISH_CHILE: rz, SPANISH_COLOMBIA: rZ, SPANISH_COSTA_RICA: rX, SPANISH_DOMINICAN_REPUBLIC: rJ, SPANISH_ECUADOR: rQ, SPANISH_SPAIN: r0, SPANISH_GUATEMALA: r1, SPANISH_HONDURAS: r2, SPANISH_MEXICO: r3, SPANISH_NICARAGUA: r4, SPANISH_PANAMA: r6, SPANISH_PERU: r5, SPANISH_PUERTO_RICO: r9, SPANISH_PARAGUAY: r8, SPANISH_EL_SALVADOR: r7, SPANISH_URUGUAY: ne, SPANISH_VENEZUELA: nt, ESTONIAN: nr, ESTONIAN_ESTONIA: nn, BASQUE: ni, BASQUE_SPAIN: no, FARSI: na, FARSI_IRAN: ns, FINNISH: nl, FINNISH_FINLAND: nu, FAROESE: nc, FAROESE_FAROE_ISLANDS: nd, FRENCH: np, FRENCH_BELGIUM: nh, FRENCH_CANADA: nf, FRENCH_SWITZERLAND: ng, FRENCH_FRANCE: n_, FRENCH_LUXEMBOURG: nm, FRENCH_PRINCIPALITY_OF_MONACO: nv, IRISH: nb, IRISH_IRELAND: ny, SCOTTISH_GAELIC: nA, SCOTTISH_GAELIC_UNITED_KINGDOM: nE, GALICIAN: nS, GALICIAN_SPAIN: nw, GUJARATI: nR, GUJARATI_INDIA: nI, HEBREW: nN, HEBREW_ISRAEL: nC, HINDI: nx, HINDI_INDIA: nO, CROATIAN: nT, CROATIAN_BOSNIA_AND_HERZEGOVINA: nL, CROATIAN_CROATIA: nP, HUNGARIAN: nk, HUNGARIAN_HUNGARY: nD, ARMENIAN: nM, ARMENIAN_ARMENIA: nU, INDONESIAN: nH, INDONESIAN_INDONESIA: nB, ICELANDIC: nj, ICELANDIC_ICELAND: nG, ITALIAN: n$, ITALIAN_SWITZERLAND: nq, ITALIAN_ITALY: nW, JAPANESE: nK, JAPANESE_JAPAN: nV, GEORGIAN: nF, GEORGIAN_GEORGIA: nY, KAZAKH: nz, KAZAKH_KAZAKHSTAN: nZ, KANNADA: nX, KANNADA_INDIA: nJ, KOREAN: nQ, KOREAN_KOREA: n0, KONKANI: n1, KONKANI_INDIA: n2, KURDISH: n3, KURDISH_TURKEY: n4, KYRGYZ: n6, KYRGYZ_KYRGYZSTAN: n5, LITHUANIAN: n9, LITHUANIAN_LITHUANIA: n8, LATVIAN: n7, LATVIAN_LATVIA: ie, MAORI: it, MAORI_NEW_ZEALAND: ir, FYRO_MACEDONIAN: ii, FYRO_MACEDONIAN_MACEDONIA: io, MONGOLIAN: ia, MONGOLIAN_MONGOLIA: is, MARATHI: il, MARATHI_INDIA: iu, MALAY: ic, MALAY_BRUNEI_DARUSSALAM: id, MALAY_MALAYSIA: ip, MALTESE: ih, MALTESE_MALTA: ig, MALAYALAM: i_, MALAYALAM_INDIA: im, NORWEGIAN: iv, NORWEGIAN_BOKMAL: ib, NORWEGIAN_BOKMAL_NORWAY: iy, DUTCH: iA, DUTCH_BELGIUM: iE, DUTCH_NETHERLANDS: iS, NORWEGIAN_NYNORSK: iw, NORWEGIAN_NYNORSK_NORWAY: iR, NORTHERN_SOTHO: iI, NORTHERN_SOTHO_SOUTH_AFRICA: iN, PUNJABI: iC, PUNJABI_INDIA: ix, POLISH: iO, POLISH_POLAND: iT, PASHTO: iL, PASHTO_AFGHANISTAN: iP, PORTUGUESE: ik, PORTUGUESE_BRAZIL: iD, PORTUGUESE_PORTUGAL: iM, QUECHUA: iU, QUECHUA_BOLIVIA: iH, QUECHUA_ECUADOR: iB, QUECHUA_PERU: ij, ROMANIAN: iG, ROMANIAN_ROMANIA: i$, ROMANIAN_MOLDOVA: iq, ROMANSH: iW, ROMANSH_SWITZERLAND: iK, RUSSIAN: iV, RUSSIAN_RUSSIA: iF, RUSSIAN_MOLDOVA: iY, SANSKRIT: iz, SANSKRIT_INDIA: iZ, SAMI_NORTHERN: iX, SAMI_NORTHERN_FINLAND: iJ, SAMI_NORTHERN_NORWAY: iQ, SAMI_NORTHERN_SWEDEN: i0, UPPER_SORBIAN: i1, UPPER_SORBIAN_GERMANY: i2, LOWER_SORBIAN: i3, LOWER_SORBIAN_GERMANY: i4, SLOVAK: i6, SLOVAK_SLOVAKIA: i5, SLOVENIAN: i9, SLOVENIAN_SLOVENIA: i8, ALBANIAN: i7, ALBANIAN_ALBANIA: oe, SERBIAN_LATIN: ot, SERBIAN_LATIN_BOSNIA_AND_HERZEGOVINA: or, SERBIAN_LATIN_SERBIA_AND_MONTENEGRO: on, SWEDISH: oi, SWEDISH_FINLAND: oo, SWEDISH_SWEDEN: oa, SWAHILI: os, SWAHILI_KENYA: ol, SYRIAC: ou, SYRIAC_SYRIA: oc, TAMIL: od, TAMIL_INDIA: op, TELUGU: oh, TELUGU_INDIA: of, THAI: og, THAI_THAILAND: o_, TAGALOG: om, TAGALOG_PHILIPPINES: ov, TSWANA: ob, TSWANA_SOUTH_AFRICA: oy, TURKISH: oA, TURKISH_TURKEY: oE, TATAR: oS, TATAR_RUSSIA: ow, TSOGA: oR, UKRAINIAN: oI, UKRAINIAN_UKRAINE: oN, URDU: oC, URDU_ISLAMIC_REPUBLIC_OF_PAKISTAN: ox, UZBEK_LATIN: oO, UZBEK_LATIN_UZBEKISTAN: oT, VIETNAMESE: oL, VIETNAMESE_VIET_NAM: oP, VENDA: ok, VENDA_SOUTH_AFRICA: oD, XHOSA: oM, XHOSA_SOUTH_AFRICA: oU, CHINESE: oH, CHINESE_SIMPLIFIED: oB, CHINESE_SIMPLIFIED_CHINA: oj, CHINESE_HONG_KONG: oG, CHINESE_MACAU: o$, CHINESE_SINGAPORE: oq, CHINESE_TRADITIONAL: oW, ZULU: oK, ZULU_SOUTH_AFRICA: oV, BENGALI: oF, BENGALI_BANGLADESH: oY, BENGALI_INDIA: oz, BENGALI_MYANMAR: oZ, BURMESE: oX, BURMESE_MYANMAR: oJ, KHMER: oQ, KHMER_CAMBODIA: o0, LAO: o1, LAO_LAOS: o2, YORUBA: o3, YORUBA_NIGERIA: o4, YIDDISH: o6, YIDDISH_WORLD: o5, AMHARIC: o9, AMHARIC_ETHIOPIA: o8, NEPALI: o7, NEPALI_NEPAL: ae, SINHALA: at, SINHALA_SRI_LANKA: ar, SERBIAN_CYRILLIC: an, SERBIAN_CYRILLIC_SERBIA: ai, SERBIAN_CYRILLIC_BOSNIA_AND_HERZEGOVINA: ao, ENGLISH_INDIA: aa, ENGLISH_SINGAPORE: as, ENGLISH_HONG_KONG: al, ENGLISH_NIGERIA: au, ENGLISH_PAKISTAN: ac, ENGLISH_MALAYSIA: ad, ENGLISH_BOTSWANA: ap, ENGLISH_KENYA: ah, ENGLISH_TANZANIA: af, ENGLISH_GHANA: ag, ENGLISH_UGANDA: a_, SPANISH_CUBA: am, SPANISH_UNITED_STATES: av, PORTUGUESE_GUINEA_BISSAU: ab, PORTUGUESE_MOZAMBIQUE: ay, PORTUGUESE_SAO_TOME_AND_PRINCIPE: aA, PORTUGUESE_CAPE_VERDE: aE, PORTUGUESE_TIMOR_LESTE: aS, PORTUGUESE_MACAU: aw, CHINESE_TAIWAN: aR, ARABIC_MAURITANIA: aI, ARABIC_PALESTINE: aN, ARABIC_SUDAN: aC, ARABIC_DJIBOUTI: ax, ARABIC_SOMALIA: aO, ARABIC_CHAD: aT, ARABIC_COMOROS: aL };
+      var ak = tp({ DEFAULT_LOCALE: () => aU, LOCALES: () => aD, REQUIRED_LOCALES: () => aM, STRICT_MODE: () => aH });
+      let aD = [tz.ENGLISH], aM = [], aU = tz.ENGLISH, aH = "inclusive", aB = ((V = {}).RESET = "\x1B[0m", V.GREY = "\x1B[90m", V.GREY_DARK = "\x1B[38;5;239m", V.GREY_LIGHT = "\x1B[38;5;252m", V.BLUE = "\x1B[34m", V.RED = "\x1B[31m", V.GREEN = "\x1B[32m", V.YELLOW = "\x1B[38;5;226m", V.MAGENTA = "\x1B[35m", V.BEIGE = "\x1B[38;5;3m", V.ORANGE = "\x1B[38;5;208m", V.CYAN = "\x1B[36m", V.WHITE = "\x1B[37m", V.BOLD = "\x1B[1m", V), aj = (e10, t10, r10) => t10 ? `${t10}${e10}${r10 ? "boolean" == typeof r10 ? aB.RESET : r10 : aB.RESET}` : e10;
+      aj("\u2717", aB.RED), aj("\u2713", aB.GREEN), aj("\u23F2", aB.BLUE);
+      var aG = tp({ MODE: () => a$, PREFIX: () => aq });
+      let a$ = "default", aq = `${aB.GREY_DARK}[intlayer] ${aB.RESET}`;
+      var aW = tp({ BASE_PATH: () => aY, COOKIE_NAME: () => aV, HEADER_NAME: () => aK, LOCALE_STORAGE_NAME: () => aF, ROUTING_MODE: () => aZ, SERVER_SET_COOKIE: () => az, STORAGE: () => aX });
+      let aK = "x-intlayer-locale", aV = "INTLAYER_LOCALE", aF = "INTLAYER_LOCALE", aY = "", az = "always", aZ = "prefix-no-default", aX = ["cookie", "header"];
+      var aJ = tp({ Build: () => th, Content: () => ty, Editor: () => tH, Internationalization: () => ak, Log: () => aG, Routing: () => aW });
+      let aQ = (e10) => {
+        let { name: t10, path: r10, expires: n10, domain: i10, secure: o10, sameSite: a10, httpOnly: s2 } = e10 ?? {};
+        return { name: t10 ?? aJ.Routing.COOKIE_NAME, attributes: { path: r10, expires: n10, domain: i10, secure: o10, sameSite: a10, httpOnly: s2 } };
+      }, a0 = (e10) => {
+        let { name: t10 } = e10 ?? {};
+        return { name: t10 ?? aJ.Routing.LOCALE_STORAGE_NAME };
+      }, a1 = (e10) => {
+        let { name: t10 } = e10 ?? {};
+        return { name: t10 ?? aJ.Routing.HEADER_NAME };
+      }, a2 = (e10) => {
+        if ("string" == typeof e10) {
+          if ("cookie" !== e10 && "localStorage" !== e10 && "sessionStorage" !== e10 && "header" !== e10) return { cookies: [], localStorage: [], sessionStorage: [], headers: [] };
+          if ("cookie" === e10) return { cookies: [aQ()] };
+          if ("localStorage" === e10) return { localStorage: [a0()] };
+          if ("sessionStorage" === e10) return { sessionStorage: [a0()] };
+          if ("header" === e10) return { headers: [a1()] };
+        }
+        if ("object" == typeof e10 && null !== e10) {
+          if ("cookie" === e10.type || "sameSite" in e10 || "httpOnly" in e10 || "secure" in e10) return { cookies: [aQ(e10)] };
+          if ("type" in e10 && "localStorage" === e10.type) {
+            let { name: t11, ...r11 } = e10;
+            return { localStorage: [a0({ name: t11, ...r11 })] };
+          }
+          if ("type" in e10 && "sessionStorage" === e10.type) {
+            let { name: t11, ...r11 } = e10;
+            return { sessionStorage: [a0({ name: t11, ...r11 })] };
+          }
+          if ("type" in e10 && "header" === e10.type) {
+            let { name: t11, ...r11 } = e10;
+            return { headers: [a1({ name: t11, ...r11 })] };
+          }
+          let { name: t10, ...r10 } = e10;
+          return { localStorage: [a0({ name: t10, ...r10 })] };
+        }
+        return { cookies: [], localStorage: [], sessionStorage: [], headers: [] };
+      }, a3 = (e10, t10) => ({ cookies: [...e10.cookies, ...t10.cookies ?? []], localStorage: [...e10.localStorage, ...t10.localStorage ?? []], sessionStorage: [...e10.sessionStorage, ...t10.sessionStorage ?? []], headers: [...e10.headers, ...t10.headers ?? []] }), a4 = (e10) => {
+        let t10 = { cookies: [], localStorage: [], sessionStorage: [], headers: [] };
+        return false === e10 || void 0 === e10 ? t10 : Array.isArray(e10) ? e10.reduce((e11, t11) => a3(e11, a2(t11)), t10) : a3(t10, a2(e10));
+      }, a6 = (e10, t10, r10) => {
+        let n10 = [`${e10}=${encodeURIComponent(t10)}`];
+        return r10.path && n10.push(`Path=${r10.path}`), r10.domain && n10.push(`Domain=${r10.domain}`), r10.expires instanceof Date && n10.push(`Expires=${r10.expires.toUTCString()}`), r10.secure && n10.push("Secure"), r10.sameSite && n10.push(`SameSite=${r10.sameSite}`), n10.join("; ");
+      }, a5 = (e10) => {
+        let { routing: t10, internationalization: r10 } = tc.default, { locales: n10 } = r10, { storage: i10 } = t10;
+        if (false === i10 || e10?.isCookieEnabled === false) return;
+        let o10 = a4(i10), a10 = (e11) => !!e11 && n10.includes(e11), s2 = (t11) => {
+          try {
+            let r11 = e10?.getCookie?.(t11);
+            if (null != r11) return r11;
+          } catch {
+          }
+          return ((e11, t12) => {
+            try {
+              let r11 = t12 ?? ("undefined" != typeof document ? document.cookie : "");
+              if (!r11) return;
+              let n11 = r11.split(";");
+              for (let t13 = 0; t13 < n11.length; t13++) {
+                let r12 = n11[t13].trim();
+                if (!r12) continue;
+                let i11 = r12.indexOf("=");
+                if ((i11 >= 0 ? r12.substring(0, i11) : r12) === e11) {
+                  let e12 = i11 >= 0 ? r12.substring(i11 + 1) : "";
+                  try {
+                    return decodeURIComponent(e12);
+                  } catch {
+                    return e12;
+                  }
+                }
+              }
+            } catch {
+            }
+          })(t11);
+        };
+        for (let e11 = 0; e11 < o10.cookies.length; e11++) {
+          let { name: t11 } = o10.cookies[e11], r11 = s2(t11);
+          if (a10(r11)) return r11;
+        }
+        for (let t11 = 0; t11 < o10.localStorage.length; t11++) {
+          let { name: r11 } = o10.localStorage[t11];
+          try {
+            let t12 = e10?.getLocaleStorage?.(r11);
+            if (a10(t12)) return t12;
+          } catch {
+          }
+        }
+        for (let t11 = 0; t11 < o10.sessionStorage.length; t11++) {
+          let { name: r11 } = o10.sessionStorage[t11];
+          try {
+            let t12 = e10?.getSessionStorage?.(r11);
+            if (a10(t12)) return t12;
+          } catch {
+          }
+        }
+        for (let t11 = 0; t11 < o10.headers.length; t11++) {
+          let { name: r11 } = o10.headers[t11];
+          try {
+            let t12 = e10?.getHeader?.(r11);
+            if (a10(t12)) return t12;
+          } catch {
+          }
+        }
+      }, a9 = (e10, t10) => {
+        if (false === tc.default.routing.storage || t10?.isCookieEnabled === false) return;
+        let r10 = a4(tc.default.routing.storage);
+        for (let n10 = 0; n10 < r10.cookies.length; n10++) {
+          let { name: i10, attributes: o10 } = r10.cookies[n10];
+          try {
+            t10?.setCookieStore && t10?.setCookieStore?.(i10, e10, { ...o10, expires: o10.expires instanceof Date ? o10.expires.getTime() : o10.expires });
+          } catch {
+            try {
+              if (t10?.setCookieString) {
+                let r11 = a6(i10, e10, o10);
+                t10?.setCookieString?.(i10, r11);
+              }
+            } catch {
+            }
+          }
+        }
+        if (t10?.setLocaleStorage) for (let n10 = 0; n10 < r10.localStorage.length; n10++) {
+          let { name: i10 } = r10.localStorage[n10];
+          try {
+            if (!(t10?.overwrite ?? true) && t10?.getLocaleStorage && t10?.getLocaleStorage?.(i10)) continue;
+            t10?.setLocaleStorage?.(i10, e10);
+          } catch {
+          }
+        }
+        if (t10?.setSessionStorage) for (let n10 = 0; n10 < r10.sessionStorage.length; n10++) {
+          let { name: i10 } = r10.sessionStorage[n10];
+          try {
+            if (!(t10?.overwrite ?? true) && t10?.getSessionStorage && t10?.getSessionStorage?.(i10)) continue;
+            t10?.setSessionStorage?.(i10, e10);
+          } catch {
+          }
+        }
+        if (t10?.setHeader) for (let n10 = 0; n10 < r10.headers.length; n10++) {
+          let { name: i10 } = r10.headers[n10];
+          try {
+            t10?.setHeader?.(i10, e10);
+          } catch {
+          }
+        }
+      };
+      var a8 = tc;
+      let a7 = /^\s*([^\s\-;]+)(?:-([^\s;]+))?\s*(?:;(.*))?$/;
+      var se = ((F = se || {})[F.None = 0] = "None", F[F.Broad = 1] = "Broad", F[F.Prefix = 2] = "Prefix", F[F.Exact = 4] = "Exact", F);
+      let st = (e10, t10) => {
+        let r10 = a7.exec(e10);
         if (!r10) return null;
         let n10 = r10[1], i10 = r10[2], o10 = r10[3], a10 = i10 ? `${n10}-${i10}` : n10, s2 = 1;
         if (o10) for (let e11 of o10.split(";")) {
@@ -3340,21 +3505,21 @@ Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime`;
           "q" === t11 && (s2 = parseFloat(r11));
         }
         return { languageCode: n10, regionCode: i10, qualityScore: s2, originalIndex: t10, fullLocale: a10 };
-      }, tf = (e10, t10, r10) => {
-        let n10 = th(e10, r10);
+      }, sr = (e10, t10, r10) => {
+        let n10 = st(e10, r10);
         if (!n10) return null;
-        let i10 = tp.None, o10 = t10.fullLocale.toLowerCase(), a10 = t10.languageCode.toLowerCase(), s2 = n10.fullLocale.toLowerCase(), l2 = n10.languageCode.toLowerCase();
-        if (o10 === s2) i10 |= tp.Exact;
-        else if (a10 === s2) i10 |= tp.Prefix;
-        else if (o10 === l2) i10 |= tp.Broad;
+        let i10 = se.None, o10 = t10.fullLocale.toLowerCase(), a10 = t10.languageCode.toLowerCase(), s2 = n10.fullLocale.toLowerCase(), l2 = n10.languageCode.toLowerCase();
+        if (o10 === s2) i10 |= se.Exact;
+        else if (a10 === s2) i10 |= se.Prefix;
+        else if (o10 === l2) i10 |= se.Broad;
         else if ("*" !== t10.fullLocale) return null;
         return { providedIndex: r10, headerIndex: t10.originalIndex, qualityScore: t10.qualityScore, specificityScore: i10 };
-      }, tg = (e10, t10) => t10.qualityScore - e10.qualityScore || t10.specificityScore - e10.specificityScore || e10.headerIndex - t10.headerIndex || e10.providedIndex - t10.providedIndex || 0, t_ = (e10) => {
+      }, sn = (e10, t10) => t10.qualityScore - e10.qualityScore || t10.specificityScore - e10.specificityScore || e10.headerIndex - t10.headerIndex || e10.providedIndex - t10.providedIndex || 0, si = (e10) => {
         var t10, r10, n10;
         let i10, o10 = {};
         return e10.headers.forEach((e11, t11) => {
           o10[t11] = e11;
-        }), ((e11, t11 = tc.default?.internationalization?.locales, r11 = tc.default?.internationalization?.defaultLocale) => {
+        }), ((e11, t11 = a8.default?.internationalization?.locales, r11 = a8.default?.internationalization?.defaultLocale) => {
           let n11 = [e11].flat(), i11 = (e12) => e12.trim().toLowerCase();
           try {
             for (let e12 of n11) {
@@ -3369,246 +3534,88 @@ Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime`;
         })((n10 = o10["accept-language"], i10 = ((e11) => {
           let t11 = e11.split(","), r11 = [];
           for (let e12 = 0; e12 < t11.length; e12++) {
-            let n11 = th(t11[e12].trim(), e12);
+            let n11 = st(t11[e12].trim(), e12);
             n11 && r11.push(n11);
           }
           return r11;
         })(void 0 === n10 ? "*" : n10 || ""), t10 ? t10.map((e11, t11) => ((e12, t12, r11) => {
           let n11 = { headerIndex: -1, qualityScore: 0, specificityScore: 0, providedIndex: r11 };
           for (let i11 of t12) {
-            let t13 = tf(e12, i11, r11);
+            let t13 = sr(e12, i11, r11);
             t13 && 0 > (n11.specificityScore - t13.specificityScore || n11.qualityScore - t13.qualityScore || n11.headerIndex - t13.headerIndex) && (n11 = t13);
           }
           return n11;
-        })(e11, i10, t11)).filter((e11) => e11.qualityScore > 0).sort(tg).map((e11) => t10[e11.providedIndex]) : i10.filter((e11) => e11.qualityScore > 0).sort((e11, t11) => t11.qualityScore - e11.qualityScore).map((e11) => e11.fullLocale)), t10, r10);
-      };
-      var tm = Object.defineProperty, tv = (e10, t10) => {
-        let r10 = {};
-        for (var n10 in e10) tm(r10, n10, { get: e10[n10], enumerable: true });
-        return t10 && tm(r10, Symbol.toStringTag, { value: "Module" }), r10;
-      }, tb = tv({ BUILD_MODE: () => ty, CACHE: () => tR, IMPORT_MODE: () => tE, OPTIMIZE: () => tA, OUTPUT_FORMAT: () => tw, TRAVERSE_PATTERN: () => tS });
-      let ty = "auto", tA, tE = "static", tS = ["**/*.{tsx,ts,js,mjs,cjs,jsx,mjx,cjx,vue,svelte,svte}", "!**/node_modules/**"], tw = ["cjs", "esm"], tR = true;
-      var tI = tv({ CACHE_DIR: () => t$, CONFIG_DIR: () => tG, CONTENT_DIR: () => tx, DICTIONARIES_DIR: () => tT, DYNAMIC_DICTIONARIES_DIR: () => tD, EXCLUDED_PATHS: () => tC, FETCH_DICTIONARIES_DIR: () => tM, FILE_EXTENSIONS: () => tN, I18NEXT_DICTIONARIES_DIR: () => tB, MAIN_DIR: () => tO, MASKS_DIR: () => tL, MODULE_AUGMENTATION_DIR: () => tH, REACT_INTL_MESSAGES_DIR: () => tj, REMOTE_DICTIONARIES_DIR: () => tP, TYPES_DIR: () => tU, UNMERGED_DICTIONARIES_DIR: () => tk, WATCH: () => tq });
-      let tN = [".content.ts", ".content.js", ".content.cjs", ".content.cjx", ".content.mjs", ".content.mjx", ".content.json", ".content.json5", ".content.jsonc", ".content.tsx", ".content.jsx"], tC = ["**/node_modules/**", "**/dist/**", "**/build/**", "**/.intlayer/**", "**/.next/**", "**/.nuxt/**", "**/.expo/**", "**/.vercel/**", "**/.turbo/**", "**/.tanstack/**"], tx = ["."], tO = ".intlayer/main", tT = ".intlayer/dictionary", tL = ".intlayer/mask", tP = ".intlayer/remote_dictionary", tk = ".intlayer/unmerged_dictionary", tD = ".intlayer/dynamic_dictionary", tM = ".intlayer/fetch_dictionary", tU = ".intlayer/types", tH = ".intlayer/types", tB = "i18next_resources", tj = "intl_messages", tG = ".intlayer/config", t$ = ".intlayer/cache", tq = true;
-      var tW = tv({ APPLICATION_URL: () => tK, BACKEND_URL: () => tY, CMS_URL: () => tF, DICTIONARY_PRIORITY_STRATEGY: () => tJ, EDITOR_URL: () => tV, IS_ENABLED: () => tZ, LIVE_SYNC: () => tX, LIVE_SYNC_PORT: () => tQ, PORT: () => tz });
-      let tK = "", tV = "http://localhost:8000", tF = "https://app.intlayer.org", tY = "https://back.intlayer.org", tz = 8e3, tZ = true, tX = true, tJ = "local_first", tQ = 4e3;
-      var t0 = Object.defineProperty, t1 = ((e10, t10) => {
-        let r10 = {};
-        for (var n10 in e10) t0(r10, n10, { get: e10[n10], enumerable: true });
-        return t10 && t0(r10, Symbol.toStringTag, { value: "Module" }), r10;
-      })({ AFRIKAANS: () => t2, AFRIKAANS_SOUTH_AFRICA: () => t3, ALBANIAN: () => oo, ALBANIAN_ALBANIA: () => oa, ALL_LOCALES: () => aB, AMHARIC: () => an, AMHARIC_ETHIOPIA: () => ai, ARABIC: () => t4, ARABIC_ALGERIA: () => t9, ARABIC_BAHRAIN: () => t5, ARABIC_CHAD: () => aU, ARABIC_COMOROS: () => aH, ARABIC_DJIBOUTI: () => aD, ARABIC_EGYPT: () => t8, ARABIC_IRAQ: () => t7, ARABIC_JORDAN: () => re, ARABIC_KUWAIT: () => rt, ARABIC_LEBANON: () => rr, ARABIC_LIBYA: () => rn, ARABIC_MAURITANIA: () => aL, ARABIC_MOROCCO: () => ri, ARABIC_OMAN: () => ro, ARABIC_PALESTINE: () => aP, ARABIC_QATAR: () => ra, ARABIC_SAUDI_ARABIA: () => rs, ARABIC_SOMALIA: () => aM, ARABIC_SUDAN: () => ak, ARABIC_SYRIA: () => rl, ARABIC_TUNISIA: () => ru, ARABIC_UNITED_ARAB_EMIRATES: () => t6, ARABIC_YEMEN: () => rc, ARMENIAN: () => n$, ARMENIAN_ARMENIA: () => nq, AZERI_LATIN: () => rd, AZERI_LATIN_AZERBAIJAN: () => rp, BASQUE: () => nc, BASQUE_SPAIN: () => nd, BELARUSIAN: () => rh, BELARUSIAN_BELARUS: () => rf, BENGALI: () => oQ, BENGALI_BANGLADESH: () => o0, BENGALI_INDIA: () => o1, BENGALI_MYANMAR: () => o2, BOSNIAN: () => rm, BOSNIAN_BOSNIA_AND_HERZEGOVINA: () => rv, BULGARIAN: () => rg, BULGARIAN_BULGARIA: () => r_, BURMESE: () => o3, BURMESE_MYANMAR: () => o4, CATALAN: () => rb, CATALAN_SPAIN: () => ry, CHINESE: () => oW, CHINESE_HONG_KONG: () => oF, CHINESE_MACAU: () => oY, CHINESE_SIMPLIFIED: () => oK, CHINESE_SIMPLIFIED_CHINA: () => oV, CHINESE_SINGAPORE: () => oz, CHINESE_TAIWAN: () => aT, CHINESE_TRADITIONAL: () => oZ, CROATIAN: () => nU, CROATIAN_BOSNIA_AND_HERZEGOVINA: () => nH, CROATIAN_CROATIA: () => nB, CZECH: () => rA, CZECH_CZECH_REPUBLIC: () => rE, DANISH: () => rR, DANISH_DENMARK: () => rI, DIVEHI: () => rP, DIVEHI_MALDIVES: () => rk, DUTCH: () => iN, DUTCH_BELGIUM: () => iC, DUTCH_NETHERLANDS: () => ix, ENGLISH: () => rU, ENGLISH_AUSTRALIA: () => rH, ENGLISH_BELIZE: () => rB, ENGLISH_BOTSWANA: () => av, ENGLISH_CANADA: () => rj, ENGLISH_CARIBBEAN: () => rG, ENGLISH_GHANA: () => aA, ENGLISH_HONG_KONG: () => af, ENGLISH_INDIA: () => ap, ENGLISH_IRELAND: () => rq, ENGLISH_JAMAICA: () => rW, ENGLISH_KENYA: () => ab, ENGLISH_MALAYSIA: () => am, ENGLISH_NEW_ZEALAND: () => rK, ENGLISH_NIGERIA: () => ag, ENGLISH_PAKISTAN: () => a_, ENGLISH_PHILIPPINES: () => rV, ENGLISH_SINGAPORE: () => ah, ENGLISH_SOUTH_AFRICA: () => rz, ENGLISH_TANZANIA: () => ay, ENGLISH_TRINIDAD_AND_TOBAGO: () => rF, ENGLISH_UGANDA: () => aE, ENGLISH_UNITED_KINGDOM: () => r$, ENGLISH_UNITED_STATES: () => rY, ENGLISH_ZIMBABWE: () => rZ, ESPERANTO: () => rX, ESTONIAN: () => nl, ESTONIAN_ESTONIA: () => nu, FAROESE: () => n_, FAROESE_FAROE_ISLANDS: () => nm, FARSI: () => np, FARSI_IRAN: () => nh, FINNISH: () => nf, FINNISH_FINLAND: () => ng, FRENCH: () => nv, FRENCH_BELGIUM: () => nb, FRENCH_CANADA: () => ny, FRENCH_FRANCE: () => nE, FRENCH_LUXEMBOURG: () => nS, FRENCH_PRINCIPALITY_OF_MONACO: () => nw, FRENCH_SWITZERLAND: () => nA, FYRO_MACEDONIAN: () => ic, FYRO_MACEDONIAN_MACEDONIA: () => id, GALICIAN: () => nx, GALICIAN_SPAIN: () => nO, GEORGIAN: () => nQ, GEORGIAN_GEORGIA: () => n0, GERMAN: () => rN, GERMAN_AUSTRIA: () => rC, GERMAN_GERMANY: () => rO, GERMAN_LIECHTENSTEIN: () => rT, GERMAN_LUXEMBOURG: () => rL, GERMAN_SWITZERLAND: () => rx, GREEK: () => rD, GREEK_GREECE: () => rM, GUJARATI: () => nT, GUJARATI_INDIA: () => nL, HEBREW: () => nP, HEBREW_ISRAEL: () => nk, HINDI: () => nD, HINDI_INDIA: () => nM, HUNGARIAN: () => nj, HUNGARIAN_HUNGARY: () => nG, ICELANDIC: () => nV, ICELANDIC_ICELAND: () => nF, INDONESIAN: () => nW, INDONESIAN_INDONESIA: () => nK, IRISH: () => nR, IRISH_IRELAND: () => nI, ITALIAN: () => nY, ITALIAN_ITALY: () => nZ, ITALIAN_SWITZERLAND: () => nz, JAPANESE: () => nX, JAPANESE_JAPAN: () => nJ, KANNADA: () => n3, KANNADA_INDIA: () => n4, KAZAKH: () => n1, KAZAKH_KAZAKHSTAN: () => n2, KHMER: () => o6, KHMER_CAMBODIA: () => o5, KONKANI: () => n9, KONKANI_INDIA: () => n8, KOREAN: () => n6, KOREAN_KOREA: () => n5, KURDISH: () => n7, KURDISH_TURKEY: () => ie, KYRGYZ: () => it, KYRGYZ_KYRGYZSTAN: () => ir, LAO: () => o9, LAO_LAOS: () => o8, LATVIAN: () => ia, LATVIAN_LATVIA: () => is, LITHUANIAN: () => ii, LITHUANIAN_LITHUANIA: () => io, LOWER_SORBIAN: () => i7, LOWER_SORBIAN_GERMANY: () => oe, MALAY: () => im, MALAYALAM: () => iE, MALAYALAM_INDIA: () => iS, MALAY_BRUNEI_DARUSSALAM: () => iv, MALAY_MALAYSIA: () => ib, MALTESE: () => iy, MALTESE_MALTA: () => iA, MAORI: () => il, MAORI_NEW_ZEALAND: () => iu, MARATHI: () => ig, MARATHI_INDIA: () => i_, MONGOLIAN: () => ip, MONGOLIAN_MONGOLIA: () => ih, NEPALI: () => ao, NEPALI_NEPAL: () => aa, NORTHERN_SOTHO: () => iL, NORTHERN_SOTHO_SOUTH_AFRICA: () => iP, NORWEGIAN: () => iw, NORWEGIAN_BOKMAL: () => iR, NORWEGIAN_BOKMAL_NORWAY: () => iI, NORWEGIAN_NYNORSK: () => iO, NORWEGIAN_NYNORSK_NORWAY: () => iT, PASHTO: () => iH, PASHTO_AFGHANISTAN: () => iB, POLISH: () => iM, POLISH_POLAND: () => iU, PORTUGUESE: () => ij, PORTUGUESE_BRAZIL: () => iG, PORTUGUESE_CAPE_VERDE: () => aC, PORTUGUESE_GUINEA_BISSAU: () => aR, PORTUGUESE_MACAU: () => aO, PORTUGUESE_MOZAMBIQUE: () => aI, PORTUGUESE_PORTUGAL: () => i$, PORTUGUESE_SAO_TOME_AND_PRINCIPE: () => aN, PORTUGUESE_TIMOR_LESTE: () => ax, PUNJABI: () => ik, PUNJABI_INDIA: () => iD, QUECHUA: () => iq, QUECHUA_BOLIVIA: () => iW, QUECHUA_ECUADOR: () => iK, QUECHUA_PERU: () => iV, ROMANIAN: () => iF, ROMANIAN_MOLDOVA: () => iz, ROMANIAN_ROMANIA: () => iY, ROMANSH: () => iZ, ROMANSH_SWITZERLAND: () => iX, RUSSIAN: () => iJ, RUSSIAN_MOLDOVA: () => i0, RUSSIAN_RUSSIA: () => iQ, SAMI_NORTHERN: () => i3, SAMI_NORTHERN_FINLAND: () => i4, SAMI_NORTHERN_NORWAY: () => i6, SAMI_NORTHERN_SWEDEN: () => i5, SANSKRIT: () => i1, SANSKRIT_INDIA: () => i2, SCOTTISH_GAELIC: () => nN, SCOTTISH_GAELIC_UNITED_KINGDOM: () => nC, SERBIAN_CYRILLIC: () => au, SERBIAN_CYRILLIC_BOSNIA_AND_HERZEGOVINA: () => ad, SERBIAN_CYRILLIC_SERBIA: () => ac, SERBIAN_LATIN: () => os, SERBIAN_LATIN_BOSNIA_AND_HERZEGOVINA: () => ol, SERBIAN_LATIN_SERBIA_AND_MONTENEGRO: () => ou, SINHALA: () => as, SINHALA_SRI_LANKA: () => al, SLOVAK: () => ot, SLOVAK_SLOVAKIA: () => or, SLOVENIAN: () => on, SLOVENIAN_SLOVENIA: () => oi, SPANISH: () => rJ, SPANISH_ARGENTINA: () => rQ, SPANISH_BOLIVIA: () => r0, SPANISH_CHILE: () => r1, SPANISH_COLOMBIA: () => r2, SPANISH_COSTA_RICA: () => r3, SPANISH_CUBA: () => aS, SPANISH_DOMINICAN_REPUBLIC: () => r4, SPANISH_ECUADOR: () => r6, SPANISH_EL_SALVADOR: () => no, SPANISH_GUATEMALA: () => r9, SPANISH_HONDURAS: () => r8, SPANISH_MEXICO: () => r7, SPANISH_NICARAGUA: () => ne, SPANISH_PANAMA: () => nt, SPANISH_PARAGUAY: () => ni, SPANISH_PERU: () => nr, SPANISH_PUERTO_RICO: () => nn, SPANISH_SPAIN: () => r5, SPANISH_UNITED_STATES: () => aw, SPANISH_URUGUAY: () => na, SPANISH_VENEZUELA: () => ns, SWAHILI: () => oh, SWAHILI_KENYA: () => of, SWEDISH: () => oc, SWEDISH_FINLAND: () => od, SWEDISH_SWEDEN: () => op, SYRIAC: () => og, SYRIAC_SYRIA: () => o_, TAGALOG: () => oS, TAGALOG_PHILIPPINES: () => ow, TAMIL: () => om, TAMIL_INDIA: () => ov, TATAR: () => ox, TATAR_RUSSIA: () => oO, TELUGU: () => ob, TELUGU_INDIA: () => oy, THAI: () => oA, THAI_THAILAND: () => oE, TSOGA: () => oT, TSWANA: () => oR, TSWANA_SOUTH_AFRICA: () => oI, TURKISH: () => oN, TURKISH_TURKEY: () => oC, UKRAINIAN: () => oL, UKRAINIAN_UKRAINE: () => oP, UPPER_SORBIAN: () => i9, UPPER_SORBIAN_GERMANY: () => i8, URDU: () => ok, URDU_ISLAMIC_REPUBLIC_OF_PAKISTAN: () => oD, UZBEK_LATIN: () => oM, UZBEK_LATIN_UZBEKISTAN: () => oU, VENDA: () => oj, VENDA_SOUTH_AFRICA: () => oG, VIETNAMESE: () => oH, VIETNAMESE_VIET_NAM: () => oB, WELSH: () => rS, WELSH_UNITED_KINGDOM: () => rw, XHOSA: () => o$, XHOSA_SOUTH_AFRICA: () => oq, YIDDISH: () => at, YIDDISH_WORLD: () => ar, YORUBA: () => o7, YORUBA_NIGERIA: () => ae, ZULU: () => oX, ZULU_SOUTH_AFRICA: () => oJ });
-      let t2 = "af", t3 = "af-ZA", t4 = "ar", t6 = "ar-AE", t5 = "ar-BH", t9 = "ar-DZ", t8 = "ar-EG", t7 = "ar-IQ", re = "ar-JO", rt = "ar-KW", rr = "ar-LB", rn = "ar-LY", ri = "ar-MA", ro = "ar-OM", ra = "ar-QA", rs = "ar-SA", rl = "ar-SY", ru = "ar-TN", rc = "ar-YE", rd = "az", rp = "az-AZ", rh = "be", rf = "be-BY", rg = "bg", r_ = "bg-BG", rm = "bs", rv = "bs-BA", rb = "ca", ry = "ca-ES", rA = "cs", rE = "cs-CZ", rS = "cy", rw = "cy-GB", rR = "da", rI = "da-DK", rN = "de", rC = "de-AT", rx = "de-CH", rO = "de-DE", rT = "de-LI", rL = "de-LU", rP = "dv", rk = "dv-MV", rD = "el", rM = "el-GR", rU = "en", rH = "en-AU", rB = "en-BZ", rj = "en-CA", rG = "en-CB", r$ = "en-GB", rq = "en-IE", rW = "en-JM", rK = "en-NZ", rV = "en-PH", rF = "en-TT", rY = "en-US", rz = "en-ZA", rZ = "en-ZW", rX = "eo", rJ = "es", rQ = "es-AR", r0 = "es-BO", r1 = "es-CL", r2 = "es-CO", r3 = "es-CR", r4 = "es-DO", r6 = "es-EC", r5 = "es-ES", r9 = "es-GT", r8 = "es-HN", r7 = "es-MX", ne = "es-NI", nt = "es-PA", nr = "es-PE", nn = "es-PR", ni = "es-PY", no = "es-SV", na = "es-UY", ns = "es-VE", nl = "et", nu = "et-EE", nc = "eu", nd = "eu-ES", np = "fa", nh = "fa-IR", nf = "fi", ng = "fi-FI", n_ = "fo", nm = "fo-FO", nv = "fr", nb = "fr-BE", ny = "fr-CA", nA = "fr-CH", nE = "fr-FR", nS = "fr-LU", nw = "fr-MC", nR = "ga", nI = "ga-IE", nN = "gd", nC = "gd-GB", nx = "gl", nO = "gl-ES", nT = "gu", nL = "gu-IN", nP = "he", nk = "he-IL", nD = "hi", nM = "hi-IN", nU = "hr", nH = "hr-BA", nB = "hr-HR", nj = "hu", nG = "hu-HU", n$ = "hy", nq = "hy-AM", nW = "id", nK = "id-ID", nV = "is", nF = "is-IS", nY = "it", nz = "it-CH", nZ = "it-IT", nX = "ja", nJ = "ja-JP", nQ = "ka", n0 = "ka-GE", n1 = "kk", n2 = "kk-KZ", n3 = "kn", n4 = "kn-IN", n6 = "ko", n5 = "ko-KR", n9 = "kok", n8 = "kok-IN", n7 = "ku", ie = "ku-TR", it = "ky", ir = "ky-KG", ii = "lt", io = "lt-LT", ia = "lv", is = "lv-LV", il = "mi", iu = "mi-NZ", ic = "mk", id = "mk-MK", ip = "mn", ih = "mn-MN", ig = "mr", i_ = "mr-IN", im = "ms", iv = "ms-BN", ib = "ms-MY", iy = "mt", iA = "mt-MT", iE = "ml", iS = "ml-IN", iw = "no", iR = "nb", iI = "nb-NO", iN = "nl", iC = "nl-BE", ix = "nl-NL", iO = "nn", iT = "nn-NO", iL = "ns", iP = "ns-ZA", ik = "pa", iD = "pa-IN", iM = "pl", iU = "pl-PL", iH = "ps", iB = "ps-AR", ij = "pt", iG = "pt-BR", i$ = "pt-PT", iq = "qu", iW = "qu-BO", iK = "qu-EC", iV = "qu-PE", iF = "ro", iY = "ro-RO", iz = "ro-MD", iZ = "rm", iX = "rm-CH", iJ = "ru", iQ = "ru-RU", i0 = "ru-MD", i1 = "sa", i2 = "sa-IN", i3 = "se", i4 = "se-FI", i6 = "se-NO", i5 = "se-SE", i9 = "hsb", i8 = "hsb-DE", i7 = "dsb", oe = "dsb-DE", ot = "sk", or = "sk-SK", on = "sl", oi = "sl-SI", oo = "sq", oa = "sq-AL", os = "sr", ol = "sr-BA", ou = "sr-SP", oc = "sv", od = "sv-FI", op = "sv-SE", oh = "sw", of = "sw-KE", og = "syr", o_ = "syr-SY", om = "ta", ov = "ta-IN", ob = "te", oy = "te-IN", oA = "th", oE = "th-TH", oS = "tl", ow = "tl-PH", oR = "tn", oI = "tn-ZA", oN = "tr", oC = "tr-TR", ox = "tt", oO = "tt-RU", oT = "ts", oL = "uk", oP = "uk-UA", ok = "ur", oD = "ur-PK", oM = "uz", oU = "uz-UZ", oH = "vi", oB = "vi-VN", oj = "ve", oG = "ve-ZA", o$ = "xh", oq = "xh-ZA", oW = "zh", oK = "zh-Hans", oV = "zh-CN", oF = "zh-HK", oY = "zh-MO", oz = "zh-SG", oZ = "zh-Hant", oX = "zu", oJ = "zu-ZA", oQ = "bn", o0 = "bn-BD", o1 = "bn-IN", o2 = "bn-MM", o3 = "my", o4 = "my-MM", o6 = "km", o5 = "km-KH", o9 = "lo", o8 = "lo-LA", o7 = "yo", ae = "yo-NG", at = "yi", ar = "yi-001", an = "am", ai = "am-ET", ao = "ne", aa = "ne-NP", as = "si", al = "si-LK", au = "sr-Cyrl", ac = "sr-RS", ad = "sr-BA", ap = "en-IN", ah = "en-SG", af = "en-HK", ag = "en-NG", a_ = "en-PK", am = "en-MY", av = "en-BW", ab = "en-KE", ay = "en-TZ", aA = "en-GH", aE = "en-UG", aS = "es-CU", aw = "es-US", aR = "pt-GW", aI = "pt-MZ", aN = "pt-ST", aC = "pt-CV", ax = "pt-TL", aO = "pt-MO", aT = "zh-TW", aL = "ar-MR", aP = "ar-PS", ak = "ar-SD", aD = "ar-DJ", aM = "ar-SO", aU = "ar-TD", aH = "ar-KM", aB = { AFRIKAANS: t2, AFRIKAANS_SOUTH_AFRICA: t3, ARABIC: t4, ARABIC_UNITED_ARAB_EMIRATES: t6, ARABIC_BAHRAIN: t5, ARABIC_ALGERIA: t9, ARABIC_EGYPT: t8, ARABIC_IRAQ: t7, ARABIC_JORDAN: re, ARABIC_KUWAIT: rt, ARABIC_LEBANON: rr, ARABIC_LIBYA: rn, ARABIC_MOROCCO: ri, ARABIC_OMAN: ro, ARABIC_QATAR: ra, ARABIC_SAUDI_ARABIA: rs, ARABIC_SYRIA: rl, ARABIC_TUNISIA: ru, ARABIC_YEMEN: rc, AZERI_LATIN: rd, AZERI_LATIN_AZERBAIJAN: rp, BELARUSIAN: rh, BELARUSIAN_BELARUS: rf, BULGARIAN: rg, BULGARIAN_BULGARIA: r_, BOSNIAN: rm, BOSNIAN_BOSNIA_AND_HERZEGOVINA: rv, CATALAN: rb, CATALAN_SPAIN: ry, CZECH: rA, CZECH_CZECH_REPUBLIC: rE, WELSH: rS, WELSH_UNITED_KINGDOM: rw, DANISH: rR, DANISH_DENMARK: rI, GERMAN: rN, GERMAN_AUSTRIA: rC, GERMAN_SWITZERLAND: rx, GERMAN_GERMANY: rO, GERMAN_LIECHTENSTEIN: rT, GERMAN_LUXEMBOURG: rL, DIVEHI: rP, DIVEHI_MALDIVES: rk, GREEK: rD, GREEK_GREECE: rM, ENGLISH: rU, ENGLISH_AUSTRALIA: rH, ENGLISH_BELIZE: rB, ENGLISH_CANADA: rj, ENGLISH_CARIBBEAN: rG, ENGLISH_UNITED_KINGDOM: r$, ENGLISH_IRELAND: rq, ENGLISH_JAMAICA: rW, ENGLISH_NEW_ZEALAND: rK, ENGLISH_PHILIPPINES: rV, ENGLISH_TRINIDAD_AND_TOBAGO: rF, ENGLISH_UNITED_STATES: rY, ENGLISH_SOUTH_AFRICA: rz, ENGLISH_ZIMBABWE: rZ, ESPERANTO: rX, SPANISH: rJ, SPANISH_ARGENTINA: rQ, SPANISH_BOLIVIA: r0, SPANISH_CHILE: r1, SPANISH_COLOMBIA: r2, SPANISH_COSTA_RICA: r3, SPANISH_DOMINICAN_REPUBLIC: r4, SPANISH_ECUADOR: r6, SPANISH_SPAIN: r5, SPANISH_GUATEMALA: r9, SPANISH_HONDURAS: r8, SPANISH_MEXICO: r7, SPANISH_NICARAGUA: ne, SPANISH_PANAMA: nt, SPANISH_PERU: nr, SPANISH_PUERTO_RICO: nn, SPANISH_PARAGUAY: ni, SPANISH_EL_SALVADOR: no, SPANISH_URUGUAY: na, SPANISH_VENEZUELA: ns, ESTONIAN: nl, ESTONIAN_ESTONIA: nu, BASQUE: nc, BASQUE_SPAIN: nd, FARSI: np, FARSI_IRAN: nh, FINNISH: nf, FINNISH_FINLAND: ng, FAROESE: n_, FAROESE_FAROE_ISLANDS: nm, FRENCH: nv, FRENCH_BELGIUM: nb, FRENCH_CANADA: ny, FRENCH_SWITZERLAND: nA, FRENCH_FRANCE: nE, FRENCH_LUXEMBOURG: nS, FRENCH_PRINCIPALITY_OF_MONACO: nw, IRISH: nR, IRISH_IRELAND: nI, SCOTTISH_GAELIC: nN, SCOTTISH_GAELIC_UNITED_KINGDOM: nC, GALICIAN: nx, GALICIAN_SPAIN: nO, GUJARATI: nT, GUJARATI_INDIA: nL, HEBREW: nP, HEBREW_ISRAEL: nk, HINDI: nD, HINDI_INDIA: nM, CROATIAN: nU, CROATIAN_BOSNIA_AND_HERZEGOVINA: nH, CROATIAN_CROATIA: nB, HUNGARIAN: nj, HUNGARIAN_HUNGARY: nG, ARMENIAN: n$, ARMENIAN_ARMENIA: nq, INDONESIAN: nW, INDONESIAN_INDONESIA: nK, ICELANDIC: nV, ICELANDIC_ICELAND: nF, ITALIAN: nY, ITALIAN_SWITZERLAND: nz, ITALIAN_ITALY: nZ, JAPANESE: nX, JAPANESE_JAPAN: nJ, GEORGIAN: nQ, GEORGIAN_GEORGIA: n0, KAZAKH: n1, KAZAKH_KAZAKHSTAN: n2, KANNADA: n3, KANNADA_INDIA: n4, KOREAN: n6, KOREAN_KOREA: n5, KONKANI: n9, KONKANI_INDIA: n8, KURDISH: n7, KURDISH_TURKEY: ie, KYRGYZ: it, KYRGYZ_KYRGYZSTAN: ir, LITHUANIAN: ii, LITHUANIAN_LITHUANIA: io, LATVIAN: ia, LATVIAN_LATVIA: is, MAORI: il, MAORI_NEW_ZEALAND: iu, FYRO_MACEDONIAN: ic, FYRO_MACEDONIAN_MACEDONIA: id, MONGOLIAN: ip, MONGOLIAN_MONGOLIA: ih, MARATHI: ig, MARATHI_INDIA: i_, MALAY: im, MALAY_BRUNEI_DARUSSALAM: iv, MALAY_MALAYSIA: ib, MALTESE: iy, MALTESE_MALTA: iA, MALAYALAM: iE, MALAYALAM_INDIA: iS, NORWEGIAN: iw, NORWEGIAN_BOKMAL: iR, NORWEGIAN_BOKMAL_NORWAY: iI, DUTCH: iN, DUTCH_BELGIUM: iC, DUTCH_NETHERLANDS: ix, NORWEGIAN_NYNORSK: iO, NORWEGIAN_NYNORSK_NORWAY: iT, NORTHERN_SOTHO: iL, NORTHERN_SOTHO_SOUTH_AFRICA: iP, PUNJABI: ik, PUNJABI_INDIA: iD, POLISH: iM, POLISH_POLAND: iU, PASHTO: iH, PASHTO_AFGHANISTAN: iB, PORTUGUESE: ij, PORTUGUESE_BRAZIL: iG, PORTUGUESE_PORTUGAL: i$, QUECHUA: iq, QUECHUA_BOLIVIA: iW, QUECHUA_ECUADOR: iK, QUECHUA_PERU: iV, ROMANIAN: iF, ROMANIAN_ROMANIA: iY, ROMANIAN_MOLDOVA: iz, ROMANSH: iZ, ROMANSH_SWITZERLAND: iX, RUSSIAN: iJ, RUSSIAN_RUSSIA: iQ, RUSSIAN_MOLDOVA: i0, SANSKRIT: i1, SANSKRIT_INDIA: i2, SAMI_NORTHERN: i3, SAMI_NORTHERN_FINLAND: i4, SAMI_NORTHERN_NORWAY: i6, SAMI_NORTHERN_SWEDEN: i5, UPPER_SORBIAN: i9, UPPER_SORBIAN_GERMANY: i8, LOWER_SORBIAN: i7, LOWER_SORBIAN_GERMANY: oe, SLOVAK: ot, SLOVAK_SLOVAKIA: or, SLOVENIAN: on, SLOVENIAN_SLOVENIA: oi, ALBANIAN: oo, ALBANIAN_ALBANIA: oa, SERBIAN_LATIN: os, SERBIAN_LATIN_BOSNIA_AND_HERZEGOVINA: ol, SERBIAN_LATIN_SERBIA_AND_MONTENEGRO: ou, SWEDISH: oc, SWEDISH_FINLAND: od, SWEDISH_SWEDEN: op, SWAHILI: oh, SWAHILI_KENYA: of, SYRIAC: og, SYRIAC_SYRIA: o_, TAMIL: om, TAMIL_INDIA: ov, TELUGU: ob, TELUGU_INDIA: oy, THAI: oA, THAI_THAILAND: oE, TAGALOG: oS, TAGALOG_PHILIPPINES: ow, TSWANA: oR, TSWANA_SOUTH_AFRICA: oI, TURKISH: oN, TURKISH_TURKEY: oC, TATAR: ox, TATAR_RUSSIA: oO, TSOGA: oT, UKRAINIAN: oL, UKRAINIAN_UKRAINE: oP, URDU: ok, URDU_ISLAMIC_REPUBLIC_OF_PAKISTAN: oD, UZBEK_LATIN: oM, UZBEK_LATIN_UZBEKISTAN: oU, VIETNAMESE: oH, VIETNAMESE_VIET_NAM: oB, VENDA: oj, VENDA_SOUTH_AFRICA: oG, XHOSA: o$, XHOSA_SOUTH_AFRICA: oq, CHINESE: oW, CHINESE_SIMPLIFIED: oK, CHINESE_SIMPLIFIED_CHINA: oV, CHINESE_HONG_KONG: oF, CHINESE_MACAU: oY, CHINESE_SINGAPORE: oz, CHINESE_TRADITIONAL: oZ, ZULU: oX, ZULU_SOUTH_AFRICA: oJ, BENGALI: oQ, BENGALI_BANGLADESH: o0, BENGALI_INDIA: o1, BENGALI_MYANMAR: o2, BURMESE: o3, BURMESE_MYANMAR: o4, KHMER: o6, KHMER_CAMBODIA: o5, LAO: o9, LAO_LAOS: o8, YORUBA: o7, YORUBA_NIGERIA: ae, YIDDISH: at, YIDDISH_WORLD: ar, AMHARIC: an, AMHARIC_ETHIOPIA: ai, NEPALI: ao, NEPALI_NEPAL: aa, SINHALA: as, SINHALA_SRI_LANKA: al, SERBIAN_CYRILLIC: au, SERBIAN_CYRILLIC_SERBIA: ac, SERBIAN_CYRILLIC_BOSNIA_AND_HERZEGOVINA: ad, ENGLISH_INDIA: ap, ENGLISH_SINGAPORE: ah, ENGLISH_HONG_KONG: af, ENGLISH_NIGERIA: ag, ENGLISH_PAKISTAN: a_, ENGLISH_MALAYSIA: am, ENGLISH_BOTSWANA: av, ENGLISH_KENYA: ab, ENGLISH_TANZANIA: ay, ENGLISH_GHANA: aA, ENGLISH_UGANDA: aE, SPANISH_CUBA: aS, SPANISH_UNITED_STATES: aw, PORTUGUESE_GUINEA_BISSAU: aR, PORTUGUESE_MOZAMBIQUE: aI, PORTUGUESE_SAO_TOME_AND_PRINCIPE: aN, PORTUGUESE_CAPE_VERDE: aC, PORTUGUESE_TIMOR_LESTE: ax, PORTUGUESE_MACAU: aO, CHINESE_TAIWAN: aT, ARABIC_MAURITANIA: aL, ARABIC_PALESTINE: aP, ARABIC_SUDAN: ak, ARABIC_DJIBOUTI: aD, ARABIC_SOMALIA: aM, ARABIC_CHAD: aU, ARABIC_COMOROS: aH };
-      var aj = tv({ DEFAULT_LOCALE: () => aq, LOCALES: () => aG, REQUIRED_LOCALES: () => a$, STRICT_MODE: () => aW });
-      let aG = [t1.ENGLISH], a$ = [], aq = t1.ENGLISH, aW = "inclusive", aK = ((F = {}).RESET = "\x1B[0m", F.GREY = "\x1B[90m", F.GREY_DARK = "\x1B[38;5;239m", F.GREY_LIGHT = "\x1B[38;5;252m", F.BLUE = "\x1B[34m", F.RED = "\x1B[31m", F.GREEN = "\x1B[32m", F.YELLOW = "\x1B[38;5;226m", F.MAGENTA = "\x1B[35m", F.BEIGE = "\x1B[38;5;3m", F.ORANGE = "\x1B[38;5;208m", F.CYAN = "\x1B[36m", F.WHITE = "\x1B[37m", F.BOLD = "\x1B[1m", F), aV = (e10, t10, r10) => t10 ? `${t10}${e10}${r10 ? "boolean" == typeof r10 ? aK.RESET : r10 : aK.RESET}` : e10;
-      aV("\u2717", aK.RED), aV("\u2713", aK.GREEN), aV("\u23F2", aK.BLUE);
-      var aF = tv({ MODE: () => aY, PREFIX: () => az });
-      let aY = "default", az = `${aK.GREY_DARK}[intlayer] ${aK.RESET}`;
-      var aZ = tv({ BASE_PATH: () => a0, COOKIE_NAME: () => aJ, HEADER_NAME: () => aX, LOCALE_STORAGE_NAME: () => aQ, ROUTING_MODE: () => a2, SERVER_SET_COOKIE: () => a1, STORAGE: () => a3 });
-      let aX = "x-intlayer-locale", aJ = "INTLAYER_LOCALE", aQ = "INTLAYER_LOCALE", a0 = "", a1 = "always", a2 = "prefix-no-default", a3 = ["cookie", "header"];
-      var a4 = tv({ Build: () => tb, Content: () => tI, Editor: () => tW, Internationalization: () => aj, Log: () => aF, Routing: () => aZ });
-      let a6 = (e10) => {
-        let { name: t10, path: r10, expires: n10, domain: i10, secure: o10, sameSite: a10, httpOnly: s2 } = e10 ?? {};
-        return { name: t10 ?? a4.Routing.COOKIE_NAME, attributes: { path: r10, expires: n10, domain: i10, secure: o10, sameSite: a10, httpOnly: s2 } };
-      }, a5 = (e10) => {
-        let { name: t10 } = e10 ?? {};
-        return { name: t10 ?? a4.Routing.LOCALE_STORAGE_NAME };
-      }, a9 = (e10) => {
-        let { name: t10 } = e10 ?? {};
-        return { name: t10 ?? a4.Routing.HEADER_NAME };
-      }, a8 = (e10) => {
-        if ("string" == typeof e10) {
-          if ("cookie" !== e10 && "localStorage" !== e10 && "sessionStorage" !== e10 && "header" !== e10) return { cookies: [], localStorage: [], sessionStorage: [], headers: [] };
-          if ("cookie" === e10) return { cookies: [a6()] };
-          if ("localStorage" === e10) return { localStorage: [a5()] };
-          if ("sessionStorage" === e10) return { sessionStorage: [a5()] };
-          if ("header" === e10) return { headers: [a9()] };
-        }
-        if ("object" == typeof e10 && null !== e10) {
-          if ("cookie" === e10.type || "sameSite" in e10 || "httpOnly" in e10 || "secure" in e10) return { cookies: [a6(e10)] };
-          if ("type" in e10 && "localStorage" === e10.type) {
-            let { name: t11, ...r11 } = e10;
-            return { localStorage: [a5({ name: t11, ...r11 })] };
-          }
-          if ("type" in e10 && "sessionStorage" === e10.type) {
-            let { name: t11, ...r11 } = e10;
-            return { sessionStorage: [a5({ name: t11, ...r11 })] };
-          }
-          if ("type" in e10 && "header" === e10.type) {
-            let { name: t11, ...r11 } = e10;
-            return { headers: [a9({ name: t11, ...r11 })] };
-          }
-          let { name: t10, ...r10 } = e10;
-          return { localStorage: [a5({ name: t10, ...r10 })] };
-        }
-        return { cookies: [], localStorage: [], sessionStorage: [], headers: [] };
-      }, a7 = (e10, t10) => ({ cookies: [...e10.cookies, ...t10.cookies ?? []], localStorage: [...e10.localStorage, ...t10.localStorage ?? []], sessionStorage: [...e10.sessionStorage, ...t10.sessionStorage ?? []], headers: [...e10.headers, ...t10.headers ?? []] }), se = (e10) => {
-        let t10 = { cookies: [], localStorage: [], sessionStorage: [], headers: [] };
-        return false === e10 || void 0 === e10 ? t10 : Array.isArray(e10) ? e10.reduce((e11, t11) => a7(e11, a8(t11)), t10) : a7(t10, a8(e10));
-      }, st = (e10, t10, r10) => {
-        let n10 = [`${e10}=${encodeURIComponent(t10)}`];
-        return r10.path && n10.push(`Path=${r10.path}`), r10.domain && n10.push(`Domain=${r10.domain}`), r10.expires instanceof Date && n10.push(`Expires=${r10.expires.toUTCString()}`), r10.secure && n10.push("Secure"), r10.sameSite && n10.push(`SameSite=${r10.sameSite}`), n10.join("; ");
+        })(e11, i10, t11)).filter((e11) => e11.qualityScore > 0).sort(sn).map((e11) => t10[e11.providedIndex]) : i10.filter((e11) => e11.qualityScore > 0).sort((e11, t11) => t11.qualityScore - e11.qualityScore).map((e11) => e11.fullLocale)), t10, r10);
       };
       e.i(64445), "undefined" == typeof URLPattern || URLPattern;
-      var sr = e.i(40049);
-      if (/* @__PURE__ */ new WeakMap(), sr.default.unstable_postpone, false === ("Route %%% needs to bail out of prerendering at this point because it used ^^^. React throws this special object to indicate where. It should not be caught by your own try/catch. Learn more: https://nextjs.org/docs/messages/ppr-caught-error".includes("needs to bail out of prerendering at this point because it used") && "Route %%% needs to bail out of prerendering at this point because it used ^^^. React throws this special object to indicate where. It should not be caught by your own try/catch. Learn more: https://nextjs.org/docs/messages/ppr-caught-error".includes("Learn more: https://nextjs.org/docs/messages/ppr-caught-error"))) throw Object.defineProperty(Error("Invariant: isDynamicPostpone misidentified a postpone reason. This is a bug in Next.js"), "__NEXT_ERROR_CODE", { value: "E296", enumerable: false, configurable: true });
+      var so = e.i(40049);
+      if (/* @__PURE__ */ new WeakMap(), so.default.unstable_postpone, false === ("Route %%% needs to bail out of prerendering at this point because it used ^^^. React throws this special object to indicate where. It should not be caught by your own try/catch. Learn more: https://nextjs.org/docs/messages/ppr-caught-error".includes("needs to bail out of prerendering at this point because it used") && "Route %%% needs to bail out of prerendering at this point because it used ^^^. React throws this special object to indicate where. It should not be caught by your own try/catch. Learn more: https://nextjs.org/docs/messages/ppr-caught-error".includes("Learn more: https://nextjs.org/docs/messages/ppr-caught-error"))) throw Object.defineProperty(Error("Invariant: isDynamicPostpone misidentified a postpone reason. This is a bug in Next.js"), "__NEXT_ERROR_CODE", { value: "E296", enumerable: false, configurable: true });
       RegExp(`\\n\\s+at Suspense \\(<anonymous>\\)(?:(?!\\n\\s+at (?:body|div|main|section|article|aside|header|footer|nav|form|p|span|h1|h2|h3|h4|h5|h6) \\(<anonymous>\\))[\\s\\S])*?\\n\\s+at __next_root_layout_boundary__ \\([^\\n]*\\)`), RegExp(`\\n\\s+at __next_metadata_boundary__[\\n\\s]`), RegExp(`\\n\\s+at __next_viewport_boundary__[\\n\\s]`), RegExp(`\\n\\s+at __next_outlet_boundary__[\\n\\s]`), e.s([], 85835), e.i(85835);
-      let { internationalization: sn, routing: si } = tc.default ?? {}, { locales: so, defaultLocale: sa } = sn ?? {}, { basePath: ss, mode: sl } = si ?? {}, su = sl ?? a4.Routing.ROUTING_MODE, sc = "no-prefix" === su || "search-params" === su, sd = "prefix-all" === su, sp = (e10, t10) => {
-        if ("search-params" !== su) return e10;
+      let { internationalization: sa, routing: ss } = tc.default ?? {}, { locales: sl, defaultLocale: su } = sa ?? {}, { basePath: sc, mode: sd } = ss ?? {}, sp = sd ?? aJ.Routing.ROUTING_MODE, sh = "no-prefix" === sp || "search-params" === sp, sf = "prefix-all" === sp, sg = (e10, t10) => {
+        if ("search-params" !== sp) return e10;
         let r10 = new URLSearchParams(e10 ?? "");
         return r10.set("locale", t10), `?${r10.toString()}`;
-      }, sh = (e10) => so.find((t10) => e10.startsWith(`/${t10}/`) || e10 === `/${t10}`), sf = (e10, t10, r10) => {
-        let n10 = t10 ?? t_?.(e10) ?? sa;
-        return (so.includes(n10) || (n10 = sa), sd || n10 !== sa) ? sy(e10, sv(n10, r10, ss, sp(e10.nextUrl.search, n10))) : sb(e10, r10, n10);
-      }, sg = (e10, t10, r10, n10) => t10 && t10 !== r10 ? sy(e10, sm(e10, n10, r10, t10, ss)) : s_(e10, r10, n10), s_ = (e10, t10, r10) => {
-        if (!sd && t10 === sa) return sy(e10, `${ss}${r10.slice(`/${t10}`.length) || "/"}`);
-        let n10 = r10.slice(`/${t10}`.length) || "/", i10 = sp(e10.nextUrl.search, t10);
-        return sb(e10, i10 ? `${n10}${i10}` : n10, t10);
-      }, sm = (e10, t10, r10, n10, i10) => sv(n10, t10.replace(`/${r10}`, `/${n10}`), i10, sp(e10.nextUrl.search, n10)), sv = (e10, t10, r10, n10) => {
+      }, s_ = (e10) => sl.find((t10) => e10.startsWith(`/${t10}/`) || e10 === `/${t10}`), sm = (e10, t10, r10) => {
+        let n10 = t10 ?? si?.(e10) ?? su;
+        return (sl.includes(n10) || (n10 = su), sf || n10 !== su) ? sS(e10, sA(n10, r10, sc, sg(e10.nextUrl.search, n10))) : sE(e10, r10, n10);
+      }, sv = (e10, t10, r10, n10) => t10 && t10 !== r10 ? sS(e10, sy(e10, n10, r10, t10, sc)) : sb(e10, r10, n10), sb = (e10, t10, r10) => {
+        if (!sf && t10 === su) return sS(e10, `${sc}${r10.slice(`/${t10}`.length) || "/"}`);
+        let n10 = r10.slice(`/${t10}`.length) || "/", i10 = sg(e10.nextUrl.search, t10);
+        return sE(e10, i10 ? `${n10}${i10}` : n10, t10);
+      }, sy = (e10, t10, r10, n10, i10) => sA(n10, t10.replace(`/${r10}`, `/${n10}`), i10, sg(e10.nextUrl.search, n10)), sA = (e10, t10, r10, n10) => {
         let i10 = t10.startsWith("/") ? t10 : `/${t10}`, o10 = i10;
-        if ("no-prefix" === su || "search-params" === su) {
-          for (let e11 of so) if (i10.startsWith(`/${e11}/`) || i10 === `/${e11}`) {
+        if ("no-prefix" === sp || "search-params" === sp) {
+          for (let e11 of sl) if (i10.startsWith(`/${e11}/`) || i10 === `/${e11}`) {
             o10 = i10.slice(`/${e11}`.length) || "/";
             break;
           }
         } else o10 = i10.startsWith(`/${e10}`) ? i10 : `/${e10}${i10}`;
         let a10 = `${r10.replace(/\/$/, "")}${o10}`;
         return n10 ? `${a10}${n10.startsWith("?") ? "" : "?"}${n10}` : a10;
-      }, sb = (e10, t10, r10) => {
+      }, sE = (e10, t10, r10) => {
         let n10 = e10.nextUrl.clone(), i10 = t10.split("?")[0];
-        if ("no-prefix" !== su && "search-params" !== su) sh(i10) ? n10.pathname = i10 : n10.pathname = `/${r10}${"/" === i10 ? "" : i10}`;
+        if ("no-prefix" !== sp && "search-params" !== sp) s_(i10) ? n10.pathname = i10 : n10.pathname = `/${r10}${"/" === i10 ? "" : i10}`;
         else {
-          let e11 = sh(i10);
+          let e11 = s_(i10);
           e11 ? n10.pathname = i10.slice(`/${e11}`.length) || "/" : n10.pathname = i10;
         }
         let o10 = et.rewrite(n10);
-        return ((e11, t11) => {
-          if (false === tc.default.routing.storage || t11?.isCookieEnabled === false) return;
-          let r11 = se(tc.default.routing.storage);
-          for (let n11 = 0; n11 < r11.cookies.length; n11++) {
-            let { name: i11, attributes: o11 } = r11.cookies[n11];
-            try {
-              t11?.setCookieStore && t11?.setCookieStore?.(i11, e11, { ...o11, expires: o11.expires instanceof Date ? o11.expires.getTime() : o11.expires });
-            } catch {
-              try {
-                if (t11?.setCookieString) {
-                  let r12 = st(i11, e11, o11);
-                  t11?.setCookieString?.(i11, r12);
-                }
-              } catch {
-              }
-            }
-          }
-          if (t11?.setLocaleStorage) for (let n11 = 0; n11 < r11.localStorage.length; n11++) {
-            let { name: i11 } = r11.localStorage[n11];
-            try {
-              if (!(t11?.overwrite ?? true) && t11?.getLocaleStorage && t11?.getLocaleStorage?.(i11)) continue;
-              t11?.setLocaleStorage?.(i11, e11);
-            } catch {
-            }
-          }
-          if (t11?.setSessionStorage) for (let n11 = 0; n11 < r11.sessionStorage.length; n11++) {
-            let { name: i11 } = r11.sessionStorage[n11];
-            try {
-              if (!(t11?.overwrite ?? true) && t11?.getSessionStorage && t11?.getSessionStorage?.(i11)) continue;
-              t11?.setSessionStorage?.(i11, e11);
-            } catch {
-            }
-          }
-          if (t11?.setHeader) for (let n11 = 0; n11 < r11.headers.length; n11++) {
-            let { name: i11 } = r11.headers[n11];
-            try {
-              t11?.setHeader?.(i11, e11);
-            } catch {
-            }
-          }
-        })(r10, { setHeader: (e11, t11) => {
+        return a9(r10, { setHeader: (e11, t11) => {
           o10.headers.set(e11, t11);
         } }), o10;
-      }, sy = (e10, t10) => {
+      }, sS = (e10, t10) => {
         let r10 = e10.nextUrl.search, n10 = r10 && !t10.includes("?") ? `${t10}${r10}` : t10;
         return et.redirect(new URL(n10, e10.url));
-      };
-      e.s(["config", 0, { matcher: "/((?!api|static|assets|robots|sitemap|sw|service-worker|manifest|.*\\..*|_next).*)" }, "default", 0, (e10, t10, r10) => {
-        var n10, i10, o10;
-        let a10, s2, l2, u2 = e10.nextUrl.pathname, c2 = (a10 = e10, ((e11) => {
-          let { routing: t11, internationalization: r11 } = tc.default, { locales: n11 } = r11, { storage: i11 } = t11;
-          if (false === i11 || e11?.isCookieEnabled === false) return;
-          let o11 = se(i11), a11 = (e12) => !!e12 && n11.includes(e12), s3 = (t12) => {
-            try {
-              let r12 = e11?.getCookie?.(t12);
-              if (null != r12) return r12;
-            } catch {
-            }
-            return ((e12, t13) => {
-              try {
-                let r12 = t13 ?? ("undefined" != typeof document ? document.cookie : "");
-                if (!r12) return;
-                let n12 = r12.split(";");
-                for (let t14 = 0; t14 < n12.length; t14++) {
-                  let r13 = n12[t14].trim();
-                  if (!r13) continue;
-                  let i12 = r13.indexOf("=");
-                  if ((i12 >= 0 ? r13.substring(0, i12) : r13) === e12) {
-                    let e13 = i12 >= 0 ? r13.substring(i12 + 1) : "";
-                    try {
-                      return decodeURIComponent(e13);
-                    } catch {
-                      return e13;
-                    }
-                  }
-                }
-              } catch {
-              }
-            })(t12);
-          };
-          for (let e12 = 0; e12 < o11.cookies.length; e12++) {
-            let { name: t12 } = o11.cookies[e12], r12 = s3(t12);
-            if (a11(r12)) return r12;
-          }
-          for (let t12 = 0; t12 < o11.localStorage.length; t12++) {
-            let { name: r12 } = o11.localStorage[t12];
-            try {
-              let t13 = e11?.getLocaleStorage?.(r12);
-              if (a11(t13)) return t13;
-            } catch {
-            }
-          }
-          for (let t12 = 0; t12 < o11.sessionStorage.length; t12++) {
-            let { name: r12 } = o11.sessionStorage[t12];
-            try {
-              let t13 = e11?.getSessionStorage?.(r12);
-              if (a11(t13)) return t13;
-            } catch {
-            }
-          }
-          for (let t12 = 0; t12 < o11.headers.length; t12++) {
-            let { name: r12 } = o11.headers[t12];
-            try {
-              let t13 = e11?.getHeader?.(r12);
-              if (a11(t13)) return t13;
-            } catch {
-            }
-          }
-        })({ getCookie: (e11) => a10.cookies.get(e11)?.value ?? null, getHeader: (e11) => a10.headers.get(e11) ?? null }));
-        return sc ? (n10 = e10, i10 = c2, s2 = sh(o10 = u2), l2 = i10 ?? sa, s2 ? sy(n10, `${o10.slice(`/${s2}`.length) || "/"}${sp(n10.nextUrl.search, s2)}`) : "search-params" === su && n10.nextUrl.searchParams.get("locale") !== l2 ? sy(n10, `${o10}${sp(n10.nextUrl.search, l2)}`) : sb(n10, o10, l2)) : ((e11, t11, r11, n11) => {
+      }, sw = tc.default?.internationalization?.locales ?? ["en"], sR = tc.default?.internationalization?.defaultLocale ?? "en";
+      function sI(e10) {
+        var t10, r10, n10;
+        let i10, o10, a10, s2, l2, u2 = e10.nextUrl.pathname;
+        if (!sw.find((e11) => u2.startsWith(`/${e11}/`) || u2 === `/${e11}`) && !a5({ getCookie: (t11) => e10.cookies.get(t11)?.value ?? null, getHeader: (t11) => e10.headers.get(t11) ?? null })) {
+          let t11 = e10.nextUrl.clone();
+          t11.pathname = `/${sR}${"/" === u2 ? "" : u2}`;
+          let r11 = et.rewrite(t11);
+          return a9(sR, { setHeader: (e11, t12) => r11.headers.set(e11, t12), setCookieString: (e11, t12) => r11.headers.append("Set-Cookie", t12) }), r11;
+        }
+        return s2 = e10.nextUrl.pathname, i10 = e10, l2 = a5({ getCookie: (e11) => i10.cookies.get(e11)?.value ?? null, getHeader: (e11) => i10.headers.get(e11) ?? null }), sh ? (t10 = e10, r10 = l2, o10 = s_(n10 = s2), a10 = r10 ?? su, o10 ? sS(t10, `${n10.slice(`/${o10}`.length) || "/"}${sg(t10.nextUrl.search, o10)}`) : "search-params" === sp && t10.nextUrl.searchParams.get("locale") !== a10 ? sS(t10, `${n10}${sg(t10.nextUrl.search, a10)}`) : sE(t10, n10, a10)) : ((e11, t11, r11, n11) => {
           if (!r11) {
             let r12, i11, o11, a11;
-            return (r12 = e11.headers.get("purpose"), i11 = e11.headers.get("next-router-prefetch"), o11 = e11.headers.get("next-url"), a11 = e11.headers.get("x-nextjs-data"), "prefetch" === r12 || "1" === i11 || o11 || a11) ? sf(e11, sa, n11) : sf(e11, t11, n11);
+            return (r12 = e11.headers.get("purpose"), i11 = e11.headers.get("next-router-prefetch"), o11 = e11.headers.get("next-url"), a11 = e11.headers.get("x-nextjs-data"), "prefetch" === r12 || "1" === i11 || o11 || a11) ? sm(e11, su, n11) : sm(e11, t11, n11);
           }
-          return sg(e11, t11, r11, n11);
-        })(e10, c2, sh(u2), u2);
-      }], 99446);
-      var sA = e.i(99446);
+          return sv(e11, t11, r11, n11);
+        })(e10, l2, s_(s2), s2);
+      }
+      e.s(["config", 0, { matcher: "/((?!api|static|assets|robots|sitemap|sw|service-worker|manifest|.*\\..*|_next).*)" }, "default", () => sI], 99446);
+      var sN = e.i(99446);
       Object.values({ NOT_FOUND: 404, FORBIDDEN: 403, UNAUTHORIZED: 401 });
-      let sE = { ...sA }, sS = "/middleware", sw = sE.middleware || sE.default;
-      if ("function" != typeof sw) throw new class extends Error {
+      let sC = { ...sN }, sx = "/middleware", sO = sC.middleware || sC.default;
+      if ("function" != typeof sO) throw new class extends Error {
         constructor(e10) {
           super(e10), this.stack = "";
         }
-      }(`The Middleware file "${sS}" must export a function named \`middleware\` or a default function.`);
-      e.s(["default", 0, (e10) => tu({ ...e10, page: sS, handler: async (...e11) => {
+      }(`The Middleware file "${sx}" must export a function named \`middleware\` or a default function.`);
+      e.s(["default", 0, (e10) => tu({ ...e10, page: sx, handler: async (...e11) => {
         try {
-          return await sw(...e11);
+          return await sO(...e11);
         } catch (i10) {
           let t10 = e11[0], r10 = new URL(t10.url), n10 = r10.pathname + r10.search;
           throw await a(i10, { path: n10, method: t10.method, headers: Object.fromEntries(t10.headers.entries()) }, { routerKind: "Pages Router", routePath: "/proxy", routeType: "proxy", revalidateReason: void 0 }), i10;
@@ -4169,11 +4176,11 @@ var NEXT_DIR = path.join(__dirname, ".next");
 var OPEN_NEXT_DIR = path.join(__dirname, ".open-next");
 debug({ NEXT_DIR, OPEN_NEXT_DIR });
 var NextConfig = { "distDir": ".next", "cacheComponents": false, "htmlLimitedBots": "[\\w-]+-Google|Google-[\\w-]+|Chrome-Lighthouse|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti|googleweblight", "assetPrefix": "", "output": "standalone", "trailingSlash": false, "images": { "deviceSizes": [640, 750, 828, 1080, 1200, 1920, 2048, 3840], "imageSizes": [32, 48, 64, 96, 128, 256, 384], "path": "/_next/image", "loader": "default", "loaderFile": "", "domains": [], "disableStaticImages": false, "minimumCacheTTL": 14400, "formats": ["image/webp"], "maximumRedirects": 3, "dangerouslyAllowLocalIP": false, "dangerouslyAllowSVG": false, "contentSecurityPolicy": "script-src 'none'; frame-src 'none'; sandbox;", "contentDispositionType": "attachment", "localPatterns": [{ "pathname": "**", "search": "" }], "remotePatterns": [{ "protocol": "https", "hostname": "api.microlink.io" }, { "protocol": "https", "hostname": "wallpaperaccess.com" }, { "protocol": "https", "hostname": "images.unsplash.com" }, { "protocol": "https", "hostname": "image.tmdb.org" }], "qualities": [75], "unoptimized": false }, "reactMaxHeadersLength": 6e3, "cacheLife": { "default": { "stale": 300, "revalidate": 900, "expire": 4294967294 }, "seconds": { "stale": 30, "revalidate": 1, "expire": 60 }, "minutes": { "stale": 300, "revalidate": 60, "expire": 3600 }, "hours": { "stale": 300, "revalidate": 3600, "expire": 86400 }, "days": { "stale": 300, "revalidate": 86400, "expire": 604800 }, "weeks": { "stale": 300, "revalidate": 604800, "expire": 2592e3 }, "max": { "stale": 300, "revalidate": 2592e3, "expire": 31536e3 } }, "basePath": "", "expireTime": 31536e3, "generateEtags": true, "poweredByHeader": true, "cacheHandlers": {}, "cacheMaxMemorySize": 52428800, "compress": true, "i18n": null, "httpAgentOptions": { "keepAlive": true }, "pageExtensions": ["tsx", "ts", "jsx", "js"], "useFileSystemPublicRoutes": true, "experimental": { "ppr": false, "staleTimes": { "dynamic": 0, "static": 300 }, "dynamicOnHover": false, "inlineCss": false, "authInterrupts": false, "fetchCacheKeyPrefix": "", "isrFlushToDisk": true, "optimizeCss": false, "nextScriptWorkers": false, "disableOptimizedLoading": false, "largePageDataBytes": 128e3, "serverComponentsHmrCache": true, "caseSensitiveRoutes": false, "validateRSCRequestHeaders": false, "useSkewCookie": false, "preloadEntriesOnStart": true, "hideLogsAfterAbort": false, "removeUncaughtErrorAndRejectionListeners": false, "imgOptConcurrency": null, "imgOptMaxInputPixels": 268402689, "imgOptSequentialRead": null, "imgOptSkipMetadata": null, "imgOptTimeoutInSeconds": 7, "proxyClientMaxBodySize": 10485760, "trustHostHeader": false, "isExperimentalCompile": false } };
-var BuildId = "xeqVp1EuIiukSpm9KGq0I";
+var BuildId = "H6jD88jDdmH0-L_sS9ieH";
 var RoutesManifest = { "basePath": "", "rewrites": { "beforeFiles": [], "afterFiles": [], "fallback": [] }, "redirects": [{ "source": "/:path+/", "destination": "/:path+", "internal": true, "priority": true, "statusCode": 308, "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$" }], "routes": { "static": [{ "page": "/_global-error", "regex": "^/_global\\-error(?:/)?$", "routeKeys": {}, "namedRegex": "^/_global\\-error(?:/)?$" }, { "page": "/_not-found", "regex": "^/_not\\-found(?:/)?$", "routeKeys": {}, "namedRegex": "^/_not\\-found(?:/)?$" }, { "page": "/favicon.ico", "regex": "^/favicon\\.ico(?:/)?$", "routeKeys": {}, "namedRegex": "^/favicon\\.ico(?:/)?$" }], "dynamic": [{ "page": "/[locale]", "regex": "^/([^/]+?)(?:/)?$", "routeKeys": { "nxtPlocale": "nxtPlocale" }, "namedRegex": "^/(?<nxtPlocale>[^/]+?)(?:/)?$" }, { "page": "/[locale]/blog", "regex": "^/([^/]+?)/blog(?:/)?$", "routeKeys": { "nxtPlocale": "nxtPlocale" }, "namedRegex": "^/(?<nxtPlocale>[^/]+?)/blog(?:/)?$" }, { "page": "/[locale]/blog/[slug]", "regex": "^/([^/]+?)/blog/([^/]+?)(?:/)?$", "routeKeys": { "nxtPlocale": "nxtPlocale", "nxtPslug": "nxtPslug" }, "namedRegex": "^/(?<nxtPlocale>[^/]+?)/blog/(?<nxtPslug>[^/]+?)(?:/)?$" }], "data": { "static": [], "dynamic": [] } }, "locales": [] };
 var ConfigHeaders = [];
 var PrerenderManifest = { "version": 4, "routes": { "/_global-error": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/_global-error", "dataRoute": "/_global-error.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/_not-found": { "initialStatus": 404, "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/_not-found", "dataRoute": "/_not-found.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/en/blog/art-of-3d-web-design": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog/[slug]", "dataRoute": "/en/blog/art-of-3d-web-design.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/en/blog/hello-world": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog/[slug]", "dataRoute": "/en/blog/hello-world.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/en/blog/intlayer-i18n-guide": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog/[slug]", "dataRoute": "/en/blog/intlayer-i18n-guide.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/en/blog/intlayer-i18n-guide-en": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog/[slug]", "dataRoute": "/en/blog/intlayer-i18n-guide-en.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/en/blog/mastering-tailwind-v4": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog/[slug]", "dataRoute": "/en/blog/mastering-tailwind-v4.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/en/blog/react-server-components": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog/[slug]", "dataRoute": "/en/blog/react-server-components.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/zh/blog/art-of-3d-web-design": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog/[slug]", "dataRoute": "/zh/blog/art-of-3d-web-design.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/zh/blog/hello-world": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog/[slug]", "dataRoute": "/zh/blog/hello-world.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/zh/blog/intlayer-i18n-guide": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog/[slug]", "dataRoute": "/zh/blog/intlayer-i18n-guide.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/zh/blog/intlayer-i18n-guide-en": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog/[slug]", "dataRoute": "/zh/blog/intlayer-i18n-guide-en.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/zh/blog/mastering-tailwind-v4": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog/[slug]", "dataRoute": "/zh/blog/mastering-tailwind-v4.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/zh/blog/react-server-components": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog/[slug]", "dataRoute": "/zh/blog/react-server-components.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/en/blog": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog", "dataRoute": "/en/blog.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/zh/blog": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]/blog", "dataRoute": "/zh/blog.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/en": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]", "dataRoute": "/en.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/zh": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/[locale]", "dataRoute": "/zh.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/favicon.ico": { "initialHeaders": { "cache-control": "public, max-age=0, must-revalidate", "content-type": "image/x-icon", "x-next-cache-tags": "_N_T_/layout,_N_T_/favicon.ico/layout,_N_T_/favicon.ico/route,_N_T_/favicon.ico" }, "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/favicon.ico", "dataRoute": null, "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] } }, "dynamicRoutes": { "/[locale]/blog/[slug]": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "routeRegex": "^/([^/]+?)/blog/([^/]+?)(?:/)?$", "dataRoute": "/[locale]/blog/[slug].rsc", "fallback": null, "fallbackRouteParams": [], "dataRouteRegex": "^/([^/]+?)/blog/([^/]+?)\\.rsc$", "prefetchDataRoute": null, "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/[locale]/blog": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "routeRegex": "^/([^/]+?)/blog(?:/)?$", "dataRoute": "/[locale]/blog.rsc", "fallback": null, "fallbackRouteParams": [], "dataRouteRegex": "^/([^/]+?)/blog\\.rsc$", "prefetchDataRoute": null, "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/[locale]": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "routeRegex": "^/([^/]+?)(?:/)?$", "dataRoute": "/[locale].rsc", "fallback": null, "fallbackRouteParams": [], "dataRouteRegex": "^/([^/]+?)\\.rsc$", "prefetchDataRoute": null, "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] } }, "notFoundRoutes": [], "preview": { "previewModeId": "13383b65127abcfcb0338f75c8cee7ad", "previewModeSigningKey": "f27a67d464c441b57fe75b81c9c55286dce5de0881cdf5613f1aac5732b2e80a", "previewModeEncryptionKey": "79b690ff3fe958128d2a3139104d58b497529425b2e082d5d678e356e2f7a6be" } };
-var MiddlewareManifest = { "version": 3, "middleware": { "/": { "files": ["server/edge/chunks/_80fd2a48._.js", "server/edge/chunks/[root-of-the-server]__9491d0b8._.js", "server/edge/chunks/turbopack-node_modules_next_dist_esm_build_templates_edge-wrapper_cee68b9c.js"], "name": "middleware", "page": "/", "matchers": [{ "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/((?!api|static|assets|robots|sitemap|sw|service-worker|manifest|.*\\..*|_next).*))(\\\\.json)?[\\/#\\?]?$", "originalSource": "/((?!api|static|assets|robots|sitemap|sw|service-worker|manifest|.*\\..*|_next).*)" }], "wasm": [], "assets": [], "env": { "__NEXT_BUILD_ID": "xeqVp1EuIiukSpm9KGq0I", "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "/0yd5FI1kzu3YyK3wcieRtnt/7pk95wzyUrbJJLbxYQ=", "__NEXT_PREVIEW_MODE_ID": "13383b65127abcfcb0338f75c8cee7ad", "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "79b690ff3fe958128d2a3139104d58b497529425b2e082d5d678e356e2f7a6be", "__NEXT_PREVIEW_MODE_SIGNING_KEY": "f27a67d464c441b57fe75b81c9c55286dce5de0881cdf5613f1aac5732b2e80a" } } }, "sortedMiddleware": ["/"], "functions": {} };
+var MiddlewareManifest = { "version": 3, "middleware": { "/": { "files": ["server/edge/chunks/_80fd2a48._.js", "server/edge/chunks/[root-of-the-server]__9491d0b8._.js", "server/edge/chunks/turbopack-node_modules_next_dist_esm_build_templates_edge-wrapper_cee68b9c.js"], "name": "middleware", "page": "/", "matchers": [{ "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/((?!api|static|assets|robots|sitemap|sw|service-worker|manifest|.*\\..*|_next).*))(\\\\.json)?[\\/#\\?]?$", "originalSource": "/((?!api|static|assets|robots|sitemap|sw|service-worker|manifest|.*\\..*|_next).*)" }], "wasm": [], "assets": [], "env": { "__NEXT_BUILD_ID": "H6jD88jDdmH0-L_sS9ieH", "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "/0yd5FI1kzu3YyK3wcieRtnt/7pk95wzyUrbJJLbxYQ=", "__NEXT_PREVIEW_MODE_ID": "13383b65127abcfcb0338f75c8cee7ad", "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "79b690ff3fe958128d2a3139104d58b497529425b2e082d5d678e356e2f7a6be", "__NEXT_PREVIEW_MODE_SIGNING_KEY": "f27a67d464c441b57fe75b81c9c55286dce5de0881cdf5613f1aac5732b2e80a" } } }, "sortedMiddleware": ["/"], "functions": {} };
 var AppPathRoutesManifest = { "/[locale]/blog/[slug]/page": "/[locale]/blog/[slug]", "/[locale]/blog/page": "/[locale]/blog", "/[locale]/page": "/[locale]", "/_global-error/page": "/_global-error", "/_not-found/page": "/_not-found", "/favicon.ico/route": "/favicon.ico" };
 var FunctionsConfigManifest = { "version": 1, "functions": {} };
 var PagesManifest = { "/404": "pages/404.html", "/500": "pages/500.html" };
