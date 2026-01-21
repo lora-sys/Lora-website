@@ -12,6 +12,11 @@ import {
 } from "lucide-react";
 import { useIntlayer } from "react-intlayer";
 
+import { MagicCard } from "@/components/ui/magic-card";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   bot: Bot,
   "shopping-cart": ShoppingCart,
@@ -43,6 +48,7 @@ function Tag({ children }: { children: React.ReactNode }) {
     </span>
   );
 }
+
 export function ProjectsSection() {
   const { title, description, items } = useIntlayer("projects");
   const titleText = typeof title === 'string' ? title : (title as any).value;
@@ -72,22 +78,48 @@ export function ProjectsSection() {
             const translatedItem = items[i];
             
             return (
-              <BentoCard
+              <MagicCard
                 key={i}
-                Icon={<IconComponent className="h-12 w-12 text-neutral-700 dark:text-neutral-300" />}
-                name={translatedItem.name}
-                description={translatedItem.description}
-                href={item.href}
-                cta={translatedItem.cta}
-                className={cn(item.className, "relative")}
-                background={getBackgroundComponent(item.background)}
+                className={cn(item.className, "col-span-3 lg:col-span-1 min-h-[22rem]")}
+                gradientColor="#262626"
               >
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {item.tags?.map((tag) => (
-                    <Tag key={tag}>{tag}</Tag>
-                  ))}
+                <div className="flex h-full flex-col justify-between p-6">
+                    {/* Background Element */}
+                   <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none">
+                        {getBackgroundComponent(item.background)}
+                   </div>
+
+                   <div className="relative z-10 flex flex-col gap-4">
+                      <div className="p-3 bg-white/10 w-fit rounded-lg backdrop-blur-sm border border-white/10">
+                        <IconComponent className="h-8 w-8 text-neutral-700 dark:text-neutral-200" />
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-100">
+                            {translatedItem.name}
+                        </h3>
+                        <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+                            {translatedItem.description}
+                        </p>
+                      </div>
+                   </div>
+
+                   <div className="relative z-10 mt-4">
+                     <div className="flex flex-wrap gap-2 mb-4">
+                        {item.tags?.map((tag) => (
+                            <Tag key={tag}>{tag}</Tag>
+                        ))}
+                     </div>
+                     
+                     <Link 
+                        href={item.href}
+                        className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                     >
+                        {translatedItem.cta} <ArrowRightIcon className="w-4 h-4" />
+                     </Link>
+                   </div>
                 </div>
-              </BentoCard>
+              </MagicCard>
             );
           })}
         </BentoGrid>

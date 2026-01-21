@@ -8,6 +8,7 @@ import { SiBilibili, SiTiktok } from "react-icons/si";
 import { ShineBorder } from "@/components/ui/shine-border";
 import dynamic from "next/dynamic";
 import { useIntlayer } from "react-intlayer";
+import { MagicCard } from "@/components/ui/magic-card";
 
 const Globe = dynamic(() => import("@/components/ui/globe").then((m) => m.Globe), {
   ssr: false,
@@ -19,101 +20,106 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative w-full bg-background overflow-x-hidden min-h-[100svh] lg:h-screen"
+      className="relative w-full bg-background overflow-x-hidden min-h-screen py-20 lg:py-0 lg:h-screen"
     >
-      <div className="grid w-full grid-cols-1 lg:grid-cols-2 lg:h-full">
+      <div className="grid w-full grid-cols-1 lg:grid-cols-2 lg:h-full gap-8 lg:gap-0">
         {/* Globe Column */}
-        <div className="relative flex h-[260px] sm:h-[320px] lg:h-full w-full items-center justify-center order-1 lg:order-none">
+        <div className="relative flex h-[300px] sm:h-[400px] lg:h-full w-full items-center justify-center order-1 lg:order-none">
           <div className="absolute inset-0 flex items-center justify-center overflow-hidden h-full w-full">
-             <Globe className="opacity-100 h-full w-full" />
+             <Globe className="opacity-100 h-full w-full max-w-[500px] lg:max-w-none" />
           </div>
         </div>
 
         {/* Content Column */}
-        <div className="z-10 flex w-full flex-col items-center justify-start lg:justify-center gap-8 px-4 pt-10 pb-[calc(9rem+env(safe-area-inset-bottom))] bg-background/50 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none order-2 lg:order-none lg:h-full lg:pt-0 lg:pb-0">
+        <div className="z-10 flex w-full flex-col items-center justify-center gap-8 px-4 pb-10 order-2 lg:order-none lg:h-full">
           {/* Contact Card */}
-          <div className="relative flex w-full max-w-[400px] flex-col items-center justify-center overflow-hidden rounded-xl bg-background/30 backdrop-blur-md border border-white/10 p-8 shadow-2xl">
-            <BorderBeam size={250} duration={12} delay={9} />
-            
-            <h2 className="text-3xl font-bold tracking-tighter text-foreground mb-2">{title}</h2>
-            <p className="text-muted-foreground text-center mb-6">
-                {description}
-            </p>
+          <MagicCard 
+            className="relative flex w-full max-w-[400px] flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 shadow-2xl"
+            gradientColor="#262626"
+          >
+            <div className="p-8 w-full flex flex-col items-center">
+                <BorderBeam size={250} duration={12} delay={9} />
+                
+                <h2 className="text-3xl font-bold tracking-tighter text-foreground mb-2">{title}</h2>
+                <p className="text-muted-foreground text-center mb-6">
+                    {description}
+                </p>
 
-            <div className="grid grid-cols-3 gap-4 w-full">
-                {siteConfig.socials.github && (
-                    <Link href={siteConfig.socials.github} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
+                <div className="grid grid-cols-3 gap-4 w-full">
+                    {siteConfig.socials.github && (
+                        <Link href={siteConfig.socials.github} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
+                            <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
+                                <Github className="w-6 h-6" />
+                            </div>
+                            <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">GitHub</span>
+                        </Link>
+                    )}
+                    {siteConfig.socials.x && (
+                        <Link href={siteConfig.socials.x} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
+                            <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
+                                <Twitter className="w-6 h-6" />
+                            </div>
+                            <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">Twitter</span>
+                        </Link>
+                    )}
+                    {siteConfig.socials.instagram && (
+                        <Link href={siteConfig.socials.instagram} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
+                            <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
+                                <Instagram className="w-6 h-6" />
+                            </div>
+                            <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">Instagram</span>
+                        </Link>
+                    )}
+                    {siteConfig.socials.bilibili && (
+                        <Link href={siteConfig.socials.bilibili} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
+                            <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
+                                <SiBilibili className="w-6 h-6" />
+                            </div>
+                            <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">Bilibili</span>
+                        </Link>
+                    )}
+                    {siteConfig.socials.douyin && (
+                        <Link href={siteConfig.socials.douyin} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
+                            <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
+                                <SiTiktok className="w-6 h-6" />
+                            </div>
+                            <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">Douyin</span>
+                        </Link>
+                    )}
+                    <Link href="mailto:hello@loralg.com" className="flex flex-col items-center gap-2 group">
                         <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-                             <Github className="w-6 h-6" />
+                            <Mail className="w-6 h-6" />
                         </div>
-                        <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">GitHub</span>
+                        <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">{emailLabel}</span>
                     </Link>
-                )}
-                {siteConfig.socials.x && (
-                     <Link href={siteConfig.socials.x} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
-                        <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-                             <Twitter className="w-6 h-6" />
-                        </div>
-                         <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">Twitter</span>
-                    </Link>
-                )}
-                 {siteConfig.socials.instagram && (
-                     <Link href={siteConfig.socials.instagram} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
-                        <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-                             <Instagram className="w-6 h-6" />
-                        </div>
-                         <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">Instagram</span>
-                    </Link>
-                )}
-                 {siteConfig.socials.bilibili && (
-                     <Link href={siteConfig.socials.bilibili} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
-                        <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-                             <SiBilibili className="w-6 h-6" />
-                        </div>
-                         <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">Bilibili</span>
-                    </Link>
-                )}
-                 {siteConfig.socials.douyin && (
-                     <Link href={siteConfig.socials.douyin} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
-                        <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-                             <SiTiktok className="w-6 h-6" />
-                        </div>
-                         <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">Douyin</span>
-                    </Link>
-                )}
-                 <Link href="mailto:hello@loralg.com" className="flex flex-col items-center gap-2 group">
-                    <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-                         <Mail className="w-6 h-6" />
-                    </div>
-                     <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">{emailLabel}</span>
-                </Link>
-            </div>
-        </div>
-
-        <Link href="mailto:mierpiter@gmail.com" className="relative w-full max-w-[400px] group overflow-hidden rounded-xl">
-            <ShineBorder 
-                className="z-0"
-                shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
-            />
-            <div className="relative z-10 flex w-full flex-col items-center justify-center bg-background/30 backdrop-blur-md p-6">
-                <div className="flex flex-col items-center gap-3">
-                    <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                        <Mail className="w-8 h-8 text-primary" />
-                    </div>
-                    <div className="text-center">
-                        <p className="text-sm font-medium text-muted-foreground mb-1">Primary Email</p>
-                        <p className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                            mierpiter@gmail.com
-                        </p>
-                    </div>
                 </div>
             </div>
-        </Link>
-      </div>
+          </MagicCard>
+
+          <Link href="mailto:mierpiter@gmail.com" className="relative w-full max-w-[400px] group overflow-hidden rounded-xl">
+              <ShineBorder 
+                  className="z-0"
+                  shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+              />
+              <div className="relative z-10 flex w-full flex-col items-center justify-center bg-background/30 backdrop-blur-md p-6">
+                  <div className="flex flex-col items-center gap-3">
+                      <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                          <Mail className="w-8 h-8 text-primary" />
+                      </div>
+                      <div className="text-center w-full overflow-hidden">
+                          <p className="text-sm font-medium text-muted-foreground mb-1">Primary Email</p>
+                          <p className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent truncate px-2">
+                              mierpiter@gmail.com
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </Link>
+        </div>
       </div>
       
       {/* Bottom Hyper Text */}
-      <div className="z-10 flex justify-center px-4 mt-10 pb-[env(safe-area-inset-bottom)] lg:pb-0 lg:absolute lg:bottom-8 lg:left-1/2 lg:-translate-x-1/2 lg:mt-0">
+      <div className="z-10 flex justify-center px-4 mt-10 pb-8 lg:pb-0 lg:absolute lg:bottom-8 lg:left-1/2 lg:-translate-x-1/2 lg:mt-0">
         <HyperText
             className="text-3xl sm:text-4xl font-bold text-foreground/80 text-center"
             text="Let's Build Something Amazing"
@@ -122,3 +128,4 @@ export function ContactSection() {
     </section>
   );
 }
+

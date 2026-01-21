@@ -96,7 +96,17 @@
   0% {
     background-position: top center;}
   100% {
-    background-position: bottom center;}}}
+    background-position: bottom center;}
+  --animate-aurora: aurora 60s linear infinite;
+  @keyframes aurora {
+    from {
+      background-position: 50% 50%, 50% 50%;
+    }
+    to {
+      background-position: 350% 50%, 350% 50%;
+    }
+  }
+}}
 
 :root {
 /* 背景 - 奶白色 */
@@ -210,6 +220,16 @@
 }
 
 @layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Optimize rendering performance */
+  .content-visibility-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px; /* Approximate height of sections */
+  }
+
   .animate-meteor-effect {
     animation: meteor 3s ease-in-out infinite;
   }

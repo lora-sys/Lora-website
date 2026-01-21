@@ -10,6 +10,8 @@ import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 import { aboutData } from "@/config/site-data";
 import { TypingAnimation } from "../ui/typing-animation";
 import { useIntlayer } from "react-intlayer";
+import { MagicCard } from "@/components/ui/magic-card";
+import { Particles } from "@/components/ui/particles";
 
 interface GitHubStats {
   contributions: number;
@@ -176,8 +178,8 @@ export function AboutSection() {
     },
     {
       Icon: Music,
-      name: aboutData.music[0].name,
-      description: aboutData.music[0].artist,
+      name: "", // Hide default name
+      description: "", // Hide default description
       href: "https://open.spotify.com",
       target: "_blank",
       cta: musicCtaText,
@@ -189,10 +191,10 @@ export function AboutSection() {
             src={aboutData.music[0].coverImage}
             alt={aboutData.music[0].name}
             fill
-            className="object-cover"
+            className="object-cover transition-all duration-300 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-          <div className="absolute bottom-6 left-6">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+          <div className="absolute bottom-6 left-6 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 pointer-events-none">
             <p className="text-lg text-muted-foreground">
               {aboutData.music[0].artist}
             </p>
@@ -205,8 +207,8 @@ export function AboutSection() {
     },
     {
       Icon: Music,
-      name: aboutData.music[1].name,
-      description: aboutData.music[1].artist,
+      name: "", // Hide default name
+      description: "", // Hide default description
       href: "https://open.spotify.com",
       target: "_blank",
       cta: musicCtaText,
@@ -217,10 +219,10 @@ export function AboutSection() {
             src={aboutData.music[1].coverImage}
             alt={aboutData.music[1].name}
             fill
-            className="object-cover"
+            className="object-cover transition-all duration-300 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-          <div className="absolute bottom-6 left-6">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+          <div className="absolute bottom-6 left-6 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 pointer-events-none">
             <p className="text-lg text-muted-foreground">
               {aboutData.music[1].artist}
             </p>
@@ -258,16 +260,28 @@ export function AboutSection() {
       ),
     },
   ];
+
   return (
     <section className="relative flex min-h-screen w-full flex-col items-center justify-center py-20">
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <Meteors number={20} />
+        <Particles className="absolute inset-0" quantity={100} color="#808080" />
       </div>
 
       <div className="w-full max-w-7xl px-4">
         <BentoGrid className="lg:grid-rows-3">
           {features.map((feature, idx) => {
             const { Icon, ...rest } = feature;
+            // Use MagicCard for specific features (Stats) to make them pop
+            if (feature.name === contributionsNameText || feature.name === starsNameText) {
+                return (
+                    <MagicCard key={`${rest.name}-${idx}`} className={cn(rest.className, "col-span-1 min-h-[12rem]")}>
+                        <div className="relative h-full w-full p-6 flex flex-col items-center justify-center">
+                            {rest.background}
+                        </div>
+                    </MagicCard>
+                )
+            }
+            
             return (
               <BentoCard
                 key={`${rest.name}-${idx}`}
@@ -288,3 +302,4 @@ export function AboutSection() {
     </section>
   );
 }
+

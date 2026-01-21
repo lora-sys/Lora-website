@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ResizableNavbar } from "@/components/layout/resizable-navbar";
 import { Footer } from "@/components/layout/footer";
 import { IntlayerClientProvider } from "next-intlayer";
+import { GridPattern } from "@/components/ui/grid-pattern";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -56,30 +57,46 @@ export default function IndexPage() {
             enableSystem
             disableTransitionOnChange
           >
+            <div className="fixed inset-0 z-[-1] pointer-events-none">
+              <GridPattern
+                width={40}
+                height={40}
+                className="opacity-[0.03] dark:opacity-[0.05] [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_90%,transparent)]"
+                squares={[
+                  [4, 4],
+                  [5, 1],
+                  [8, 2],
+                  [6, 6],
+                  [12, 12],
+                  [15, 15],
+                  [20, 20],
+                ]}
+              />
+            </div>
             <ResizableNavbar />
             <div id="main-content">
               <main>
                 <HeroSection />
                 {/* 找回所有性能优化项 */}
-                <div id="skills" className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:1px_800px]">
+                <div id="skills" className="scroll-mt-28 content-visibility-auto">
                   <SkillsSection />
                 </div>
-                <div id="projects" className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:1px_900px]">
+                <div id="projects" className="scroll-mt-28 content-visibility-auto">
                   <ProjectsSection />
                 </div>
-                <div id="timeline" className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:1px_900px]">
+                <div id="timeline" className="scroll-mt-28 content-visibility-auto">
                   <TimelineSection />
                 </div>
-                <div className="[content-visibility:auto] [contain-intrinsic-size:1px_900px]">
+                <div className="content-visibility-auto">
                   <BlogSection />
                 </div>
-                <div id="about" className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:1px_900px]">
+                <div id="about" className="scroll-mt-28 content-visibility-auto">
                   <AboutSection />
                 </div>
-                <div id="life" className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:1px_900px]">
+                <div id="life" className="scroll-mt-28 content-visibility-auto">
                   <LifeSection />
                 </div>
-                <div id="contact" className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:1px_600px]">
+                <div id="contact" className="scroll-mt-28 content-visibility-auto">
                   <ContactSection />
                 </div>
               </main>

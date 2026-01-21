@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 import { CometCard } from "@/components/ui/comet-card";
 import { heroData } from "@/config/site-data";
@@ -11,8 +12,7 @@ export function HeroSection() {
   const { typingText, cardTexts } = useIntlayer("hero");
 
   return (
-    <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden py-20">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
+    <AuroraBackground className="min-h-screen w-full py-20 overflow-hidden">
       <div className="relative z-30 mb-12 text-center">
         <TypingAnimation
           words={typingText.value}
@@ -65,6 +65,6 @@ export function HeroSection() {
           </CometCard>
         </div>
       </div>
-    </section>
+    </AuroraBackground>
   );
 }
