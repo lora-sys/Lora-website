@@ -31,7 +31,7 @@ export function HeroSection() {
           <Icons.figma />
         </OrbitingCircles>
 
-        <OrbitingCircles iconSize={30} radius={200} reverse speed={2}>
+        <OrbitingCircles iconSize={30} radius={200} reverse speed={1.5}>
           <Icons.openai />
           <Icons.notion />
         </OrbitingCircles>

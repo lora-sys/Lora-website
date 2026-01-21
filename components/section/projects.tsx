@@ -28,7 +28,7 @@ function getBackgroundComponent(type: string) {
   switch (type) {
     case "particles":
       return <Particles className="absolute inset-0"
-      color="#3B82F6" quantity={80}/>;
+      color="#3B82F6" quantity={30}/>;
     case "shine-border":
       return (
         <ShineBorder

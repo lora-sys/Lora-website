@@ -264,7 +264,7 @@ export function AboutSection() {
   return (
     <section className="relative flex min-h-screen w-full flex-col items-center justify-center py-20">
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <Particles className="absolute inset-0" quantity={100} color="#808080" />
+        <Particles className="absolute inset-0" quantity={50} color="#808080" />
       </div>
 
       <div className="w-full max-w-7xl px-4">
