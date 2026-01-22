@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
+import { useLazyAnimation } from "@/hooks/use-lazy-animation";
 
 export const WavyBackground = ({
   children,
@@ -13,6 +14,7 @@ export const WavyBackground = ({
   blur = 10,
   speed = "fast",
   waveOpacity = 0.5,
+  priority = false,
   ...props
 }: {
   children?: any;
@@ -24,6 +26,7 @@ export const WavyBackground = ({
   blur?: number;
   speed?: "slow" | "fast";
   waveOpacity?: number;
+  priority?: boolean;
   [key: string]: any;
 }) => {
   const noise = createNoise3D();
@@ -46,7 +49,13 @@ export const WavyBackground = ({
     }
   };
 
+  const { ref, shouldRender } = useLazyAnimation({
+    threshold: priority ? 0 : 0.1,
+    rootMargin: priority ? "0px" : "400px",
+  });
+
   const init = () => {
+    if (!canvasRef.current) return;
     canvas = canvasRef.current;
     ctx = canvas.getContext("2d");
     w = ctx.canvas.width = window.innerWidth;
@@ -76,7 +85,7 @@ export const WavyBackground = ({
       ctx.strokeStyle = waveColors[i % waveColors.length];
       for (x = 0; x < w; x += 5) {
         var y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
+        ctx.lineTo(x, y + h * 0.5);
       }
       ctx.stroke();
       ctx.closePath();
@@ -93,15 +102,15 @@ export const WavyBackground = ({
   };
 
   useEffect(() => {
+    if (!shouldRender) return;
     init();
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, []);
+  }, [shouldRender]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
-    // I'm sorry but i have got to support it on safari.
     setIsSafari(
       typeof window !== "undefined" &&
         navigator.userAgent.includes("Safari") &&
@@ -116,17 +125,29 @@ export const WavyBackground = ({
         containerClassName
       )}
     >
-      <canvas
-        className="absolute inset-0 z-0"
-        ref={canvasRef}
-        id="canvas"
-        style={{
-          ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
-        }}
-      ></canvas>
-      <div className={cn("relative z-10", className)} {...props}>
-        {children}
-      </div>
+      {!shouldRender ? (
+        <div
+          ref={ref as React.RefObject<HTMLDivElement>}
+          className={cn("relative z-10 w-full", className)}
+          {...props}
+        >
+          <div className="w-full h-[600px] animate-pulse bg-muted/30 rounded-lg" />
+        </div>
+      ) : (
+        <>
+          <canvas
+            className="absolute inset-0 z-0 will-change-transform"
+            ref={canvasRef}
+            id="canvas"
+            style={{
+              ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
+            }}
+          ></canvas>
+          <div className={cn("relative z-10", className)} {...props}>
+            {children}
+          </div>
+        </>
+      )}
     </div>
   );
 };

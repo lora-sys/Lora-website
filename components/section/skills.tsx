@@ -35,8 +35,8 @@ export function SkillsSection() {
         <TypewriterEffect words={descriptionWords} className="text-base mt-4" />
       </div>
       
-      {/* IconCloud */}
-      <div className="relative z-10 scale-75 md:scale-100">
+      {/* IconCloud - Eagerly loaded for better UX */}
+      <div className="relative z-10 scale-75 md:scale-100 min-h-[400px]">
         <IconCloud images={images} />
       </div>
 

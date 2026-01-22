@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { CalendarIcon, ArrowRightIcon, SearchIcon } from 'lucide-react';
 import type { Post } from 'contentlayer/generated';
+import { cn } from '@/lib/utils';
 
 interface PostListProps {
   posts: Post[];
@@ -11,6 +12,7 @@ interface PostListProps {
 
 export function PostList({ posts }: PostListProps) {
   const [searchQuery, setSearchQuery] = useState('');
+  const [hoveredPost, setHoveredPost] = useState<string | null>(null);
 
   const filteredPosts = useMemo(() => {
     if (!searchQuery) return posts;
@@ -24,12 +26,12 @@ export function PostList({ posts }: PostListProps) {
   return (
     <div className="space-y-8">
       <div className="relative max-w-md mx-auto md:mx-0">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
           <SearchIcon className="h-5 w-5 text-muted-foreground" />
         </div>
         <input
           type="text"
-          className="block w-full pl-10 pr-3 py-2 border border-border rounded-lg leading-5 bg-background/50 placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-all duration-200"
+          className="block w-full pl-10 pr-3 py-2 border border-border rounded-lg leading-5 bg-background/80 backdrop-blur-sm placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary sm:text-sm transition-all duration-300"
           placeholder="Search articles..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -42,11 +44,16 @@ export function PostList({ posts }: PostListProps) {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group relative flex flex-col justify-between bg-card/40 backdrop-blur-md border border-border/50 hover:border-primary/50 rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg overflow-hidden"
+              className="group relative flex flex-col justify-between bg-card/40 backdrop-blur-md border border-border/50 hover:border-primary/50 rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl overflow-hidden gpu-accelerated"
+              onMouseEnter={() => setHoveredPost(post.slug)}
+              onMouseLeave={() => setHoveredPost(null)}
             >
-              {/* Hover highlight effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              {/* Animated gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               
+              {/* Corner accent */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-center gap-2 text-xs font-semibold text-primary mb-4 uppercase tracking-widest">
                   <CalendarIcon className="w-3 h-3" />
@@ -59,7 +66,7 @@ export function PostList({ posts }: PostListProps) {
                   </time>
                 </div>
                 
-                <h2 className="text-xl md:text-2xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                <h2 className="text-xl md:text-2xl font-bold mb-3 group-hover:text-primary transition-colors duration-300 line-clamp-2">
                   {post.title}
                 </h2>
                 
@@ -67,11 +74,17 @@ export function PostList({ posts }: PostListProps) {
                   {post.description}
                 </p>
                 
-                <div className="flex items-center text-sm font-medium text-primary mt-auto group-hover:translate-x-1 transition-transform">
+                <div className={cn(
+                  "flex items-center text-sm font-medium text-primary mt-auto transition-all duration-300",
+                  hoveredPost === post.slug ? "group-hover:translate-x-1" : ""
+                )}>
                   Read Article
                   <ArrowRightIcon className="w-4 h-4 ml-1" />
                 </div>
               </div>
+
+              {/* Bottom border line animation */}
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </Link>
           ))
         ) : (

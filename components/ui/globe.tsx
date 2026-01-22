@@ -5,6 +5,7 @@ import createGlobe, { COBEOptions } from "cobe"
 import { useMotionValue, useSpring } from "motion/react"
 
 import { cn } from "@/lib/utils"
+import { useLazyAnimation } from "@/hooks/use-lazy-animation"
 
 const MOVEMENT_DAMPING = 1400
 
@@ -39,21 +40,29 @@ const GLOBE_CONFIG: COBEOptions = {
 export function Globe({
   className,
   config = GLOBE_CONFIG,
+  priority = false,
 }: {
   className?: string
   config?: COBEOptions
+  priority?: boolean
 }) {
   let phi = 0
   let width = 0
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const pointerInteracting = useRef<number | null>(null)
   const pointerInteractionMovement = useRef(0)
+  const globeInstance = useRef<ReturnType<typeof createGlobe> | null>(null)
 
   const r = useMotionValue(0)
   const rs = useSpring(r, {
     mass: 1,
     damping: 30,
     stiffness: 100,
+  })
+
+  const { ref, shouldRender } = useLazyAnimation({
+    threshold: priority ? 0 : 0.1,
+    rootMargin: priority ? "0px" : "300px",
   })
 
   const updatePointerInteraction = (value: number | null) => {
@@ -72,6 +81,8 @@ export function Globe({
   }
 
   useEffect(() => {
+    if (!shouldRender || !canvasRef.current) return
+
     const onResize = () => {
       if (canvasRef.current) {
         width = canvasRef.current.offsetWidth
@@ -83,7 +94,7 @@ export function Globe({
 
     const globe = createGlobe(canvasRef.current!, {
       ...config,
-      width: width * 2 || 800, // Fallback if width is 0
+      width: width * 2 || 800,
       height: width * 2 || 800,
       onRender: (state) => {
         if (!pointerInteracting.current) phi += 0.005
@@ -93,12 +104,29 @@ export function Globe({
       },
     })
 
+    globeInstance.current = globe
+
     setTimeout(() => (canvasRef.current!.style.opacity = "1"), 0)
     return () => {
       globe.destroy()
+      globeInstance.current = null
       window.removeEventListener("resize", onResize)
     }
-  }, [rs, config])
+  }, [shouldRender, rs, config])
+
+  if (!shouldRender) {
+    return (
+      <div
+        ref={ref as React.RefObject<HTMLDivElement>}
+        className={cn(
+          "absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]",
+          className
+        )}
+      >
+        <div className="w-full h-full animate-pulse bg-muted/30 rounded-lg" />
+      </div>
+    )
+  }
 
   return (
     <div
@@ -109,7 +137,7 @@ export function Globe({
     >
       <canvas
         className={cn(
-          "size-full opacity-0 transition-opacity duration-500 [contain:layout_paint_size]"
+          "size-full opacity-0 transition-opacity duration-500 [contain:layout_paint_size] will-change-transform"
         )}
         ref={canvasRef}
         onPointerDown={(e) => {

@@ -36,7 +36,7 @@ export default function Home() {
       <div className="[content-visibility:auto] [contain-intrinsic-size:1px_900px]">
         <HeroSection />
       </div>
-      <div id="skills" className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:1px_800px]">
+      <div id="skills" className="scroll-mt-28">
         <SkillsSection />
       </div>
       <div id="projects" className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:1px_900px]">

@@ -11,7 +11,6 @@ import { aboutData } from "@/config/site-data";
 import { TypingAnimation } from "../ui/typing-animation";
 import { useIntlayer } from "react-intlayer";
 import { MagicCard } from "@/components/ui/magic-card";
-import { Particles } from "@/components/ui/particles";
 
 interface GitHubStats {
   contributions: number;
@@ -38,13 +37,12 @@ export function AboutSection() {
     stars: 0,
   });
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     async function fetchGitHubData() {
-      // 先检查缓存
       const cached = localStorage.getItem("github-stats");
       if (cached) {
         const { data, timestamp } = JSON.parse(cached);
-        // 缓存有效期 1 小时
         if (Date.now() - timestamp < 60 * 60 * 1000) {
           setStats(data);
           setLoading(false);
@@ -54,38 +52,26 @@ export function AboutSection() {
 
       try {
         const [reposRes, eventsRes] = await Promise.all([
-          fetch(
-            "https://api.github.com/users/lora-sys/repos?per_page=100&sort=updated"
-          ),
-          fetch(
-            "https://api.github.com/users/lora-sys/events/public?per_page=100"
-          ),
+          fetch("https://api.github.com/users/lora-sys/repos?per_page=100&sort=updated"),
+          fetch("https://api.github.com/users/lora-sys/events/public?per_page=100"),
         ]);
         const [reposData, eventsData] = await Promise.all([
           reposRes.json(),
           eventsRes.json(),
         ]);
         const totalStars = reposData.reduce(
-          (acc: number, repo: { stargazers_count: number }) =>
-            acc + repo.stargazers_count,
+          (acc: number, repo: { stargazers_count: number }) => acc + repo.stargazers_count,
           0
         );
-        const pushEvents = eventsData.filter(
-          (e: { type: string }) => e.type === "PushEvent"
-        );
+        const pushEvents = eventsData.filter((e: { type: string }) => e.type === "PushEvent");
         const contributions = pushEvents.reduce(
-          (acc: number, e: { commits?: unknown[] }) =>
-            acc + (e.commits?.length || 0),
+          (acc: number, e: { commits?: unknown[] }) => acc + (e.commits?.length || 0),
           0
         );
         setStats({ contributions, stars: totalStars });
-        // 保存到缓存
         localStorage.setItem(
           "github-stats",
-          JSON.stringify({
-            data: { contributions, stars: totalStars },
-            timestamp: Date.now(),
-          })
+          JSON.stringify({ data: { contributions, stars: totalStars }, timestamp: Date.now() })
         );
       } catch (error) {
         console.warn("Failed to fetch GitHub data, using default values:", error);
@@ -98,14 +84,30 @@ export function AboutSection() {
     fetchGitHubData();
   }, []);
 
+  const [isSplineLoaded, setIsSplineLoaded] = useState(false);
+
   const backgroundContent = useMemo(() => (
     <div className="absolute inset-0 flex flex-col">
-      <div className="h-[75%] w-full">
-        <iframe
-          src={aboutData.splineScene}
-          className="h-full w-full border-0"
-          loading="lazy"
-        />
+      <div className="h-[75%] w-full relative">
+        {!isSplineLoaded ? (
+          <div 
+            className="absolute inset-0 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 cursor-pointer transition-colors hover:bg-neutral-200 dark:hover:bg-neutral-800"
+            onClick={() => setIsSplineLoaded(true)}
+            onMouseEnter={() => setIsSplineLoaded(true)}
+          >
+            <div className="text-center space-y-2">
+              <span className="text-4xl">🤖</span>
+              <p className="text-sm text-muted-foreground font-medium">Hover to load 3D Scene</p>
+            </div>
+          </div>
+        ) : (
+          <iframe
+            src={aboutData.splineScene}
+            className="h-full w-full border-0 animate-in fade-in duration-700"
+            loading="lazy"
+            title="3D Robot Scene"
+          />
+        )}
       </div>
       <div className="flex h-[25%] items-start justify-center pt-4">
         <TypingAnimation className="text-wrap text-3xl font-bold md:text-5xl">
@@ -263,8 +265,8 @@ export function AboutSection() {
 
   return (
     <section className="relative flex min-h-screen w-full flex-col items-center justify-center py-20">
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <Particles className="absolute inset-0" quantity={50} color="#808080" />
+      <div className="absolute inset-0 -z-10 overflow-hidden [contain:strict]">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent opacity-50" />
       </div>
 
       <div className="w-full max-w-7xl px-4">

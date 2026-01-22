@@ -213,6 +213,12 @@
     html {
       scroll-behavior: auto;
     }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
   body {
     @apply bg-background text-foreground;
@@ -227,7 +233,34 @@
   /* Optimize rendering performance */
   .content-visibility-auto {
     content-visibility: auto;
-    contain-intrinsic-size: 1px 1000px; /* Approximate height of sections */
+    contain-intrinsic-size: 1px 1000px;
+  }
+
+  /* GPU acceleration for animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* Optimize opacity animations */
+  .opacity-animated {
+    will-change: opacity;
+  }
+
+  /* Optimize transform animations */
+  .transform-animated {
+    will-change: transform;
+  }
+
+  /* Reduce paint areas */
+  .paint-contained {
+    contain: paint;
+  }
+
+  /* Optimize layout calculations */
+  .layout-stable {
+    contain: layout style;
   }
 
   .animate-meteor-effect {

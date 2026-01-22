@@ -1,29 +1,42 @@
 "use client"
 import { useMemo } from "react"
-import { motion } from "motion/react"
-function generateMeteors(count: number, seed: number) {
-  const meteors = []
+
+interface Meteor {
+  left: string;
+  top: string;
+  animationDelay: string;
+  animationDuration: string;
+  width: string;
+}
+
+function generateMeteors(count: number, seed: number): Meteor[] {
+  const meteors: Meteor[] = []
   for (let i = 0; i < count; i++) {
+    const width = Math.floor((seed * (i + 1) * 12345) % 100) + 50
     meteors.push({
-      left: Math.floor((seed * (i + 1) * 9302) % 400) + "px",
-      top: Math.floor((seed * (i + 1) * 49297) % 100) + "px",
-      animationDelay: Math.floor((seed * (i + 1) * 37189) % 5) + "s",
-      animationDuration: Math.floor((seed * (i + 1) * 12345) % 3) + 5 + "s",
+      left: Math.floor((seed * (i + 1) * 9302) % 100) + "%",
+      top: Math.floor((seed * (i + 1) * 49297) % 100) + "%",
+      animationDelay: Math.floor((seed * (i + 1) * 37189) % 3) + "s",
+      animationDuration: Math.floor((seed * (i + 1) * 12345) % 2) + 3 + "s",
+      width: width + "px",
     })
   }
   return meteors
 }
+
 export function Meteors({ number = 20 }: { number?: number }) {
   const meteors = useMemo(() => generateMeteors(number, 12345), [number])
+
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden [contain:strict]">
       {meteors.map((meteor, idx) => (
-        <motion.span
+        <div
           key={idx}
-          className="animate-meteor-effect absolute h-0.5 w-0.5 rotate-[45deg] rounded-[9999px] bg-slate-500 shadow-[0_0_0_1px_#ffffff10]"
+          className="animate-meteor-effect absolute h-px rounded-full bg-gradient-to-r from-transparent via-primary/50 to-transparent will-change-transform transform-gpu"
           style={{
             left: meteor.left,
             top: meteor.top,
+            width: meteor.width,
             animationDelay: meteor.animationDelay,
             animationDuration: meteor.animationDuration,
           }}

@@ -8,44 +8,66 @@ import { Footer } from "@/components/layout/footer";
 import { IntlayerClientProvider } from "next-intlayer";
 import { GridPattern } from "@/components/ui/grid-pattern";
 import type { Metadata } from "next";
+import { HeroSkeleton } from "@/components/ui/skeleton";
 
 export const metadata: Metadata = {
   title: "Lora | Full-Stack Developer",
   description: "Personal portfolio of Lora, showcasing projects in AI, Web Development, and more.",
 };
 
-// 找回之前的动态导入优化和占位符
+// Optimize dynamic imports with better loading states
 const SkillsSection = dynamic(
   () => import("@/components/section/skills").then((mod) => mod.SkillsSection),
-  { loading: () => <div className="h-[60vh]" /> }
+  { 
+    loading: () => <div className="h-[60vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
+    ssr: true 
+  }
 );
 const ProjectsSection = dynamic(
   () => import("@/components/section/projects").then((mod) => mod.ProjectsSection),
-  { loading: () => <div className="h-[60vh]" /> }
+  { 
+    loading: () => <div className="h-[60vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
+    ssr: true 
+  }
 );
 const TimelineSection = dynamic(
   () => import("@/components/section/timeline").then((mod) => mod.TimelineSection),
-  { loading: () => <div className="h-[60vh]" /> }
+  { 
+    loading: () => <div className="h-[60vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
+    ssr: true 
+  }
 );
 const BlogSection = dynamic(
   () => import("@/components/section/blog").then((mod) => mod.BlogSection),
-  { loading: () => <div className="h-[60vh]" /> }
+  { 
+    loading: () => <div className="h-[60vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
+    ssr: true 
+  }
 );
 const AboutSection = dynamic(
   () => import("@/components/section/about").then((mod) => mod.AboutSection),
-  { loading: () => <div className="h-[60vh]" /> }
+  { 
+    loading: () => <div className="h-[60vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
+    ssr: true 
+  }
 );
 const LifeSection = dynamic(
   () => import("@/components/section/life").then((mod) => mod.LifeSection),
-  { loading: () => <div className="h-[60vh]" /> }
+  { 
+    loading: () => <div className="h-[60vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
+    ssr: true 
+  }
 );
 const ContactSection = dynamic(
   () => import("@/components/section/contact").then((mod) => mod.ContactSection),
-  { loading: () => <div className="h-[40vh]" /> }
+  { 
+    loading: () => <div className="h-[40vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
+    ssr: true 
+  }
 );
 
 export default function IndexPage() {
-  const locale = Locales.ENGLISH; // 默认英文版
+  const locale = Locales.ENGLISH;
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -76,10 +98,9 @@ export default function IndexPage() {
             <ResizableNavbar />
             <div id="main-content">
               <main>
-                <div className="content-visibility-auto">
-                   <HeroSection />
+                <div>
+                  <HeroSection />
                 </div>
-                {/* 找回所有性能优化项 */}
                 <div id="skills" className="scroll-mt-28 content-visibility-auto">
                   <SkillsSection />
                 </div>

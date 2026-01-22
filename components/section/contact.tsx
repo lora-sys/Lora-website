@@ -2,17 +2,12 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { HyperText } from "@/components/ui/hyper-text";
 import { Github, Twitter, Instagram, Mail } from "lucide-react";
 import { SiBilibili, SiTiktok } from "react-icons/si";
 import { ShineBorder } from "@/components/ui/shine-border";
-import dynamic from "next/dynamic";
 import { useIntlayer } from "react-intlayer";
 import { MagicCard } from "@/components/ui/magic-card";
-
-const Globe = dynamic(() => import("@/components/ui/globe").then((m) => m.Globe), {
-  ssr: false,
-});
+import { AnimatedGlobe } from "@/components/ui/animated-globe";
 
 export function ContactSection() {
   const { title, description, emailLabel } = useIntlayer("contact");
@@ -26,7 +21,14 @@ export function ContactSection() {
         {/* Globe Column */}
         <div className="relative flex h-[300px] sm:h-[400px] lg:h-full w-full items-center justify-center order-1 lg:order-none">
           <div className="absolute inset-0 flex items-center justify-center overflow-hidden h-full w-full">
-             <Globe className="opacity-100 h-full w-full max-w-[500px] lg:max-w-none" />
+              <AnimatedGlobe 
+                className="opacity-100 h-full w-full max-w-[500px] lg:max-w-none" 
+                dotColor="#2563eb"
+                lineColor="rgba(59, 130, 246, 0.5)"
+                dotCount={60}
+                speed="medium"
+                intensity="medium"
+              />
           </div>
         </div>
 
@@ -96,34 +98,26 @@ export function ContactSection() {
             </div>
           </MagicCard>
 
-          <Link href="mailto:mierpiter@gmail.com" className="relative w-full max-w-[400px] group overflow-hidden rounded-xl">
+          <Link href="mailto:lora-sys@outlook.com" className="relative w-full max-w-[400px] group overflow-hidden rounded-xl">
               <ShineBorder 
                   className="z-0"
                   shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
               />
               <div className="relative z-10 flex w-full flex-col items-center justify-center bg-background/30 backdrop-blur-md p-6">
-                  <div className="flex flex-col items-center gap-3">
+                  <div className="flex flex-col items-center gap-3 w-full">
                       <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
                           <Mail className="w-8 h-8 text-primary" />
                       </div>
-                      <div className="text-center w-full overflow-hidden">
+                      <div className="text-center w-full">
                           <p className="text-sm font-medium text-muted-foreground mb-1">Primary Email</p>
-                          <p className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent truncate px-2">
-                              mierpiter@gmail.com
+                          <p className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent break-all px-2">
+                              lora-sys@outlook.com
                           </p>
                       </div>
                   </div>
               </div>
           </Link>
         </div>
-      </div>
-      
-      {/* Bottom Hyper Text */}
-      <div className="z-10 flex justify-center px-4 mt-10 pb-8 lg:pb-0 lg:absolute lg:bottom-8 lg:left-1/2 lg:-translate-x-1/2 lg:mt-0">
-        <HyperText
-            className="text-3xl sm:text-4xl font-bold text-foreground/80 text-center"
-            text="Let's Build Something Amazing"
-        />
       </div>
     </section>
   );

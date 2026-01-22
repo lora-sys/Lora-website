@@ -8,6 +8,7 @@ import React, {
 } from "react"
 
 import { cn } from "@/lib/utils"
+import { useLazyAnimation } from "@/hooks/use-lazy-animation"
 
 interface MousePosition {
   x: number
@@ -45,6 +46,7 @@ interface ParticlesProps extends ComponentPropsWithoutRef<"div"> {
   color?: string
   vx?: number
   vy?: number
+  priority?: boolean
 }
 
 function hexToRgb(hex: string): number[] {
@@ -87,6 +89,7 @@ export const Particles: React.FC<ParticlesProps> = ({
   color = "#ffffff",
   vx = 0,
   vy = 0,
+  priority = false,
   ...props
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -100,7 +103,14 @@ export const Particles: React.FC<ParticlesProps> = ({
   const rafID = useRef<number | null>(null)
   const resizeTimeout = useRef<NodeJS.Timeout | null>(null)
 
+  const { ref, shouldRender } = useLazyAnimation({
+    threshold: priority ? 0 : 0.1,
+    rootMargin: priority ? "0px" : "300px",
+  })
+
   useEffect(() => {
+    if (!shouldRender) return
+
     if (canvasRef.current) {
       context.current = canvasRef.current.getContext("2d")
     }
@@ -127,7 +137,7 @@ export const Particles: React.FC<ParticlesProps> = ({
       }
       window.removeEventListener("resize", handleResize)
     }
-  }, [color])
+  }, [shouldRender, color])
 
   useEffect(() => {
     onMouseMove()
@@ -308,7 +318,19 @@ export const Particles: React.FC<ParticlesProps> = ({
       aria-hidden="true"
       {...props}
     >
-      <canvas ref={canvasRef} className="size-full" />
+      {!shouldRender ? (
+        <div
+          ref={ref as React.RefObject<HTMLDivElement>}
+          className="w-full h-full flex items-center justify-center"
+        >
+          <div className="w-full h-full max-w-[600px] aspect-square animate-pulse bg-muted/30 rounded-lg" />
+        </div>
+      ) : (
+        <canvas
+          ref={canvasRef}
+          className="size-full will-change-transform"
+        />
+      )}
     </div>
   )
 }

@@ -107,8 +107,8 @@ const BentoCard = ({
           "pointer-events-none absolute bottom-0 hidden w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex"
         )}
       >
-        <LinkPreview url={href!}>
-           <div className="pointer-events-auto flex items-center gap-2">
+        <LinkPreview url={href!} className="pointer-events-auto">
+           <div className="flex items-center gap-2">
              {cta}
              <ArrowRightIcon className="h-4 w-4" />
            </div>

@@ -4,20 +4,18 @@ import Link from 'next/link';
 import { ArrowLeftIcon, CalendarIcon } from 'lucide-react';
 import { Meteors } from '@/components/ui/meteors';
 import { BlogMDXWrapper } from '@/components/blog/mdx-wrapper';
+import { cn } from '@/lib/utils';
 
 export default async function Page(props: { params: Promise<{ slug: string; locale: string }> }) {
   const { slug, locale } = await props.params;
   const isEn = locale.startsWith('en');
   
-  // Try to find the post directly by slug
   let post = allPosts.find((p) => p.slug === slug);
 
-  // If we are in English locale and the slug doesn't end with -en, try to find the -en version
   if (!post && isEn && !slug.endsWith('-en')) {
     post = allPosts.find((p) => p.slug === `${slug}-en`);
   }
   
-  // If we are in Chinese locale and the slug ends with -en, try to find the version without -en
   if (!post && !isEn && slug.endsWith('-en')) {
     post = allPosts.find((p) => p.slug === slug.replace(/-en$/, ''));
   }
@@ -31,10 +29,9 @@ export default async function Page(props: { params: Promise<{ slug: string; loca
   );
 
   return (
-    <div className="relative w-full min-h-screen bg-background overflow-hidden">
-      {/* Meteors Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Meteors number={40} />
+    <div className="relative w-full min-h-screen bg-background overflow-x-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none [contain:strict]">
+        <Meteors number={20} />
       </div>
       
       <div className="relative z-10 container mx-auto px-4 py-12 md:py-20">
@@ -42,9 +39,9 @@ export default async function Page(props: { params: Promise<{ slug: string; loca
           <div>
             <Link 
               href="/blog" 
-              className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-8 group"
+              className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 mb-8 group hover:-translate-x-1"
             >
-              <ArrowLeftIcon className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeftIcon className="w-4 h-4 mr-2" />
               {backText}
             </Link>
 
@@ -60,17 +57,17 @@ export default async function Page(props: { params: Promise<{ slug: string; loca
                 </time>
               </div>
               
-              <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60">
                 {post.title}
               </h1>
               
-              <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed border-l-4 border-primary/50 pl-6 py-2">
+              <p className="text-lg md:text-xl text-muted-foreground font-medium leading-relaxed border-l-4 border-primary/50 pl-6 py-2">
                 {post.description}
               </p>
             </header>
 
-            <article className="rounded-2xl border bg-background/50 backdrop-blur-sm shadow-2xl shadow-black/[0.06] dark:shadow-black/30">
-              <div className="p-6 md:p-10">
+            <article className="rounded-2xl border bg-background/80 backdrop-blur-sm shadow-2xl shadow-black/[0.06] dark:shadow-black/30 overflow-hidden">
+              <div className="p-6 md:p-8 lg:p-10">
                 <BlogMDXWrapper code={post.body.code} />
               </div>
             </article>
@@ -79,26 +76,24 @@ export default async function Page(props: { params: Promise<{ slug: string; loca
           {toc.length > 0 ? (
             <aside className="hidden xl:block">
               <div className="sticky top-28">
-                <div className="rounded-2xl border bg-background/50 backdrop-blur-sm p-5 shadow-lg shadow-black/[0.04] dark:shadow-black/20">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                <div className="rounded-xl border bg-background/80 backdrop-blur-md p-5 shadow-lg shadow-black/[0.04] dark:shadow-black/20">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
                     On this page
                   </p>
-                  <nav aria-label="Table of contents" className="mt-4">
-                    <ul className="space-y-2 text-sm">
-                      {toc.map((h: any) => (
-                        <li
-                          key={h.url}
-                          className={h.depth === 3 ? 'pl-4' : undefined}
-                        >
-                          <a
-                            href={h.url}
-                            className="text-muted-foreground hover:text-foreground transition-colors"
-                          >
-                            {h.text}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+                  <nav aria-label="Table of contents" className="space-y-1">
+                    {toc.map((h: any, index: number) => (
+                      <a
+                        key={h.url || index}
+                        href={h.url}
+                        className={cn(
+                          "block text-sm transition-all duration-200 hover:text-primary",
+                          h.depth === 3 ? 'pl-4' : '',
+                          "text-muted-foreground hover:translate-x-1"
+                        )}
+                      >
+                        {h.text}
+                      </a>
+                    ))}
                   </nav>
                 </div>
               </div>

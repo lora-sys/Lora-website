@@ -10,12 +10,17 @@ import { useIntlayer } from "react-intlayer";
 
 export function HeroSection() {
   const { typingText, cardTexts } = useIntlayer("hero");
+  
+  // Ensure typingText is handled correctly whether it's a string or array
+  const typingWords = Array.isArray(typingText?.value) 
+    ? typingText.value.map(String) 
+    : [String(typingText?.value || "Hi, I'm lora")];
 
   return (
     <AuroraBackground className="min-h-screen w-full py-20 overflow-hidden">
       <div className="relative z-30 mb-12 text-center">
         <TypingAnimation
-          words={typingText.value}
+          words={typingWords}
           duration={80}
           startOnView={false}
           className="text-3xl md:text-5xl font-bold tracking-tight text-foreground"
