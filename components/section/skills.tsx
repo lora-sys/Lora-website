@@ -1,48 +1,43 @@
 "use client";
+
 import { skillsData } from "@/config/site-data";
 import { IconCloud } from "@/components/ui/icon-cloud";
 import { LightRays } from "@/components/ui/light-rays";
 import { RetroGrid } from "@/components/ui/retro-grid";
 import { Marquee } from "@/components/ui/marquee";
-import { useIntlayer } from "react-intlayer";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
-export function SkillsSection() {
-  const { title, description } = useIntlayer("skills");
-  const titleText = typeof title === 'string' ? title : (title as any).value;
-  const descriptionText = typeof description === 'string' ? description : (description as any).value;
+const SkillsAnimations = dynamic(
+  () => import("./skills-animations").then((mod) => mod.SkillsAnimations),
+  { 
+    ssr: false,
+    loading: () => <SkillsSkeleton />
+  }
+);
 
-  const titleWords = [
-    { text: titleText, className: "text-foreground" }
-  ];
-  const descriptionWords = String(descriptionText).split(" ").map((word: string)  => ({
-    text: word + " ",
-    className: "text-muted-foreground"
-  }));
-  const images = skillsData.slugs.map((slug : any) => `/skills/${slug}.svg`);
-  
+function SkillsSkeleton() {
+  return (
+    <div className="relative z-10 text-center mb-12">
+      <div className="h-[60px] animate-pulse bg-muted/30 rounded-lg mb-4" />
+      <div className="h-[24px] animate-pulse bg-muted/30 rounded-lg w-2/3 mx-auto" />
+    </div>
+  );
+}
+
+export function SkillsSkeletonComponent() {
   return (
     <section className="relative flex min-h-screen w-full flex-col items-center justify-center py-20 overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 -z-10">
         <RetroGrid className="opacity-50" />
         <LightRays />
       </div>
-      
-      {/* Title */}
-      <div className="relative z-10 text-center mb-12">
-        <TypewriterEffect words={titleWords} className="text-3xl md:text-5xl font-bold tracking-tight" />
-        <TypewriterEffect words={descriptionWords} className="text-base mt-4" />
+      <div className="relative z-10 scale-75 md:scale-100 min-h-[400px] flex items-center justify-center">
+        <div className="w-[400px] h-[400px] animate-pulse bg-muted/30 rounded-lg" />
       </div>
-      
-      {/* IconCloud - Eagerly loaded for better UX */}
-      <div className="relative z-10 scale-75 md:scale-100 min-h-[400px]">
-        <IconCloud images={images} />
-      </div>
-
-      {/* Bottom Marquee for extra tech feel */}
-      <div className="absolute bottom-10 w-full z-10 opacity-60 hover:opacity-100 transition-opacity">
-        <Marquee pauseOnHover className="[--duration:30s]">
+      <div className="absolute bottom-10 w-full z-10 opacity-60">
+        <Marquee pauseOnHover className="[--duration:15s]">
           {skillsData.slugs.map((slug: string) => (
             <span key={slug} className="mx-4 text-sm font-mono text-muted-foreground uppercase tracking-widest">
               {slug}
@@ -50,6 +45,43 @@ export function SkillsSection() {
           ))}
         </Marquee>
       </div>
+    </section>
+  );
+}
+
+export function SkillsSection({ title, description }: { 
+  title: string; 
+  description: string;
+}) {
+  const images = skillsData.slugs.map((slug: string) => `/skills/${slug}.svg`);
+
+  return (
+    <section className="relative flex min-h-screen w-full flex-col items-center justify-center py-20 overflow-hidden">
+      {/* Background - Pure CSS, can be static */}
+      <div className="absolute inset-0 -z-10">
+        <RetroGrid className="opacity-50" />
+        <LightRays />
+      </div>
+      
+      {/* Static Marquee */}
+      <div className="absolute bottom-10 w-full z-10 opacity-60 hover:opacity-100 transition-opacity">
+        <Marquee pauseOnHover className="[--duration:15s]">
+          {skillsData.slugs.map((slug: string) => (
+            <span key={slug} className="mx-4 text-sm font-mono text-muted-foreground uppercase tracking-widest">
+              {slug}
+            </span>
+          ))}
+        </Marquee>
+      </div>
+
+      {/* Animated content - Lazy loaded */}
+      <Suspense fallback={<SkillsSkeleton />}>
+        <SkillsAnimations 
+          titleText={title} 
+          descriptionText={description}
+          images={images}
+        />
+      </Suspense>
     </section>
   );
 }
