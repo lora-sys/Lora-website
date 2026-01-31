@@ -1,228 +1,115 @@
-import { Locales } from "intlayer";
 import { HeroSection } from "@/components/section/hero";
-import dynamic from "next/dynamic";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { ResizableNavbar } from "@/components/layout/resizable-navbar";
+import { SkillsSection } from "@/components/section/skills";
+import { ProjectsSection } from "@/components/section/projects";
+import { TimelineSection } from "@/components/section/timeline";
+import { BlogSection } from "@/components/section/blog";
+import { AboutSection } from "@/components/section/about";
+import { LifeSection } from "@/components/section/life";
+import { ContactSection } from "@/components/section/contact";
+import { StatisticsSection } from "@/components/section/statistics";
+import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { IntlayerClientProvider } from "next-intlayer";
 import { GridPattern } from "@/components/ui/grid-pattern";
 import type { Metadata } from "next";
-import skillsContent from "@/components/section/skills.content";
-import projectsContent from "@/components/section/projects.content";
-import aboutContent from "@/components/section/about.content";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Lora | Full-Stack Developer",
   description: "Personal portfolio of Lora, showcasing projects in AI, Web Development, and more.",
 };
 
-function getHeroData(locale: string) {
-  const typingTextEn = "lora";
-  const typingTextZh = "lora";
-  const cardTextsEn = ["Full-Stack", "AI", "Blog"];
-  const cardTextsZh = ["全栈", "AI", "博客"];
-  
-  const isZh = locale.includes('zh');
-  
-  return {
-    typingText: { value: isZh ? typingTextZh : typingTextEn },
-    cardTexts: (isZh ? cardTextsZh : cardTextsEn).map(v => ({ value: v }))
-  };
-}
-
-function getSkillsData(locale: string) {
-  const title = skillsContent.content.title;
-  const description = skillsContent.content.description;
-  const isZh = locale.includes('zh');
-  
-  return {
-    title: isZh ? String(title).replace('技能与技术', '技能与技术') : "skills & technologies",
-    description: isZh ? "我所使用的技术栈" : "Technologies I work with"
-  };
-}
-
-function getProjectsData(locale: string) {
-  const isZh = locale.includes('zh');
-  
-  return {
-    title: isZh ? "精选项目" : "Featured Projects",
-    description: isZh ? "我亲手打造的作品" : "Things I've built",
-    items: [
-      {
-        name: isZh ? "AI 聊天助手" : "AI Chat Agent",
-        description: isZh ? "基于大语言模型的对话助手，支持记忆和上下文理解" : "LLM-powered conversational agent with memory and context awareness",
-        cta: isZh ? "查看项目" : "View Project"
-      },
-      {
-        name: isZh ? "电商 API" : "E-commerce API",
-        description: isZh ? "完整的电商后端系统，支持支付集成" : "Full-stack e-commerce backend with payment integration",
-        cta: isZh ? "查看项目" : "View Project"
-      },
-      {
-        name: isZh ? "数据分析仪表盘" : "Analytics Dashboard",
-        description: isZh ? "实时数据可视化和分析平台" : "Real-time data visualization and analytics platform",
-        cta: isZh ? "查看项目" : "View Project"
-      },
-      {
-        name: isZh ? "移动端背单词" : "Mobile Flashcards",
-        description: isZh ? "支持间隔重复算法的跨平台背单词应用" : "Cross-platform flashcard app with spaced repetition",
-        cta: isZh ? "查看项目" : "View Project"
-      },
-      {
-        name: isZh ? "开发者工具 CLI" : "Dev Tools CLI",
-        description: isZh ? "提升开发效率的多功能命令行工具" : "Developer productivity CLI with multiple utilities",
-        cta: isZh ? "查看项目" : "View Project"
-      }
-    ]
-  };
-}
-
-function getAboutData(locale: string) {
-  const isZh = locale.includes('zh');
-  
-  return {
-    typingAnimationText: isZh ? "我是 LORA" : "I am LORA",
-    profileCtaText: isZh ? "查看个人主页" : "View Profile",
-    musicCtaText: isZh ? "立即收听" : "Listen",
-    locationNameText: isZh ? "所在地" : "Location",
-    locationDescriptionText: isZh ? "中国，西安" : "Xian, China",
-  };
-}
-
-// Optimize dynamic imports with better loading states
-const SkillsSection = dynamic(
-  () => import("@/components/section/skills").then((mod) => mod.SkillsSection),
-  { 
-    loading: () => <div className="h-[60vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
-    ssr: true 
-  }
-);
-const ProjectsSection = dynamic(
-  () => import("@/components/section/projects").then((mod) => mod.ProjectsSection),
-  { 
-    loading: () => <div className="h-[60vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
-    ssr: true 
-  }
-);
-const TimelineSection = dynamic(
-  () => import("@/components/section/timeline").then((mod) => mod.TimelineSection),
-  { 
-    loading: () => <div className="h-[60vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
-    ssr: true 
-  }
-);
-const BlogSection = dynamic(
-  () => import("@/components/section/blog").then((mod) => mod.BlogSection),
-  { 
-    loading: () => <div className="h-[60vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
-    ssr: true 
-  }
-);
-const AboutSection = dynamic(
-  () => import("@/components/section/about").then((mod) => mod.AboutSection),
-  { 
-    loading: () => <div className="h-[60vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
-    ssr: true 
-  }
-);
-const LifeSection = dynamic(
-  () => import("@/components/section/life").then((mod) => mod.LifeSection),
-  { 
-    loading: () => <div className="h-[60vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
-    ssr: true 
-  }
-);
-const ContactSection = dynamic(
-  () => import("@/components/section/contact").then((mod) => mod.ContactSection),
-  { 
-    loading: () => <div className="h-[40vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
-    ssr: true 
-  }
-);
-const StatisticsSection = dynamic(
-  () => import("@/components/section/statistics").then((mod) => mod.StatisticsSection),
-  { 
-    loading: () => <div className="h-[40vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
-    ssr: true 
-  }
-);
-
 export default function IndexPage() {
-  const locale = Locales.ENGLISH;
-  const heroData = getHeroData(locale);
-  const skillsData = getSkillsData(locale);
-  const projectsData = getProjectsData(locale);
-  const aboutData = getAboutData(locale);
-
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body className="antialiased bg-background text-foreground" style={{ overflowX: "hidden" }} suppressHydrationWarning>
-        <IntlayerClientProvider locale={locale}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div className="fixed inset-0 z-[-1] pointer-events-none">
-              <GridPattern
-                width={40}
-                height={40}
-                className="opacity-[0.03] dark:opacity-[0.05] [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_90%,transparent)]"
-                squares={[
-                  [4, 4],
-                  [5, 1],
-                  [8, 2],
-                  [6, 6],
-                  [12, 12],
-                  [15, 15],
-                  [20, 20],
-                ]}
-              />
-            </div>
-            <ResizableNavbar />
-            <div id="main-content">
-              <main>
-                <div>
-                  <HeroSection typingText={heroData.typingText} cardTexts={heroData.cardTexts} />
-                </div>
-                <div id="skills" className="scroll-mt-28 content-visibility-auto">
-                  <SkillsSection title={skillsData.title} description={skillsData.description} />
-                </div>
-                <div id="projects" className="scroll-mt-28 content-visibility-auto">
-                  <ProjectsSection title={projectsData.title} description={projectsData.description} items={projectsData.items} />
-                </div>
-                <div className="content-visibility-auto">
-                  <StatisticsSection />
-                </div>
-                <div id="timeline" className="scroll-mt-28 content-visibility-auto">
-                  <TimelineSection />
-                </div>
-                <div className="content-visibility-auto">
-                  <BlogSection />
-                </div>
-                <div id="about" className="scroll-mt-28 content-visibility-auto">
-                  <AboutSection 
-                    typingAnimationText={aboutData.typingAnimationText}
-                    profileCtaText={aboutData.profileCtaText}
-                    musicCtaText={aboutData.musicCtaText}
-                    locationNameText={aboutData.locationNameText}
-                    locationDescriptionText={aboutData.locationDescriptionText}
-                  />
-                </div>
-                <div id="life" className="scroll-mt-28 content-visibility-auto">
-                  <LifeSection />
-                </div>
-                <div id="contact" className="scroll-mt-28 content-visibility-auto">
-                  <ContactSection />
-                </div>
-              </main>
-            </div>
-            <Footer />
-          </ThemeProvider>
-        </IntlayerClientProvider>
-      </body>
-    </html>
+    <div className="min-h-screen" style={{ overflowX: "hidden" }}>
+      <div className="fixed inset-0 z-[-1] pointer-events-none">
+        <GridPattern
+          width={40}
+          height={40}
+          className="opacity-[0.03] dark:opacity-[0.05] [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_90%,transparent)]"
+          squares={[
+            [4, 4],
+            [5, 1],
+            [8, 2],
+            [6, 6],
+            [12, 12],
+            [15, 15],
+            [20, 20],
+          ]}
+        />
+      </div>
+      <Navbar />
+      <div id="main-content">
+        <main>
+          <div>
+            <HeroSection typingText={{ value: "lora" }} cardTexts={[
+              { value: "Full-Stack" },
+              { value: "AI" },
+              { value: "Blog" }
+            ]} />
+          </div>
+          <div id="skills" className="scroll-mt-28 content-visibility-auto">
+            <SkillsSection title="skills & technologies" description="Technologies I work with" />
+          </div>
+          <div id="projects" className="scroll-mt-28 content-visibility-auto">
+            <ProjectsSection
+              title="Featured Projects"
+              description="Things I've built"
+              items={[
+                {
+                  name: "AI Chat Agent",
+                  description: "LLM-powered conversational agent with memory and context awareness",
+                  cta: "View Project"
+                },
+                {
+                  name: "E-commerce API",
+                  description: "Full-stack e-commerce backend with payment integration",
+                  cta: "View Project"
+                },
+                {
+                  name: "Analytics Dashboard",
+                  description: "Real-time data visualization and analytics platform",
+                  cta: "View Project"
+                },
+                {
+                  name: "Mobile Flashcards",
+                  description: "Cross-platform flashcard app with spaced repetition",
+                  cta: "View Project"
+                },
+                {
+                  name: "Dev Tools CLI",
+                  description: "Developer productivity CLI with multiple utilities",
+                  cta: "View Project"
+                }
+              ]}
+            />
+          </div>
+          <div className="content-visibility-auto">
+            <StatisticsSection />
+          </div>
+          <div id="timeline" className="scroll-mt-28 content-visibility-auto">
+            <TimelineSection />
+          </div>
+          <div className="content-visibility-auto">
+            <BlogSection />
+          </div>
+          <div id="about" className="scroll-mt-28 content-visibility-auto">
+            <AboutSection
+              typingAnimationText="I am LORA"
+              profileCtaText="View Profile"
+              musicCtaText="Listen"
+              locationNameText="Location"
+              locationDescriptionText="Xian, China"
+            />
+          </div>
+          <div id="life" className="scroll-mt-28 content-visibility-auto">
+            <LifeSection />
+          </div>
+          <div id="contact" className="scroll-mt-28 content-visibility-auto">
+            <ContactSection />
+          </div>
+        </main>
+      </div>
+      <Footer />
+    </div>
   );
 }

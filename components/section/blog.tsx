@@ -7,7 +7,6 @@ import { BorderBeam } from "@/components/ui/border-beam";
 import { Meteors } from "@/components/ui/meteors";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useIntlayer, useLocale } from "react-intlayer";
 import dynamic from "next/dynamic";
 
 const TypewriterEffect = dynamic(
@@ -60,10 +59,43 @@ const Notification = ({ title, description, date, tag, color }: NotificationProp
   );
 };
 
-export function BlogSection() {
-  const { hero, tags, latestArticles, posts } = useIntlayer("blog");
-  const { locale } = useLocale();
+const blogData = {
+  hero: {
+    title: "Blog",
+    subtitle: "Thoughts, tutorials, and insights about web development, 3D art, and more.",
+  },
+  tags: ["React", "Next.js", "TypeScript", "3D", "AI", "Web Development", "Design"],
+  latestArticles: {
+    title: "Latest Articles",
+    description: "Explore my thoughts on technology, design, and development.",
+    viewAll: "View All",
+  },
+  posts: [
+    {
+      title: "Mastering Tailwind v4",
+      description: "A comprehensive guide to the new features in Tailwind CSS v4.",
+      date: "Jan 15, 2025",
+      tag: "CSS",
+      color: "bg-blue-500",
+    },
+    {
+      title: "Art of 3D Web Design",
+      description: "Exploring the intersection of web development and 3D graphics.",
+      date: "Jan 10, 2025",
+      tag: "3D",
+      color: "bg-purple-500",
+    },
+    {
+      title: "React Server Components",
+      description: "Understanding the future of React with Server Components.",
+      date: "Jan 5, 2025",
+      tag: "React",
+      color: "bg-cyan-500",
+    },
+  ],
+};
 
+export function BlogSection() {
   return (
     <section id="blog" className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden py-20">
       <Meteors number={15} />
@@ -71,19 +103,19 @@ export function BlogSection() {
       <div className="container px-4 md:px-6 relative z-10">
         <div className="mb-12 text-center space-y-4">
           <TypewriterEffect
-            words={[{ text: hero.title.value }]}
+            words={[{ text: blogData.hero.title }]}
             className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500"
           />
           <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-            {hero.subtitle.value}
+            {blogData.hero.subtitle}
           </p>
         </div>
 
         <div className="relative mb-16 flex w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background md:shadow-xl">
           <Marquee pauseOnHover className="[--duration:10s]">
-            {tags.map((tag: { value: string }) => (
+            {blogData.tags.map((tag: string) => (
               <div
-                key={tag.value}
+                key={tag}
                 className={cn(
                   "relative cursor-pointer overflow-hidden rounded-xl border p-4",
                   "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
@@ -91,7 +123,7 @@ export function BlogSection() {
                 )}
               >
                 <div className="flex flex-row items-center gap-2">
-                  <span className="text-sm font-medium">{tag.value}</span>
+                  <span className="text-sm font-medium">{tag}</span>
                 </div>
               </div>
             ))}
@@ -103,9 +135,9 @@ export function BlogSection() {
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="flex flex-col justify-center space-y-8">
             <div className="space-y-4">
-              <h3 className="text-3xl font-bold">{latestArticles.title.value}</h3>
+              <h3 className="text-3xl font-bold">{blogData.latestArticles.title}</h3>
               <p className="text-muted-foreground text-lg">
-                {latestArticles.description.value}
+                {blogData.latestArticles.description}
               </p>
             </div>
           </div>
@@ -113,24 +145,24 @@ export function BlogSection() {
           <div className="relative flex h-[500px] w-full flex-col p-6 overflow-hidden rounded-xl border bg-background/50 backdrop-blur-sm md:shadow-2xl">
             <div className="absolute top-6 right-6 z-20">
               <Link
-                href={`/${locale}/blog`}
+                href="/blog"
                 className="group inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/80 bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full border shadow-sm"
               >
-                {latestArticles.viewAll?.value}
+                {blogData.latestArticles.viewAll}
                 <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
 
             <div className="flex flex-col gap-4 mt-8">
               <AnimatedList>
-                {posts.map((post: { title: { value: string }; description: { value: string }; date: { value: string }; tag: { value: string }; color: { value: string } }) => (
+                {blogData.posts.map((post) => (
                   <Notification
-                    title={post.title.value}
-                    description={post.description.value}
-                    date={post.date.value}
-                    tag={post.tag.value}
-                    color={post.color.value}
-                    key={post.title.value}
+                    title={post.title}
+                    description={post.description}
+                    date={post.date}
+                    tag={post.tag}
+                    color={post.color}
+                    key={post.title}
                   />
                 ))}
               </AnimatedList>

@@ -7,12 +7,18 @@ import Image from "next/image";
 import { GripVertical } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
-import { LocaleSwitcher } from "./locale-switcher";
-import { useIntlayer } from "react-intlayer";
 
-export function ResizableNavbar() {
-    const navbar = useIntlayer("navbar");
-    const navItems = navbar?.navItems ?? [];
+const navItems = [
+  { name: "Home", link: "/" },
+  { name: "Skills", link: "/#skills" },
+  { name: "Projects", link: "/#projects" },
+  { name: "About", link: "/#about" },
+  { name: "Life", link: "/#life" },
+  { name: "Blog", link: "/blog" },
+  { name: "Contact", link: "/#contact" },
+];
+
+export function Navbar() {
     const pathname = usePathname();
     const [width, setWidth] = useState(850); // Default width increased for visibility
     const minWidth = 320;
@@ -92,9 +98,8 @@ export function ResizableNavbar() {
                     })}
                 </div>
 
-                {/* Theme Toggler & Locale Switcher */}
-                <div className="hidden sm:flex items-center border-l border-border pl-2 ml-2 gap-1">
-                    <LocaleSwitcher />
+                {/* Theme Toggler */}
+                <div className="hidden sm:flex items-center border-l border-border pl-2 ml-2">
                     <AnimatedThemeToggler />
                 </div>
 

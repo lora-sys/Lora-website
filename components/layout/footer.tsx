@@ -1,12 +1,10 @@
 "use client";
 
-import { siteConfig } from "@/config/site";
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { TextRevealCard, TextRevealCardDescription, TextRevealCardTitle } from "@/components/ui/text-reveal-card";
 import { HyperText } from "@/components/ui/hyper-text";
 import Link from "next/link";
 import { Github, Twitter, Instagram, Video, Music } from "lucide-react";
-import { useIntlayer } from "react-intlayer";
 
 const iconMap: Record<string, any> = {
   github: Github,
@@ -16,17 +14,15 @@ const iconMap: Record<string, any> = {
   douyin: Music,
 };
 
+const socials = {
+  github: "https://github.com/lora-sys",
+  x: "https://twitter.com/lora1979391",
+  instagram: "https://instagram.com/lora",
+  bilibili: "https://space.bilibili.com/lora",
+  douyin: "https://v.douyin.com/lora",
+};
+
 export function Footer() {
-  const footer = useIntlayer("footer");
-  const revealCard = footer?.revealCard;
-  const rightsReserved = footer?.rightsReserved;
-
-  const revealCardText = typeof revealCard?.text === 'string' ? revealCard.text : (revealCard?.text as any)?.value ?? "";
-  const revealCardRevealText = typeof revealCard?.revealText === 'string' ? revealCard.revealText : (revealCard?.revealText as any)?.value ?? "";
-  const revealCardTitle = typeof revealCard?.title === 'string' ? revealCard.title : (revealCard?.title as any)?.value ?? "";
-  const revealCardDescription = typeof revealCard?.description === 'string' ? revealCard.description : (revealCard?.description as any)?.value ?? "";
-  const rightsReservedText = typeof rightsReserved === 'string' ? rightsReserved : (rightsReserved as any)?.value ?? "";
-
   return (
     <footer className="relative w-full overflow-hidden border-t border-border/40 bg-background">
       <WavyBackground 
@@ -41,20 +37,20 @@ export function Footer() {
       >
         <div className="flex flex-col items-center justify-center gap-10 z-10">
             <TextRevealCard
-                text={revealCardText}
-                revealText={revealCardRevealText}
+                text="Get in touch"
+                revealText="Let's talk"
                 className="bg-transparent border-none shadow-none"
             >
                 <TextRevealCardTitle className="text-3xl text-center text-foreground">
-                    {revealCardTitle}
+                    Contact Me
                 </TextRevealCardTitle>
                 <TextRevealCardDescription className="text-center text-muted-foreground">
-                    {revealCardDescription}
+                    Open for collaboration and opportunities
                 </TextRevealCardDescription>
             </TextRevealCard>
 
             <div className="flex flex-wrap items-center justify-center gap-8 mt-8">
-                {Object.entries(siteConfig.socials).map(([key, url]) => {
+                {Object.entries(socials).map(([key, url]) => {
                     const Icon = iconMap[key] || Github;
                     return (
                         <Link key={key} href={url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 group">
@@ -65,7 +61,7 @@ export function Footer() {
                 })}
             </div>
              <div className="text-center text-sm text-muted-foreground mt-10">
-                © {new Date().getFullYear()} {siteConfig.name}. {rightsReservedText}
+                © {new Date().getFullYear()} LoraLG. All rights reserved.
             </div>
         </div>
       </WavyBackground>

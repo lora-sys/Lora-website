@@ -1,14 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { siteConfig } from "@/config/site";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { Github, Twitter, Instagram, Mail, Send, ArrowUpRight } from "lucide-react";
 import { SiBilibili, SiTiktok } from "react-icons/si";
-import { useIntlayer } from "react-intlayer";
 import { MagicCard } from "@/components/ui/magic-card";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
+
+const socials = {
+  github: "https://github.com/lora-sys",
+  x: "https://twitter.com/lora1979391",
+  instagram: "https://instagram.com/lora",
+  bilibili: "https://space.bilibili.com/lora",
+  douyin: "https://v.douyin.com/lora",
+};
+
+const email = "lora-sys@outlook.com";
 
 function FloatingParticles() {
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; delay: number }>>([]);
@@ -64,14 +72,12 @@ function GradientOrbs() {
 }
 
 function ContactContent() {
-  const { title, description, emailLabel } = useIntlayer("contact");
-
   const socialLinks = [
-    { name: "GitHub", icon: Github, href: siteConfig.socials.github, color: "hover:text-white" },
-    { name: "Twitter", icon: Twitter, href: siteConfig.socials.x, color: "hover:text-sky-400" },
-    { name: "Instagram", icon: Instagram, href: siteConfig.socials.instagram, color: "hover:text-pink-400" },
-    { name: "Bilibili", icon: SiBilibili, href: siteConfig.socials.bilibili, color: "hover:text-pink-300" },
-    { name: "Douyin", icon: SiTiktok, href: siteConfig.socials.douyin, color: "hover:text-cyan-400" },
+    { name: "GitHub", icon: Github, href: socials.github, color: "hover:text-white" },
+    { name: "Twitter", icon: Twitter, href: socials.x, color: "hover:text-sky-400" },
+    { name: "Instagram", icon: Instagram, href: socials.instagram, color: "hover:text-pink-400" },
+    { name: "Bilibili", icon: SiBilibili, href: socials.bilibili, color: "hover:text-pink-300" },
+    { name: "Douyin", icon: SiTiktok, href: socials.douyin, color: "hover:text-cyan-400" },
   ];
 
   const containerVariants = {
@@ -115,10 +121,10 @@ function ContactContent() {
       >
         <motion.div variants={itemVariants} className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4">
-            {title}
+            Get in Touch
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-            {description}
+            Let's collaborate and create something amazing together.
           </p>
         </motion.div>
 
@@ -155,7 +161,7 @@ function ContactContent() {
 
         <motion.div variants={itemVariants}>
           <Link
-            href={`mailto:${siteConfig.email}`}
+            href={`mailto:${email}`}
             className="group relative block w-full overflow-hidden rounded-2xl bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 border border-primary/20 hover:border-primary/40 transition-all duration-500"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
@@ -166,9 +172,9 @@ function ContactContent() {
                   <Mail className="w-8 h-8 text-primary" />
                 </div>
                 <div className="text-left">
-                  <p className="text-sm text-muted-foreground mb-1">{emailLabel}</p>
+                  <p className="text-sm text-muted-foreground mb-1">Email me at</p>
                   <p className="text-lg sm:text-2xl font-bold text-foreground break-all">
-                    {siteConfig.email}
+                    {email}
                   </p>
                 </div>
               </div>

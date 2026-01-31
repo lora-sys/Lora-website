@@ -1,13 +1,28 @@
 "use client";
-import { HeroContent, HeroSkeleton } from "./hero-content";
+
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
 const HeroAnimationsWrapper = dynamic(
   () => import("./hero-animations").then((mod) => mod.HeroAnimations),
   { 
     ssr: false,
-    loading: () => <HeroSkeleton />
+    loading: () => (
+      <div className="relative w-full h-[60vh] flex items-center justify-center">
+        <div className="w-32 h-32 animate-pulse bg-muted/30 rounded-lg" />
+      </div>
+    )
   }
 );
+
+function HeroSkeleton() {
+  return (
+    <div className="relative w-full h-[60vh] flex items-center justify-center">
+      <div className="w-32 h-32 animate-pulse bg-muted/30 rounded-lg" />
+    </div>
+  );
+}
+
 export function HeroSection({ typingText, cardTexts }: { 
   typingText: { value: string | string[] }
   cardTexts: Array<{ value: string }>
@@ -17,8 +32,9 @@ export function HeroSection({ typingText, cardTexts }: {
     : [String(typingText?.value || "lora")];
   return (
     <section className="min-h-screen w-full py-20 overflow-hidden">
-      <HeroContent />
-      <HeroAnimationsWrapper typingWords={typingWords} cardTexts={cardTexts} />
+      <Suspense fallback={<HeroSkeleton />}>
+        <HeroAnimationsWrapper typingWords={typingWords} cardTexts={cardTexts} />
+      </Suspense>
     </section>
   );
 }

@@ -1,6 +1,5 @@
 import type { NextConfig } from "next";
 import { withContentlayer } from "next-contentlayer";
-import { withIntlayer } from "next-intlayer/server";
 
 const nextConfig: NextConfig = {
   turbopack: {
@@ -32,4 +31,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withIntlayer(withContentlayer(nextConfig));
+export default withContentlayer(nextConfig);

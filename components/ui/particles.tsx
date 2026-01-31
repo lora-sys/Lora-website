@@ -8,7 +8,6 @@ import React, {
 } from "react"
 
 import { cn } from "@/lib/utils"
-import { useLazyAnimation } from "@/hooks/use-lazy-animation"
 
 interface MousePosition {
   x: number
@@ -99,14 +98,36 @@ export const Particles: React.FC<ParticlesProps> = ({
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1
   const rafID = useRef<number | null>(null)
   const resizeTimeout = useRef<NodeJS.Timeout | null>(null)
+  const [isVisible, setIsVisible] = useState(priority)
+  const observerRef = useRef<IntersectionObserver | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  const { ref, shouldRender } = useLazyAnimation({
-    threshold: priority ? 0 : 0.1,
-    rootMargin: priority ? "0px" : "300px",
-  })
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    if (priority) {
+      setIsVisible(true)
+      return
+    }
+
+    if (!containerRef.current) return
+
+    observerRef.current = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observerRef.current?.disconnect()
+        }
+      },
+      { threshold: 0.1, rootMargin: "300px" }
+    )
+
+    observerRef.current.observe(containerRef.current)
+
+    return () => observerRef.current?.disconnect()
+  }, [priority])
 
   useEffect(() => {
-    if (!shouldRender) {
+    if (!isVisible) {
       if (rafID.current != null) {
         window.cancelAnimationFrame(rafID.current)
         rafID.current = null
@@ -140,7 +161,7 @@ export const Particles: React.FC<ParticlesProps> = ({
       }
       window.removeEventListener("resize", handleResize)
     }
-  }, [shouldRender, color])
+  }, [isVisible, color])
 
   useEffect(() => {
     onMouseMove()
@@ -317,13 +338,15 @@ export const Particles: React.FC<ParticlesProps> = ({
   return (
     <div
       className={cn("pointer-events-none", className)}
-      ref={canvasContainerRef}
+      ref={(el) => {
+        canvasContainerRef.current = el
+        containerRef.current = el
+      }}
       aria-hidden="true"
       {...props}
     >
-      {!shouldRender ? (
+      {!isVisible ? (
         <div
-          ref={ref as React.RefObject<HTMLDivElement>}
           className="w-full h-full flex items-center justify-center"
         >
           <div className="w-full h-full max-w-[600px] aspect-square animate-pulse bg-muted/30 rounded-lg" />

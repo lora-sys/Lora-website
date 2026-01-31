@@ -3,17 +3,20 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { CalendarIcon, ArrowRightIcon, SearchIcon } from 'lucide-react';
-import type { Post } from 'contentlayer/generated';
 import { cn } from '@/lib/utils';
 
-import { useLocale } from 'next-intlayer';
+interface Post {
+  slug: string;
+  title: string;
+  description?: string;
+  date: string;
+}
 
 interface PostListProps {
   posts: Post[];
 }
 
 export function PostList({ posts }: PostListProps) {
-  const { locale } = useLocale();
   const [searchQuery, setSearchQuery] = useState('');
   const [hoveredPost, setHoveredPost] = useState<string | null>(null);
 
@@ -46,7 +49,7 @@ export function PostList({ posts }: PostListProps) {
           filteredPosts.map((post) => (
             <Link
               key={post.slug}
-              href={`/${locale}/blog/${post.slug}`}
+              href={`/blog/${post.slug}`}
               className="group relative flex flex-col justify-between bg-card/40 backdrop-blur-md border border-border/50 hover:border-primary/50 rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl overflow-hidden gpu-accelerated"
               onMouseEnter={() => setHoveredPost(post.slug)}
               onMouseLeave={() => setHoveredPost(null)}

@@ -3,6 +3,7 @@
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 import { CometCard } from "@/components/ui/comet-card";
 import { Icons } from "@/components/ui/icons";
+import Image from "next/image";
 
 interface HeroAnimationsProps {
   typingWords: string[];
@@ -31,6 +32,20 @@ export function HeroAnimations({ typingWords, cardTexts }: HeroAnimationsProps) 
         </OrbitingCircles>
 
         <div className="z-10 flex flex-col items-center">
+          {/* Avatar */}
+          <div className="mb-6 relative">
+            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl">
+              <Image
+                src="/profile.png"
+                alt="Lora"
+                width={160}
+                height={160}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          </div>
+          
           <CometCard className="max-w-md">
             <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-border">
               <div className="space-y-3 text-center">

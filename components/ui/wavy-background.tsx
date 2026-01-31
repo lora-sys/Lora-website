@@ -2,7 +2,6 @@
 import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
-import { useLazyAnimation } from "@/hooks/use-lazy-animation";
 
 export const WavyBackground = ({
   children,
@@ -38,6 +37,10 @@ export const WavyBackground = ({
     ctx: any,
     canvas: any;
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isVisible, setIsVisible] = useState(priority);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
   const getSpeed = () => {
     switch (speed) {
       case "slow":
@@ -49,10 +52,29 @@ export const WavyBackground = ({
     }
   };
 
-  const { ref, shouldRender } = useLazyAnimation({
-    threshold: priority ? 0 : 0.1,
-    rootMargin: priority ? "0px" : "400px",
-  });
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    if (priority) {
+      setIsVisible(true);
+      return;
+    }
+
+    if (!containerRef.current) return;
+
+    observerRef.current = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observerRef.current?.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: "400px" }
+    );
+
+    observerRef.current.observe(containerRef.current);
+
+    return () => observerRef.current?.disconnect();
+  }, [priority]);
 
   const init = () => {
     if (!canvasRef.current) return;
@@ -102,12 +124,12 @@ export const WavyBackground = ({
   };
 
   useEffect(() => {
-    if (!shouldRender) return;
+    if (!isVisible) return;
     init();
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [shouldRender]);
+  }, [isVisible]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
@@ -120,14 +142,14 @@ export const WavyBackground = ({
 
   return (
     <div
+      ref={containerRef}
       className={cn(
         "h-screen flex flex-col items-center justify-center",
         containerClassName
       )}
     >
-      {!shouldRender ? (
+      {!isVisible ? (
         <div
-          ref={ref as React.RefObject<HTMLDivElement>}
           className={cn("relative z-10 w-full", className)}
           {...props}
         >

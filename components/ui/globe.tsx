@@ -1,11 +1,10 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import createGlobe, { COBEOptions } from "cobe"
 import { useMotionValue, useSpring } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { useLazyAnimation } from "@/hooks/use-lazy-animation"
 
 const MOVEMENT_DAMPING = 1400
 
@@ -52,6 +51,9 @@ export function Globe({
   const pointerInteracting = useRef<number | null>(null)
   const pointerInteractionMovement = useRef(0)
   const globeInstance = useRef<ReturnType<typeof createGlobe> | null>(null)
+  const [isVisible, setIsVisible] = useState(priority)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
   const r = useMotionValue(0)
   const rs = useSpring(r, {
@@ -60,10 +62,29 @@ export function Globe({
     stiffness: 100,
   })
 
-  const { ref, shouldRender } = useLazyAnimation({
-    threshold: priority ? 0 : 0.1,
-    rootMargin: priority ? "0px" : "300px",
-  })
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    if (priority) {
+      setIsVisible(true)
+      return
+    }
+
+    if (!containerRef.current) return
+
+    observerRef.current = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observerRef.current?.disconnect()
+        }
+      },
+      { threshold: 0.1, rootMargin: "300px" }
+    )
+
+    observerRef.current.observe(containerRef.current)
+
+    return () => observerRef.current?.disconnect()
+  }, [priority])
 
   const updatePointerInteraction = (value: number | null) => {
     pointerInteracting.current = value
@@ -81,7 +102,7 @@ export function Globe({
   }
 
   useEffect(() => {
-    if (!shouldRender || !canvasRef.current) return
+    if (!isVisible || !canvasRef.current) return
 
     const onResize = () => {
       if (canvasRef.current) {
@@ -112,12 +133,12 @@ export function Globe({
       globeInstance.current = null
       window.removeEventListener("resize", onResize)
     }
-  }, [shouldRender, rs, config])
+  }, [isVisible, rs, config])
 
-  if (!shouldRender) {
+  if (!isVisible) {
     return (
       <div
-        ref={ref as React.RefObject<HTMLDivElement>}
+        ref={containerRef}
         className={cn(
           "absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]",
           className
@@ -130,6 +151,7 @@ export function Globe({
 
   return (
     <div
+      ref={containerRef}
       className={cn(
         "absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]",
         className

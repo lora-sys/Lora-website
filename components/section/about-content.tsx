@@ -1,12 +1,57 @@
 "use client";
 
 import { aboutData } from "@/config/site-data";
-import { footprintData, readingData, musicData, lifestyleData } from "@/config/lifestyle-data";
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 import { Globe } from "@/components/ui/globe";
 import Image from "next/image";
 import { Music, User, MapPin, BookOpen, Coffee, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+// Inline lifestyle data
+const lifestyleData = {
+  tagline: "Code & Freedom",
+  description: "A programmer's life is freedom",
+  hobbies: ["Coding", "Reading", "Music", "Travel"],
+};
+
+const musicData = {
+  favoriteSongs: [
+    {
+      name: "Running Up That Hill",
+      artist: "Kate Bush",
+      cover: "/images/music/running-up-hill.jpg",
+      spotifyUrl: "https://open.spotify.com/track/29d0nY7Tv5GKuq16sSfWfP",
+    },
+    {
+      name: "I Love You So",
+      artist: "The Walters",
+      cover: "/images/music/love-you-so.jpg",
+      spotifyUrl: "https://open.spotify.com/track/3hBXKpDVw6bFG5Z8vFB8W5",
+    },
+  ],
+};
+
+const readingData = {
+  totalBooks: 150,
+  featuredBooks: [
+    {
+      title: "Three.js Journey",
+      category: "Graphics",
+    },
+    {
+      title: "Building AI Agents",
+      category: "AI",
+    },
+    {
+      title: "JavaScript高级程序设计",
+      category: "Web",
+    },
+    {
+      title: "Clean Code",
+      category: "Engineering",
+    },
+  ],
+};
 
 interface AboutContentProps {
   profileCtaText: string;
@@ -74,10 +119,10 @@ export function AboutContent({
 
   const readingCard = {
     Icon: BookOpen,
-    name: "阅读",
-    description: `${readingData.totalBooks}+ 本书`,
+    name: "Reading",
+    description: `${readingData.totalBooks}+ books`,
     href: "#statistics",
-    cta: "查看全部",
+    cta: "View All",
     className: "md:col-span-1 md:row-span-1",
     background: (
       <div className="absolute inset-0 p-3 flex flex-wrap gap-1 content-end">

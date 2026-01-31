@@ -1,51 +1,67 @@
 "use client";
 
-import { skillsData } from "@/config/site-data";
-import { IconCloud } from "@/components/ui/icon-cloud";
-import { LightRays } from "@/components/ui/light-rays";
-import { RetroGrid } from "@/components/ui/retro-grid";
-import { Marquee } from "@/components/ui/marquee";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import { Marquee } from "@/components/ui/marquee";
 
-const SkillsAnimations = dynamic(
-  () => import("./skills-animations").then((mod) => mod.SkillsAnimations),
-  { 
-    ssr: false,
-    loading: () => <SkillsSkeleton />
-  }
-);
+interface Skill {
+  name: string;
+  level: number; // 0-100
+  category: string;
+}
 
-function SkillsSkeleton() {
+const skills: Skill[] = [
+  // Frontend
+  { name: "TypeScript", level: 90, category: "Frontend" },
+  { name: "JavaScript", level: 85, category: "Frontend" },
+  { name: "React", level: 88, category: "Frontend" },
+  { name: "Next.js", level: 85, category: "Frontend" },
+  { name: "Tailwind CSS", level: 92, category: "Frontend" },
+  
+  // Backend
+  { name: "Node.js", level: 80, category: "Backend" },
+  { name: "PostgreSQL", level: 75, category: "Backend" },
+  { name: "Prisma", level: 78, category: "Backend" },
+  { name: "Docker", level: 70, category: "Backend" },
+  
+  // Mobile
+  { name: "Flutter", level: 82, category: "Mobile" },
+  { name: "Dart", level: 80, category: "Mobile" },
+  { name: "Android", level: 65, category: "Mobile" },
+  
+  // Tools
+  { name: "Git", level: 85, category: "Tools" },
+  { name: "VS Code", level: 90, category: "Tools" },
+  { name: "Figma", level: 70, category: "Tools" },
+];
+
+const categories = ["Frontend", "Backend", "Mobile", "Tools"];
+
+function SkillBar({ skill }: { skill: Skill }) {
+  const filled = Math.round(skill.level / 10);
+  const empty = 10 - filled;
+  const bar = "█".repeat(filled) + "░".repeat(empty);
+  
   return (
-    <div className="relative z-10 text-center mb-12">
-      <div className="h-[60px] animate-pulse bg-muted/30 rounded-lg mb-4" />
-      <div className="h-[24px] animate-pulse bg-muted/30 rounded-lg w-2/3 mx-auto" />
+    <div className="mb-3">
+      <div className="flex justify-between text-xs mb-1">
+        <span className="text-foreground font-mono">{skill.name}</span>
+        <span className="text-muted-foreground font-mono">{skill.level}%</span>
+      </div>
+      <div className="font-mono text-sm tracking-wider">
+        <span className="text-primary">{bar}</span>
+      </div>
     </div>
   );
 }
 
-export function SkillsSkeletonComponent() {
+function SkillCategory({ title, skills }: { title: string; skills: Skill[] }) {
   return (
-    <section className="relative flex min-h-screen w-full flex-col items-center justify-center py-20 overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <RetroGrid className="opacity-50" />
-        <LightRays />
-      </div>
-      <div className="relative z-10 scale-50 sm:scale-75 md:scale-100 min-h-[300px] sm:min-h-[400px] flex items-center justify-center">
-        <div className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] animate-pulse bg-muted/30 rounded-lg" />
-      </div>
-      <div className="absolute bottom-10 w-full z-10 opacity-60">
-        <Marquee pauseOnHover className="[--duration:15s]">
-          {skillsData.slugs.map((slug: string) => (
-            <span key={slug} className="mx-3 text-xs sm:text-sm font-mono text-muted-foreground uppercase tracking-widest">
-              {slug}
-            </span>
-          ))}
-        </Marquee>
-      </div>
-    </section>
+    <div className="p-4 border border-border rounded-lg bg-card/50">
+      <h3 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">{title}</h3>
+      {skills.map((skill) => (
+        <SkillBar key={skill.name} skill={skill} />
+      ))}
+    </div>
   );
 }
 
@@ -53,35 +69,43 @@ export function SkillsSection({ title, description }: {
   title: string; 
   description: string;
 }) {
-  const images = skillsData.slugs.map((slug: string) => `/skills/${slug}.svg`);
+  const titleWords = [{ text: title, className: "text-foreground" }];
+  const descriptionWords = String(description || "").split(" ").map((word: string) => ({
+    text: word + " ",
+    className: "text-muted-foreground"
+  }));
 
   return (
-    <section className="relative flex min-h-screen w-full flex-col items-center justify-center py-20 overflow-hidden">
-      {/* Background - Pure CSS, can be static */}
-      <div className="absolute inset-0 -z-10">
-        <RetroGrid className="opacity-50" />
-        <LightRays />
+    <section id="skills" className="min-h-screen w-full py-20">
+      {/* Title */}
+      <div className="text-center mb-12">
+        <TypewriterEffect words={titleWords} className="text-3xl md:text-5xl font-bold tracking-tight" />
+        <TypewriterEffect words={descriptionWords} className="text-base mt-4" />
       </div>
-      
-      {/* Static Marquee */}
-      <div className="absolute bottom-10 w-full z-10 opacity-60">
+
+      {/* Skills Grid */}
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          {categories.map((category) => (
+            <SkillCategory 
+              key={category} 
+              title={category} 
+              skills={skills.filter(s => s.category === category)} 
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Marquee */}
+      <div className="mt-12 opacity-60">
         <Marquee pauseOnHover className="[--duration:15s]">
-          {skillsData.slugs.map((slug: string) => (
-            <span key={slug} className="mx-3 text-xs sm:text-sm font-mono text-muted-foreground uppercase tracking-widest">
-              {slug}
+          {skills.map((skill) => (
+            <span key={skill.name} className="mx-4 text-sm font-mono text-muted-foreground uppercase tracking-widest">
+              {skill.name}
             </span>
           ))}
         </Marquee>
       </div>
-
-      {/* Animated content - Lazy loaded */}
-      <Suspense fallback={<SkillsSkeleton />}>
-        <SkillsAnimations 
-          titleText={title} 
-          descriptionText={description}
-          images={images}
-        />
-      </Suspense>
     </section>
   );
 }

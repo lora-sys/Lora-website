@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState, useCallback, memo } from "react"
 import { renderToString } from "react-dom/server"
-import { useLazyAnimation } from "@/hooks/use-lazy-animation"
 
 interface Icon {
   x: number
@@ -27,6 +26,9 @@ export const IconCloud = memo(function IconCloud({ icons, images, priority = fal
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [iconPositions, setIconPositions] = useState<Icon[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
+  const [isVisible, setIsVisible] = useState(priority)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const observerRef = useRef<IntersectionObserver | null>(null)
   const rotationRef = useRef({ x: 0, y: 0 })
   const iconCanvasesRef = useRef<HTMLCanvasElement[]>([])
   const imagesLoadedRef = useRef<boolean[]>([])
@@ -47,10 +49,29 @@ export const IconCloud = memo(function IconCloud({ icons, images, priority = fal
   const lastMousePosRef = useRef({ x: 0, y: 0 })
   const mousePosRef = useRef({ x: 0, y: 0 })
 
-  const { ref, shouldRender } = useLazyAnimation({
-    threshold: priority ? 0 : 0.1,
-    rootMargin: priority ? "0px" : "200px",
-  })
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    if (priority) {
+      setIsVisible(true)
+      return
+    }
+
+    if (!containerRef.current) return
+
+    observerRef.current = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observerRef.current?.disconnect()
+        }
+      },
+      { threshold: 0.1, rootMargin: "200px" }
+    )
+
+    observerRef.current.observe(containerRef.current)
+
+    return () => observerRef.current?.disconnect()
+  }, [priority])
 
   const createIconCanvases = useCallback(() => {
     if (!icons && !images) return
@@ -144,11 +165,11 @@ export const IconCloud = memo(function IconCloud({ icons, images, priority = fal
   }, [icons, images])
 
   useEffect(() => {
-    if (!shouldRender) return
+    if (!isVisible) return
     createIconCanvases()
     generateIconPositions()
     setIsLoaded(true)
-  }, [shouldRender, createIconCanvases, generateIconPositions])
+  }, [isVisible, createIconCanvases, generateIconPositions])
 
   const handleMouseDown = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
     const rect = canvasRef.current?.getBoundingClientRect()
@@ -228,7 +249,7 @@ export const IconCloud = memo(function IconCloud({ icons, images, priority = fal
   }, [])
 
   useEffect(() => {
-    if (!shouldRender || !isLoaded) return
+    if (!isVisible || !isLoaded) return
 
     const canvas = canvasRef.current
     const ctx = canvas?.getContext("2d")
@@ -323,11 +344,11 @@ export const IconCloud = memo(function IconCloud({ icons, images, priority = fal
       }
       document.removeEventListener("visibilitychange", handleVisibility)
     }
-  }, [shouldRender, isLoaded, iconPositions, icons, images])
+  }, [isVisible, isLoaded, iconPositions, icons, images])
 
-  if (!shouldRender) {
+  if (!isVisible) {
     return (
-      <div ref={ref as React.RefObject<HTMLDivElement>} className="relative z-10 scale-75 md:scale-100 min-h-[400px] flex items-center justify-center">
+      <div ref={containerRef} className="relative z-10 scale-75 md:scale-100 min-h-[400px] flex items-center justify-center">
         <div className="w-[400px] h-[400px] animate-pulse bg-muted/30 rounded-lg" />
       </div>
     )

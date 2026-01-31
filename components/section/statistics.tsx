@@ -1,6 +1,5 @@
 "use client";
 
-import { statisticsData } from "@/config/lifestyle-data";
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -15,7 +14,33 @@ import {
   Target
 } from "lucide-react";
 
-// 评分分布柱状图组件
+// Inline statistics data
+const statisticsData = {
+  movies: {
+    total: 120,
+    averageRating: 4.2,
+    ratingDistribution: [
+      { rating: 5, count: 35 },
+      { rating: 4, count: 48 },
+      { rating: 3, count: 28 },
+      { rating: 2, count: 7 },
+      { rating: 1, count: 2 },
+    ],
+  },
+  music: {
+    yearlyHours: 350,
+    albumsCollected: 45,
+    topGenres: ["Rock", "Pop", "Indie", "Electronic"],
+  },
+  reading: {
+    totalBooks: 150,
+    yearlyGoal: 30,
+    completedThisYear: 18,
+    currentlyReading: "Three.js Journey",
+  },
+};
+
+// Rating distribution chart component
 function RatingChart({ distribution }: { distribution: { rating: number; count: number }[] }) {
   const maxCount = Math.max(...distribution.map(d => d.count));
   
@@ -34,7 +59,7 @@ function RatingChart({ distribution }: { distribution: { rating: number; count: 
   );
 }
 
-// 进度条组件
+// Progress bar component
 function ProgressBar({ current, total }: { current: number; total: number }) {
   const percentage = (current / total) * 100;
   
@@ -57,7 +82,7 @@ function ProgressBar({ current, total }: { current: number; total: number }) {
   );
 }
 
-// 风格标签组件
+// Genre tags component
 function GenreTags({ genres }: { genres: string[] }) {
   return (
     <div className="flex flex-wrap gap-1.5 mt-2">
@@ -101,7 +126,7 @@ export function StatisticsSection() {
     {
       id: "movies",
       Icon: Film,
-      name: "电影",
+      name: "Movies",
       className: "md:col-span-1",
       background: (
         <div className="absolute inset-0 overflow-hidden">
@@ -125,9 +150,9 @@ export function StatisticsSection() {
                 >
                   {statisticsData.movies.total}
                 </motion.span>
-                <span className="text-sm text-muted-foreground">部</span>
+                <span className="text-sm text-muted-foreground">films</span>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">已观影</p>
+              <p className="text-xs text-muted-foreground mt-1">Watched</p>
             </div>
             <div className="flex items-center gap-1 text-amber-500">
               <Star className="w-4 h-4 fill-current" />
@@ -142,7 +167,7 @@ export function StatisticsSection() {
     {
       id: "music",
       Icon: Music,
-      name: "音乐",
+      name: "Music",
       className: "md:col-span-1",
       background: (
         <div className="absolute inset-0 overflow-hidden">
@@ -168,14 +193,14 @@ export function StatisticsSection() {
                 </motion.span>
                 <span className="text-sm text-muted-foreground">h</span>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">年度听歌时长</p>
+              <p className="text-xs text-muted-foreground mt-1">Listening time this year</p>
             </div>
             <div className="text-right">
               <div className="flex items-center gap-1 text-violet-400">
                 <TrendingUp className="w-3 h-3" />
                 <span className="text-xs">{statisticsData.music.albumsCollected}</span>
               </div>
-              <p className="text-[10px] text-muted-foreground">收藏专辑</p>
+              <p className="text-[10px] text-muted-foreground">Albums collected</p>
             </div>
           </div>
           <div className="flex-1" />
@@ -186,7 +211,7 @@ export function StatisticsSection() {
     {
       id: "reading",
       Icon: BookOpen,
-      name: "阅读",
+      name: "Reading",
       className: "md:col-span-1",
       background: (
         <div className="absolute inset-0 overflow-hidden">
@@ -212,11 +237,11 @@ export function StatisticsSection() {
                 </motion.span>
                 <span className="text-sm text-muted-foreground">+</span>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">已读书籍</p>
+              <p className="text-xs text-muted-foreground mt-1">Books read</p>
             </div>
             <div className="flex items-center gap-1 text-amber-500">
               <Target className="w-4 h-4" />
-              <span className="text-xs">{statisticsData.reading.yearlyGoal}/年</span>
+              <span className="text-xs">{statisticsData.reading.yearlyGoal}/year</span>
             </div>
           </div>
           <div className="flex-1" />
@@ -225,7 +250,7 @@ export function StatisticsSection() {
             total={statisticsData.reading.yearlyGoal} 
           />
           <p className="text-[10px] text-muted-foreground mt-2 truncate">
-            正在读: {statisticsData.reading.currentlyReading}
+            Currently reading: {statisticsData.reading.currentlyReading}
           </p>
         </div>
       ),
@@ -248,8 +273,8 @@ export function StatisticsSection() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold md:text-4xl">数字生活</h2>
-          <p className="text-muted-foreground">用数据记录生活的点滴</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Digital Life</h2>
+          <p className="text-muted-foreground">Tracking life through data</p>
         </motion.div>
 
         {/* Statistics Grid */}

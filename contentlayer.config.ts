@@ -29,19 +29,19 @@ export const Post = defineDocumentType(() => ({
       resolve: (doc) => {
         // Simple regex to extract headings (h1-h6)
         const regXHeader = /\n(?<flag>#{1,6})\s+(?<content>.+)/g;
-        const headings = Array.from(doc.body.raw.matchAll(regXHeader)).map(
-            ({ groups }) => {
-              const flag = groups?.flag;
-              const content = groups?.content;
-              const slug = content ? content.toLowerCase().replace(/\s+/g, '-') : '';
-              return {
-                depth: flag ? flag.length : 1,
-                text: content,
-                url: `#${slug}`,
-                title: content // Fumadocs expects 'title'
-              };
-            }
-        );
+        const matches = Array.from(doc.body.raw.matchAll(regXHeader)) as RegExpMatchArray[];
+        const headings = matches.map((match) => {
+          const groups = match.groups as { flag?: string; content?: string } | undefined;
+          const flag = groups?.flag;
+          const content = groups?.content;
+          const slug = content ? content.toLowerCase().replace(/\s+/g, '-') : '';
+          return {
+            depth: flag ? flag.length : 1,
+            text: content,
+            url: `#${slug}`,
+            title: content // Fumadocs expects 'title'
+          };
+        });
         return headings;
       }
     }
