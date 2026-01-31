@@ -11,26 +11,6 @@ const aboutContent = {
       en: "View Profile",
       zh: "查看个人主页",
     }),
-    contributions: {
-      name: t({
-        en: "Contributions",
-        zh: "贡献",
-      }),
-      description: t({
-        en: "Total commits",
-        zh: "总提交数",
-      }),
-    },
-    stars: {
-      name: t({
-        en: "Stars",
-        zh: "获赞数",
-      }),
-      description: t({
-        en: "Total stars",
-        zh: "总获赞数",
-      }),
-    },
     music: {
       cta: t({
         en: "Listen",
@@ -43,8 +23,8 @@ const aboutContent = {
         zh: "所在地",
       }),
       description: t({
-        en: "Shenzhen, China",
-        zh: "中国，深圳",
+        en: "Xian, China",
+        zh: "中国，西安",
       }),
     },
     techStack: {

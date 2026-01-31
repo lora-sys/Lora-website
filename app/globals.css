@@ -171,9 +171,9 @@
   --accent: oklch(65% 0.22 248);
   --accent-foreground: oklch(20% 0.02 250);
 
-  /* 状态 */
+  /* 状态 - 提高对比度 */
   --muted: oklch(92% 0.015 45);
-  --muted-foreground: oklch(50% 0.03 250);
+  --muted-foreground: oklch(40% 0.03 250);
   --destructive: oklch(65% 0.22 20);
 
   /* 边框 */
@@ -220,7 +220,7 @@
   --accent-foreground: oklch(95% 0.02 250);
 
   --muted: oklch(25% 0.04 245);
-  --muted-foreground: oklch(65% 0.05 250);
+  --muted-foreground: oklch(75% 0.05 250);
   --destructive: oklch(65% 0.22 20);
 
   --border: oklch(30% 0.05 250);

@@ -8,8 +8,8 @@ import { Timeline } from "@/components/ui/timeline";
 import { useIntlayer } from "react-intlayer";
 import dynamic from "next/dynamic";
 
-const TypingAnimation = dynamic(
-  () => import("@/components/ui/typing-animation").then((mod) => mod.TypingAnimation),
+const TypewriterEffect = dynamic(
+  () => import("@/components/ui/typewriter-effect").then((mod) => mod.TypewriterEffect),
   { ssr: false }
 );
 
@@ -28,9 +28,10 @@ export function TimelineSection() {
 
       <div className="container px-4 md:px-6 relative z-10">
         <div className="mb-12 text-center space-y-4">
-          <TypingAnimation className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500">
-            {title?.value?.toString() || ""}
-          </TypingAnimation>
+          <TypewriterEffect
+            words={[{ text: title?.value?.toString() || "" }]}
+            className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500"
+          />
           <p className="mx-auto max-w-[760px] text-muted-foreground md:text-xl">
             {description?.value?.toString() || ""}
           </p>

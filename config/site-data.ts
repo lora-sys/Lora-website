@@ -1,11 +1,10 @@
 export const heroData = {
   typingText: [
-    "Hi, I'm lora",
-    "I build things for the web",
-    "I create intelligent agents"
+    "lora",
+    "build things"
   ],
   profileImage: "/profile.png",
-  cardTexts: ["Full-Stack Developer", "AI Enthusiast", "Tech Blogger"],
+  cardTexts: ["Full-Stack", "AI", "Blog"],
 };
 export const skillsData = {
   title: "skills & technologies",

@@ -1,146 +1,197 @@
 "use client";
 
-import React, { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { Github, Twitter, Instagram, Mail } from "lucide-react";
+import { Github, Twitter, Instagram, Mail, Send, ArrowUpRight } from "lucide-react";
 import { SiBilibili, SiTiktok } from "react-icons/si";
-import { ShineBorder } from "@/components/ui/shine-border";
 import { useIntlayer } from "react-intlayer";
 import { MagicCard } from "@/components/ui/magic-card";
-import dynamic from "next/dynamic";
+import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
-const AnimatedGlobe = dynamic(
-    () => import("@/components/ui/animated-globe").then((mod) => mod.AnimatedGlobe),
-    {
-        ssr: false,
-        loading: () => <GlobeSkeleton />,
-    }
-);
+function FloatingParticles() {
+  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; delay: number }>>([]);
 
-function GlobeSkeleton() {
-    return (
-        <div className="w-full h-full max-w-[500px] aspect-square flex items-center justify-center">
-            <div className="w-32 h-32 rounded-full animate-pulse bg-primary/10" />
-        </div>
-    );
+  useEffect(() => {
+    const newParticles = Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 4 + 2,
+      delay: Math.random() * 5,
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className="absolute rounded-full bg-primary/30"
+          style={{
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+            width: particle.size,
+            height: particle.size,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0.2, 0.5, 0.2],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 4 + Math.random() * 2,
+            repeat: Infinity,
+            delay: particle.delay,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
 }
 
-function StaticFallback() {
-    return (
-        <div className="w-full h-full max-w-[500px] aspect-square flex items-center justify-center">
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
-                <div className="absolute inset-0 rounded-full border-2 border-primary/30" />
-                <div className="absolute inset-4 rounded-full border border-primary/20" />
-                <div className="absolute inset-0 rounded-full bg-gradient-radial from-primary/10 to-transparent" />
-            </div>
-        </div>
-    );
+function GradientOrbs() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-purple-500/20 rounded-full blur-[100px] animate-pulse" />
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "2s" }} />
+    </div>
+  );
 }
 
 function ContactContent() {
-    const { title, description, emailLabel } = useIntlayer("contact");
+  const { title, description, emailLabel } = useIntlayer("contact");
 
-    return (
-        <section
-            id="contact"
-            className="relative w-full bg-background overflow-x-hidden min-h-screen py-20 lg:py-0 lg:h-screen"
-        >
-            <div className="grid w-full grid-cols-1 lg:grid-cols-2 lg:h-full gap-8 lg:gap-0">
-                <div className="relative flex h-[300px] sm:h-[400px] lg:h-full w-full items-center justify-center order-1 lg:order-none">
-                    <div className="absolute inset-0 flex items-center justify-center overflow-hidden h-full w-full">
-                        <AnimatedGlobe
-                            className="opacity-100 h-full w-full max-w-[500px] lg:max-w-none"
-                            variant="bold"
-                        />
-                    </div>
-                </div>
+  const socialLinks = [
+    { name: "GitHub", icon: Github, href: siteConfig.socials.github, color: "hover:text-white" },
+    { name: "Twitter", icon: Twitter, href: siteConfig.socials.x, color: "hover:text-sky-400" },
+    { name: "Instagram", icon: Instagram, href: siteConfig.socials.instagram, color: "hover:text-pink-400" },
+    { name: "Bilibili", icon: SiBilibili, href: siteConfig.socials.bilibili, color: "hover:text-pink-300" },
+    { name: "Douyin", icon: SiTiktok, href: siteConfig.socials.douyin, color: "hover:text-cyan-400" },
+  ];
 
-                <div className="z-10 flex w-full flex-col items-center justify-center gap-8 px-4 pb-10 order-2 lg:order-none lg:h-full">
-                    <MagicCard
-                        className="relative flex w-full max-w-[400px] flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 shadow-2xl"
-                        gradientColor="#262626"
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  return (
+    <section
+      id="contact"
+      className="relative w-full min-h-screen flex items-center justify-center py-20 lg:py-32 overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background/95" />
+      <GradientOrbs />
+      <FloatingParticles />
+
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <motion.div variants={itemVariants} className="text-center mb-12">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4">
+            {title}
+          </h2>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+            {description}
+          </p>
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="mb-12">
+          <MagicCard
+            className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl"
+            gradientColor="#262626"
+          >
+            <div className="p-6 sm:p-8">
+              <BorderBeam size={300} duration={15} delay={5} />
+              
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+                  return (
+                    <Link
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      className="group relative flex flex-col items-center gap-2 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300 min-h-[80px] sm:min-h-[100px] justify-center"
                     >
-                        <div className="p-8 w-full flex flex-col items-center">
-                            <BorderBeam size={250} duration={12} delay={9} />
-
-                            <h2 className="text-3xl font-bold tracking-tighter text-foreground mb-2">{title}</h2>
-                            <p className="text-muted-foreground text-center mb-6">{description}</p>
-
-                            <div className="grid grid-cols-3 gap-4 w-full">
-                                {siteConfig.socials.github && (
-                                    <Link href={siteConfig.socials.github} target="_blank" className="flex flex-col items-center gap-2 group">
-                                        <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-                                            <Github className="w-6 h-6" />
-                                        </div>
-                                        <span className="text-xs text-muted-foreground group-hover:text-foreground">GitHub</span>
-                                    </Link>
-                                )}
-                                {siteConfig.socials.x && (
-                                    <Link href={siteConfig.socials.x} target="_blank" className="flex flex-col items-center gap-2 group">
-                                        <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-                                            <Twitter className="w-6 h-6" />
-                                        </div>
-                                        <span className="text-xs text-muted-foreground group-hover:text-foreground">Twitter</span>
-                                    </Link>
-                                )}
-                                {siteConfig.socials.instagram && (
-                                    <Link href={siteConfig.socials.instagram} target="_blank" className="flex flex-col items-center gap-2 group">
-                                        <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-                                            <Instagram className="w-6 h-6" />
-                                        </div>
-                                        <span className="text-xs text-muted-foreground group-hover:text-foreground">Instagram</span>
-                                    </Link>
-                                )}
-                                {siteConfig.socials.bilibili && (
-                                    <Link href={siteConfig.socials.bilibili} target="_blank" className="flex flex-col items-center gap-2 group">
-                                        <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-                                            <SiBilibili className="w-6 h-6" />
-                                        </div>
-                                        <span className="text-xs text-muted-foreground group-hover:text-foreground">Bilibili</span>
-                                    </Link>
-                                )}
-                                {siteConfig.socials.douyin && (
-                                    <Link href={siteConfig.socials.douyin} target="_blank" className="flex flex-col items-center gap-2 group">
-                                        <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-                                            <SiTiktok className="w-6 h-6" />
-                                        </div>
-                                        <span className="text-xs text-muted-foreground group-hover:text-foreground">Douyin</span>
-                                    </Link>
-                                )}
-                                <Link href={`mailto:${siteConfig.email}`} className="flex flex-col items-center gap-2 group">
-                                    <div className="p-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-                                        <Mail className="w-6 h-6" />
-                                    </div>
-                                    <span className="text-xs text-muted-foreground group-hover:text-foreground">{emailLabel}</span>
-                                </Link>
-                            </div>
-                        </div>
-                    </MagicCard>
-
-                    <Link href={`mailto:${siteConfig.email}`} className="relative w-full max-w-[400px] group overflow-hidden rounded-xl">
-                        <ShineBorder className="z-0" shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
-                        <div className="relative z-10 flex w-full flex-col items-center justify-center bg-background/30 backdrop-blur-md p-6">
-                            <div className="flex flex-col items-center gap-3 w-full">
-                                <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                                    <Mail className="w-8 h-8 text-primary" />
-                                </div>
-                                <div className="text-center w-full">
-                                    <p className="text-sm font-medium text-muted-foreground mb-1">Primary Email</p>
-                                    <p className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent break-all px-2">
-                                        {siteConfig.email}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                      <Icon className={`w-7 h-7 sm:w-9 sm:h-9 text-foreground ${social.color} transition-colors duration-300`} />
+                      <span className="text-xs sm:text-sm font-medium text-foreground">
+                        {social.name}
+                      </span>
+                      <ArrowUpRight className="w-4 h-4 absolute top-2 right-2 text-muted-foreground/0 group-hover:text-muted-foreground/50 transition-all duration-300" />
                     </Link>
-                </div>
+                  );
+                })}
+              </div>
             </div>
-        </section>
-    );
+          </MagicCard>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <Link
+            href={`mailto:${siteConfig.email}`}
+            className="group relative block w-full overflow-hidden rounded-2xl bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 border border-primary/20 hover:border-primary/40 transition-all duration-500"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+            
+            <div className="relative p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                  <Mail className="w-8 h-8 text-primary" />
+                </div>
+                <div className="text-left">
+                  <p className="text-sm text-muted-foreground mb-1">{emailLabel}</p>
+                  <p className="text-lg sm:text-2xl font-bold text-foreground break-all">
+                    {siteConfig.email}
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-2 text-primary font-medium">
+                <span className="hidden sm:inline">Send Message</span>
+                <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </div>
+            </div>
+          </Link>
+        </motion.div>
+
+        <motion.p
+          variants={itemVariants}
+          className="text-center text-sm text-muted-foreground mt-12"
+        >
+          Open for collaborations and interesting projects
+        </motion.p>
+      </motion.div>
+    </section>
+  );
 }
 
 export function ContactSection() {
-    return <ContactContent />;
+  return <ContactContent />;
 }

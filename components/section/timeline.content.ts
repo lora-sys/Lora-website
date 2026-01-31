@@ -18,6 +18,14 @@ const timelineContent = {
     items: t({
       en: [
         {
+          title: "2026-01-24 | Monad Blitz@Chengdu V2 - Tarot of Destiny",
+          description: "Built 'Tarot of Destiny' - a Web3 prediction market combining tarot divination, AI curation, and blockchain predictions. Features immersive 3D tarot scenes with Three.js, innovative Mint/Burn token economics, and Monad Testnet integration. Team Winter (with zoe, youyoujun) passed the hackathon review.",
+          links: [
+            { href: "https://github.com/lora-sys/demo_monad_hackthon", label: "View Code (GitHub)" },
+            { href: "https://demo-monad-hackthon.vercel.app", label: "Live Demo" },
+          ],
+        },
+        {
           title: "2025-09-20 | Monad Blitz Hackathon",
           description: "Won 1st place at Monad Blitz Hackathon (Chengdu) with the 'Blockchain Certificate System'. Built on Monad testnet, the project ensures certificate authenticity through NFT and secure validation mechanisms.",
           links: [
@@ -43,6 +51,14 @@ const timelineContent = {
       ],
       zh: [
         {
+          title: "2026-01-24 | Monad Blitz@成都 V2 - 命运的塔罗牌",
+          description: "开发《命运的塔罗牌》- 融合塔罗占卜、AI策展与区块链预测市场的Web3应用。基于 Three.js 构建沉浸式3D塔罗场景，创新 Mint/Burn 代币经济模型，集成 Monad 测试网极速确认。团队 Winter（队长 zoe，成员游游峻）通过黑客松审核。",
+          links: [
+            { href: "https://github.com/lora-sys/demo_monad_hackthon", label: "查看代码 (GitHub)" },
+            { href: "https://demo-monad-hackthon.vercel.app", label: "在线演示" },
+          ],
+        },
+        {
           title: "2025-09-20 | Monad Blitz 黑客松",
           description: "参加 Monad Blitz 黑客松（成都站），凭借项目《区块链证书系统》荣获一等奖。该项目基于 Monad 测试网构建，通过 NFT 和安全验证机制确保证书真实性。",
           links: [
@@ -52,7 +68,7 @@ const timelineContent = {
         },
         {
           title: "报名 / 组队",
-          description: "确定主题方向、组队分工、快速梳理 MVP。先把“能跑起来”的目标定清楚。",
+          description: "确定主题方向、组队分工、快速梳理 MVP。先把能跑起来的目标定清楚。",
           link: { href: "/#projects", label: "查看相关项目" },
         },
         {

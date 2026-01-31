@@ -52,27 +52,24 @@ export const TypewriterEffect = ({
 
   const renderWords = () => {
     return (
-      <motion.div ref={scope} className="inline">
+      <span ref={scope} className="inline">
         {wordsArray.map((word, idx) => {
           return (
-            <div key={`word-${idx}`} className="inline-block">
+            <span key={`word-${idx}`} className="inline">
               {word.text.map((char, index) => (
-                <motion.span
-                  initial={{}}
+                <span
                   key={`char-${index}`}
-                  className={cn(
-                    `dark:text-white text-black opacity-0 hidden`,
-                    word.className
-                  )}
+                  className={cn("dark:text-white text-black inline", word.className)}
                 >
                   {char}
-                </motion.span>
+                </span>
               ))}
-              &nbsp;
-            </div>
+              {/* Add space between words */}
+              {idx < wordsArray.length - 1 && <span className="inline w-2" />}
+            </span>
           );
         })}
-      </motion.div>
+      </span>
     );
   };
   return (
@@ -126,23 +123,24 @@ export const TypewriterEffectSmooth = ({
   });
   const renderWords = () => {
     return (
-      <div>
+      <span>
         {wordsArray.map((word, idx) => {
           return (
-            <div key={`word-${idx}`} className="inline-block">
+            <span key={`word-${idx}`} className="inline">
               {word.text.map((char, index) => (
                 <span
                   key={`char-${index}`}
-                  className={cn(`dark:text-white text-black `, word.className)}
+                  className={cn("dark:text-white text-black inline", word.className)}
                 >
                   {char}
                 </span>
               ))}
-              &nbsp;
-            </div>
+              {/* Add space between words */}
+              {idx < wordsArray.length - 1 && <span className="inline w-2" />}
+            </span>
           );
         })}
-      </div>
+      </span>
     );
   };
 

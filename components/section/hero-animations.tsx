@@ -3,12 +3,6 @@
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 import { CometCard } from "@/components/ui/comet-card";
 import { Icons } from "@/components/ui/icons";
-import dynamic from "next/dynamic";
-
-const TypingAnimation = dynamic(
-  () => import("@/components/ui/typing-animation").then((mod) => mod.TypingAnimation),
-  { ssr: false }
-);
 
 interface HeroAnimationsProps {
   typingWords: string[];
@@ -16,16 +10,14 @@ interface HeroAnimationsProps {
 }
 
 export function HeroAnimations({ typingWords, cardTexts }: HeroAnimationsProps) {
+  const mainText = typingWords[0] || "lora";
+
   return (
     <>
       <div className="relative z-30 mb-12 text-center">
-        <TypingAnimation
-          words={typingWords}
-          duration={80}
-          startOnView={true}
-          className="text-3xl md:text-5xl font-bold tracking-tight text-foreground"
-          loop={true}
-        />
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-primary">
+          {mainText}
+        </h1>
       </div>
 
       <div className="relative flex h-[600px] w-full items-center justify-center overflow-hidden">

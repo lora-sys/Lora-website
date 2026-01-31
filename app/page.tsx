@@ -18,10 +18,10 @@ export const metadata: Metadata = {
 };
 
 function getHeroData(locale: string) {
-  const typingTextEn = ["Hi, I'm lora", "I build things for the web", "I create intelligent agents"];
-  const typingTextZh = ["你好，我是 lora", "我为 Web 构建应用", "我致力于开发智能体"];
-  const cardTextsEn = ["Full-Stack Developer", "AI Enthusiast", "Tech Blogger"];
-  const cardTextsZh = ["全栈开发工程师", "AI 爱好者", "技术博主"];
+  const typingTextEn = "lora";
+  const typingTextZh = "lora";
+  const cardTextsEn = ["Full-Stack", "AI", "Blog"];
+  const cardTextsZh = ["全栈", "AI", "博客"];
   
   const isZh = locale.includes('zh');
   
@@ -84,15 +84,9 @@ function getAboutData(locale: string) {
   return {
     typingAnimationText: isZh ? "我是 LORA" : "I am LORA",
     profileCtaText: isZh ? "查看个人主页" : "View Profile",
-    contributionsNameText: isZh ? "贡献" : "Contributions",
-    contributionsDescriptionText: isZh ? "总提交数" : "Total commits",
-    starsNameText: isZh ? "获赞数" : "Stars",
-    starsDescriptionText: isZh ? "总获赞数" : "Total stars",
     musicCtaText: isZh ? "立即收听" : "Listen",
     locationNameText: isZh ? "所在地" : "Location",
     locationDescriptionText: isZh ? "中国，西安" : "Xian, China",
-    techStackNameText: isZh ? "技术栈" : "Tech Stack",
-    techStackDescriptionText: isZh ? "持续学习中" : "Always learning",
   };
 }
 
@@ -146,6 +140,13 @@ const ContactSection = dynamic(
     ssr: true 
   }
 );
+const StatisticsSection = dynamic(
+  () => import("@/components/section/statistics").then((mod) => mod.StatisticsSection),
+  { 
+    loading: () => <div className="h-[40vh] flex items-center justify-center"><div className="animate-pulse w-80% h-60% bg-muted/30 rounded-xl" /></div>,
+    ssr: true 
+  }
+);
 
 export default function IndexPage() {
   const locale = Locales.ENGLISH;
@@ -192,6 +193,9 @@ export default function IndexPage() {
                 <div id="projects" className="scroll-mt-28 content-visibility-auto">
                   <ProjectsSection title={projectsData.title} description={projectsData.description} items={projectsData.items} />
                 </div>
+                <div className="content-visibility-auto">
+                  <StatisticsSection />
+                </div>
                 <div id="timeline" className="scroll-mt-28 content-visibility-auto">
                   <TimelineSection />
                 </div>
@@ -202,15 +206,9 @@ export default function IndexPage() {
                   <AboutSection 
                     typingAnimationText={aboutData.typingAnimationText}
                     profileCtaText={aboutData.profileCtaText}
-                    contributionsNameText={aboutData.contributionsNameText}
-                    contributionsDescriptionText={aboutData.contributionsDescriptionText}
-                    starsNameText={aboutData.starsNameText}
-                    starsDescriptionText={aboutData.starsDescriptionText}
                     musicCtaText={aboutData.musicCtaText}
                     locationNameText={aboutData.locationNameText}
                     locationDescriptionText={aboutData.locationDescriptionText}
-                    techStackNameText={aboutData.techStackNameText}
-                    techStackDescriptionText={aboutData.techStackDescriptionText}
                   />
                 </div>
                 <div id="life" className="scroll-mt-28 content-visibility-auto">

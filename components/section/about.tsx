@@ -5,17 +5,9 @@ import { BentoGrid } from "@/components/ui/bento-grid";
 import dynamic from "next/dynamic";
 import { Suspense, useState } from "react";
 
-const TypingAnimation = dynamic(
-  () => import("@/components/ui/typing-animation").then((mod) => mod.TypingAnimation),
+const TypewriterEffect = dynamic(
+  () => import("@/components/ui/typewriter-effect").then((mod) => mod.TypewriterEffect),
   { ssr: false }
-);
-
-const AboutAnimations = dynamic(
-  () => import("./about-animations").then((mod) => mod.AboutAnimations),
-  { 
-    ssr: false,
-    loading: () => <AboutSkeleton />
-  }
 );
 
 const AboutContent = dynamic(
@@ -42,27 +34,15 @@ export function AboutSkeleton() {
 export function AboutSection({
   typingAnimationText,
   profileCtaText,
-  contributionsNameText,
-  contributionsDescriptionText,
-  starsNameText,
-  starsDescriptionText,
   musicCtaText,
   locationNameText,
   locationDescriptionText,
-  techStackNameText,
-  techStackDescriptionText,
 }: {
   typingAnimationText: string;
   profileCtaText: string;
-  contributionsNameText: string;
-  contributionsDescriptionText: string;
-  starsNameText: string;
-  starsDescriptionText: string;
   musicCtaText: string;
   locationNameText: string;
   locationDescriptionText: string;
-  techStackNameText: string;
-  techStackDescriptionText: string;
 }) {
   return (
     <section className="relative flex min-h-screen w-full flex-col items-center justify-center py-20 overflow-hidden">
@@ -75,24 +55,19 @@ export function AboutSection({
       <div className="relative z-10 w-full max-w-7xl px-4 space-y-12">
         {/* Animated Content - Typing */}
         <div className="flex items-center justify-center pt-8">
-          <TypingAnimation className="text-wrap text-3xl font-bold md:text-5xl">
-            {typingAnimationText}
-          </TypingAnimation>
+          <TypewriterEffect
+            words={[{ text: typingAnimationText }]}
+            className="text-wrap text-3xl font-bold md:text-5xl"
+          />
         </div>
 
         {/* BentoGrid Content */}
         <Suspense fallback={<AboutSkeleton />}>
           <AboutContent
             profileCtaText={profileCtaText}
-            contributionsNameText={contributionsNameText}
-            contributionsDescriptionText={contributionsDescriptionText}
-            starsNameText={starsNameText}
-            starsDescriptionText={starsDescriptionText}
             musicCtaText={musicCtaText}
             locationNameText={locationNameText}
             locationDescriptionText={locationDescriptionText}
-            techStackNameText={techStackNameText}
-            techStackDescriptionText={techStackDescriptionText}
           />
         </Suspense>
       </div>

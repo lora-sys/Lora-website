@@ -33,13 +33,13 @@ export function SkillsSkeletonComponent() {
         <RetroGrid className="opacity-50" />
         <LightRays />
       </div>
-      <div className="relative z-10 scale-75 md:scale-100 min-h-[400px] flex items-center justify-center">
-        <div className="w-[400px] h-[400px] animate-pulse bg-muted/30 rounded-lg" />
+      <div className="relative z-10 scale-50 sm:scale-75 md:scale-100 min-h-[300px] sm:min-h-[400px] flex items-center justify-center">
+        <div className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] animate-pulse bg-muted/30 rounded-lg" />
       </div>
       <div className="absolute bottom-10 w-full z-10 opacity-60">
         <Marquee pauseOnHover className="[--duration:15s]">
           {skillsData.slugs.map((slug: string) => (
-            <span key={slug} className="mx-4 text-sm font-mono text-muted-foreground uppercase tracking-widest">
+            <span key={slug} className="mx-3 text-xs sm:text-sm font-mono text-muted-foreground uppercase tracking-widest">
               {slug}
             </span>
           ))}
@@ -64,10 +64,10 @@ export function SkillsSection({ title, description }: {
       </div>
       
       {/* Static Marquee */}
-      <div className="absolute bottom-10 w-full z-10 opacity-60 hover:opacity-100 transition-opacity">
+      <div className="absolute bottom-10 w-full z-10 opacity-60">
         <Marquee pauseOnHover className="[--duration:15s]">
           {skillsData.slugs.map((slug: string) => (
-            <span key={slug} className="mx-4 text-sm font-mono text-muted-foreground uppercase tracking-widest">
+            <span key={slug} className="mx-3 text-xs sm:text-sm font-mono text-muted-foreground uppercase tracking-widest">
               {slug}
             </span>
           ))}

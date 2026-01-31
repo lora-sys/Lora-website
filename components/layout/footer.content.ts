@@ -5,20 +5,20 @@ const footerContent = {
   content: {
     revealCard: {
       text: t({
-        en: "You know the business",
-        zh: "你了解业务",
+        en: "Information wants to be free",
+        zh: "信息渴望自由",
       }),
       revealText: t({
-        en: "I know the chemistry",
-        zh: "我精通化学",
+        en: "Knowledge wants to be shared",
+        zh: "知识渴望分享",
       }),
       title: t({
-        en: "Everything is possible",
-        zh: "万事皆有可能",
+        en: "Code wants to be beautiful",
+        zh: "代码渴望美丽",
       }),
       description: t({
-        en: "Hover to reveal the hidden truth.",
-        zh: "悬停以揭示隐藏的真相。",
+        en: "Hover to reveal the hacker's spirit.",
+        zh: "悬停以揭示黑客精神。",
       }),
     },
     rightsReserved: t({

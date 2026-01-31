@@ -1,241 +1,147 @@
+"use client";
+
 import { aboutData } from "@/config/site-data";
+import { footprintData, readingData, musicData, lifestyleData } from "@/config/lifestyle-data";
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
+import { Globe } from "@/components/ui/globe";
 import Image from "next/image";
-import { Trophy, Star, Music, User, Globe, Code2, Bot } from "lucide-react";
-import { Meteors } from "@/components/ui/meteors";
-import { MagicCard } from "@/components/ui/magic-card";
-import { motion } from "motion/react";
+import { Music, User, MapPin, BookOpen, Coffee, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { StatusCards } from "./about-animations";
-import { useState } from "react";
 
 interface AboutContentProps {
   profileCtaText: string;
-  contributionsNameText: string;
-  contributionsDescriptionText: string;
-  starsNameText: string;
-  starsDescriptionText: string;
-  musicCtaText: string;
   locationNameText: string;
   locationDescriptionText: string;
-  techStackNameText: string;
-  techStackDescriptionText: string;
+  musicCtaText: string;
 }
 
 export function AboutContent({
   profileCtaText,
-  contributionsNameText,
-  contributionsDescriptionText,
-  starsNameText,
-  starsDescriptionText,
-  musicCtaText,
   locationNameText,
   locationDescriptionText,
-  techStackNameText,
-  techStackDescriptionText,
+  musicCtaText,
 }: AboutContentProps) {
-  const [isSplineLoaded, setIsSplineLoaded] = useState(false);
+  const profileCard = {
+    name: aboutData.displayName,
+    description: aboutData.username,
+    href: aboutData.profileUrl,
+    target: "_blank",
+    cta: profileCtaText,
+    Icon: User,
+    className: "md:col-span-2 md:row-span-2",
+    background: (
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
+    ),
+  };
 
-  const features = [
-    {
-      name: aboutData.displayName,
-      description: aboutData.username,
-      href: aboutData.profileUrl,
-      target: "_blank",
-      cta: profileCtaText,
-      Icon: User,
-      className: "lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-2 md:col-span-2",
-    },
-    {
-      name: locationNameText,
-      description: locationDescriptionText,
-      Icon: Globe,
-      className: "lg:row-start-1 lg:row-end-2 lg:col-start-2 lg:col-end-3",
-    },
-    {
-      name: techStackNameText,
-      description: techStackDescriptionText,
-      href: "#skills",
-      target: "_blank",
-      Icon: Code2,
-      cta: "Visit",
-      className: "lg:row-start-2 lg:row-end-3 lg:col-start-2 lg:col-end-3",
-    },
-    {
-      name: "3D Assistant",
-      description: "Interactive Robot Scene",
-      Icon: Bot,
-      className: "lg:row-start-1 lg:row-end-3 lg:col-start-3 lg:col-end-4",
-      isSpline: true,
-    },
-    {
-      Icon: Music,
-      name: "",
-      description: "",
-      href: "https://open.spotify.com",
-      target: "_blank",
-      cta: musicCtaText,
-      dark: true,
-      className: "lg:row-start-3 lg:row-end-4 lg:col-start-1 lg:col-end-2",
-      musicData: aboutData.music[0],
-    },
-    {
-      Icon: Music,
-      name: "",
-      description: "",
-      href: "https://open.spotify.com",
-      target: "_blank",
-      cta: musicCtaText,
-      className: "lg:row-start-3 lg:row-end-4 lg:col-start-2 lg:col-end-3",
-      musicData: aboutData.music[1],
-    },
-  ];
-
-  return (
-    <div className="space-y-12">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <BentoGrid className="lg:grid-rows-3">
-          {features.map((feature, idx) => {
-            const { Icon, ...rest } = feature;
-          
-            if (feature.isSpline) {
-              const { isSpline, ...restWithoutSpline } = rest as any;
-              return (
-                <BentoCard
-                  key={`${rest.name}-${idx}`}
-                  {...restWithoutSpline}
-                  Icon={
-                    <Icon className="h-12 w-12 origin-left transform-gpu transition-all duration-300 ease-in-out group-hover:scale-75" />
-                  }
-                  background={
-                    <div className="absolute inset-0">
-                      {!isSplineLoaded ? (
-                        <div
-                          className="absolute inset-0 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 cursor-pointer transition-colors hover:bg-neutral-200 dark:hover:bg-neutral-800"
-                          onClick={() => setIsSplineLoaded(true)}
-                          onMouseEnter={() => setIsSplineLoaded(true)}
-                        >
-                          <div className="text-center space-y-2">
-                            <span className="text-4xl">🤖</span>
-                            <p className="text-xs text-muted-foreground font-medium">Load 3D Scene</p>
-                          </div>
-                        </div>
-                      ) : (
-                        <iframe
-                          src={aboutData.splineScene}
-                          className="h-full w-full border-0 animate-in fade-in duration-700"
-                          loading="lazy"
-                          title="3D Robot Scene"
-                        />
-                      )}
-                    </div>
-                  }
-                />
-              );
-            }
-
-            if (feature.musicData) {
-              const { musicData, ...restWithoutMusicData } = rest;
-              return (
-                <BentoCard
-                  key={`${rest.name}-${idx}`}
-                  {...restWithoutMusicData}
-                  Icon={
-                    <Icon
-                      className={cn(
-                        "h-12 w-12 origin-left transform-gpu transition-all duration-300 ease-in-out group-hover:scale-75",
-                        rest.dark ? "text-white" : "text-neutral-700"
-                      )}
-                    />
-                  }
-                  background={
-                    <div className="absolute inset-0">
-                      <Image
-                        src={feature.musicData.coverImage}
-                        alt={feature.musicData.name}
-                        fill
-                        className="object-cover transition-all duration-300 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
-                      <div className="absolute bottom-6 left-6 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 pointer-events-none z-20">
-                        <p className="text-lg text-muted-foreground">
-                          {feature.musicData.artist}
-                        </p>
-                        <p className="text-2xl font-semibold text-white">
-                          {feature.musicData.name}
-                        </p>
-                      </div>
-                    </div>
-                  }
-                />
-              );
-            }
-
-            if (feature.name === techStackNameText) {
-              return (
-                <BentoCard
-                  key={`${rest.name}-${idx}`}
-                  {...rest}
-                  Icon={
-                    <Icon
-                      className={cn(
-                        "h-12 w-12 origin-left transform-gpu transition-all duration-300 ease-in-out group-hover:scale-75",
-                        rest.dark ? "text-white" : "text-neutral-700"
-                      )}
-                    />
-                  }
-                  background={
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Meteors number={5} />
-                    </div>
-                  }
-                />
-              );
-            }
-
-            return (
-              <BentoCard
-                key={`${rest.name}-${idx}`}
-                {...rest}
-                Icon={
-                  <Icon
-                    className={cn(
-                      "h-12 w-12 origin-left transform-gpu transition-all duration-300 ease-in-out group-hover:scale-75",
-                      rest.dark ? "text-white" : "text-neutral-700"
-                    )}
-                  />
-                }
-                background={
-                  feature.name === locationNameText ? (
-                    <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-                      <Globe className="h-32 w-32 opacity-10" />
-                    </div>
-                  ) : undefined
-                }
-              />
-            );
-          })}
-        </BentoGrid>
-      </motion.div>
-      
-      <StatusCards />
-    </div>
-  );
-}
-
-export function AboutSkeleton() {
-  return (
-    <BentoGrid className="lg:grid-rows-3">
-      {Array.from({ length: 7 }).map((_, i) => (
-        <div
-          key={i}
-          className="col-span-1 min-h-[12rem] animate-pulse bg-muted/30 rounded-xl"
+  const featuredSong = musicData.favoriteSongs[0];
+  const musicCard = {
+    Icon: Music,
+    name: "",
+    description: "",
+    href: featuredSong.spotifyUrl,
+    target: "_blank",
+    cta: musicCtaText,
+    className: "md:col-span-1 md:row-span-1",
+    background: (
+      <div className="absolute inset-0 overflow-hidden">
+        <Image
+          src={featuredSong.cover}
+          alt={featuredSong.name}
+          fill
+          className="object-cover"
         />
-      ))}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+        <div className="absolute bottom-3 left-3 right-3">
+          <p className="text-xs text-white/70 font-medium truncate">{featuredSong.artist}</p>
+          <p className="text-sm font-bold text-white truncate">{featuredSong.name}</p>
+        </div>
+      </div>
+    ),
+  };
+
+  const footprintCard = {
+    Icon: MapPin,
+    name: locationNameText,
+    description: locationDescriptionText,
+    className: "md:col-span-1 md:row-span-1",
+    background: (
+      <div className="absolute inset-0 flex items-center justify-center opacity-30">
+        <Globe className="w-full h-full max-w-[120px] max-h-[120px]" />
+      </div>
+    ),
+  };
+
+  const readingCard = {
+    Icon: BookOpen,
+    name: "阅读",
+    description: `${readingData.totalBooks}+ 本书`,
+    href: "#statistics",
+    cta: "查看全部",
+    className: "md:col-span-1 md:row-span-1",
+    background: (
+      <div className="absolute inset-0 p-3 flex flex-wrap gap-1 content-end">
+        {readingData.featuredBooks.slice(0, 4).map((book, i) => (
+          <div
+            key={i}
+            className="w-10 h-14 rounded shadow-sm overflow-hidden flex-shrink-0"
+            style={{ transform: `rotate(${i % 2 === 0 ? -3 : 3}deg)` }}
+          >
+            <div className="w-full h-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+              <span className="text-[8px] text-white font-bold text-center leading-tight px-1">
+                {book.category}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    ),
+  };
+
+  const lifestyleCard = {
+    Icon: Coffee,
+    name: lifestyleData.tagline,
+    description: lifestyleData.description,
+    className: "md:col-span-1 md:row-span-1",
+    background: (
+      <div className="absolute top-3 right-3 flex flex-wrap gap-1 max-w-[80px] justify-end">
+        {lifestyleData.hobbies.map((hobby, i) => (
+          <span
+            key={i}
+            className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-white/70"
+          >
+            {hobby}
+          </span>
+        ))}
+      </div>
+    ),
+  };
+
+  const features = [profileCard, musicCard, footprintCard, readingCard, lifestyleCard];
+
+  return (
+    <BentoGrid className="grid-cols-1 md:grid-cols-3 auto-rows-[160px] md:auto-rows-[180px]">
+      {features.map((feature, idx) => {
+        const { Icon, background, ...rest } = feature;
+
+        return (
+          <BentoCard
+            key={`card-${idx}`}
+            {...rest}
+            className={cn(
+              rest.className,
+              "group overflow-hidden h-full",
+              idx === 0 && "min-h-[320px] md:min-h-0"
+            )}
+            Icon={
+              rest.name && (
+                <Icon className="h-6 w-6 text-primary/80" />
+              )
+            }
+            background={background}
+          />
+        );
+      })}
     </BentoGrid>
   );
 }

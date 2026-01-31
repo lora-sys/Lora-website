@@ -19,7 +19,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary">
+    <span className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary font-medium">
       {children}
     </span>
   );
@@ -44,20 +44,20 @@ export function ProjectsContent({ items }: ProjectsContentProps) {
           return (
             <MagicCard
               key={i}
-              className={cn(staticItem?.className, "col-span-3 lg:col-span-1 min-h-[22rem]")}
+              className={cn(staticItem?.className, "col-span-3 lg:col-span-1 min-h-[18rem] md:min-h-[22rem]")}
               gradientColor="#262626"
             >
               <div className="flex h-full flex-col justify-between p-6">
                 <div className="relative z-10 flex flex-col gap-4">
                   <div className="p-3 bg-white/10 w-fit rounded-lg backdrop-blur-sm border border-white/10">
-                    <IconComponent className="h-8 w-8 text-neutral-700 dark:text-neutral-200" />
+                    <IconComponent className="h-8 w-8 text-foreground" />
                   </div>
                   
                   <div>
-                    <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-100">
+                    <h3 className="text-xl font-bold text-foreground">
                       {item.name}
                     </h3>
-                    <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+                    <p className="mt-2 text-sm text-muted-foreground">
                       {item.description}
                     </p>
                   </div>
@@ -93,7 +93,7 @@ export function ProjectsSkeleton() {
         {Array.from({ length: 5 }).map((_, i) => (
           <div
             key={i}
-            className="col-span-3 lg:col-span-1 min-h-[22rem] animate-pulse bg-muted/30 rounded-xl"
+            className="col-span-3 lg:col-span-1 min-h-[18rem] md:min-h-[22rem] animate-pulse bg-muted/30 rounded-xl"
           />
         ))}
       </BentoGrid>

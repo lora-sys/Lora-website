@@ -1,7 +1,10 @@
-// default open-next.config.ts file created by @opennextjs/cloudflare
+// OpenNext config for Cloudflare - Using static export mode
+// Note: This project uses `output: "export"` in next.config.ts for static site generation
+// R2 incremental cache is disabled as it's not needed for static exports
+
 import { defineCloudflareConfig } from "@opennextjs/cloudflare/config";
-import r2IncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/r2-incremental-cache";
 
 export default defineCloudflareConfig({
-	incrementalCache: r2IncrementalCache,
+	// No incremental cache needed for static export
+	// Static files are served directly from Cloudflare Pages
 });

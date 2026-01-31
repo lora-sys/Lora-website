@@ -40,12 +40,16 @@ const ContactSection = dynamic(
   () => import("@/components/section/contact").then((mod) => mod.ContactSection),
   { loading: () => <div className="h-[40vh]" /> }
 );
+const StatisticsSection = dynamic(
+  () => import("@/components/section/statistics").then((mod) => mod.StatisticsSection),
+  { loading: () => <div className="h-[40vh]" /> }
+);
 
 function getHeroData(locale: string) {
-  const typingTextEn = ["Hi, I'm lora", "I build things for the web", "I create intelligent agents"];
-  const typingTextZh = ["你好，我是 lora", "我为 Web 构建应用", "我致力于开发智能体"];
-  const cardTextsEn = ["Full-Stack Developer", "AI Enthusiast", "Tech Blogger"];
-  const cardTextsZh = ["全栈开发工程师", "AI 爱好者", "技术博主"];
+  const typingTextEn = "lora";
+  const typingTextZh = "lora";
+  const cardTextsEn = ["Full-Stack", "AI", "Blog"];
+  const cardTextsZh = ["全栈", "AI", "博客"];
   
   const isZh = locale.includes('zh');
   
@@ -91,26 +95,17 @@ function getAboutData(locale: string) {
   const content = aboutContent.content as unknown as {
     typingAnimation: { en: string; zh: string };
     profileCta: { en: string; zh: string };
-    contributions: { name: { en: string; zh: string }; description: { en: string; zh: string } };
-    stars: { name: { en: string; zh: string }; description: { en: string; zh: string } };
     music: { cta: { en: string; zh: string } };
     location: { name: { en: string; zh: string }; description: { en: string; zh: string } };
-    techStack: { name: { en: string; zh: string }; description: { en: string; zh: string } };
   };
   const isZh = locale.includes('zh');
   
   return {
     typingAnimationText: isZh ? content.typingAnimation.zh : content.typingAnimation.en,
     profileCtaText: isZh ? content.profileCta.zh : content.profileCta.en,
-    contributionsNameText: isZh ? content.contributions.name.zh : content.contributions.name.en,
-    contributionsDescriptionText: isZh ? content.contributions.description.zh : content.contributions.description.en,
-    starsNameText: isZh ? content.stars.name.zh : content.stars.name.en,
-    starsDescriptionText: isZh ? content.stars.description.zh : content.stars.description.en,
     musicCtaText: isZh ? content.music.cta.zh : content.music.cta.en,
     locationNameText: isZh ? content.location.name.zh : content.location.name.en,
     locationDescriptionText: isZh ? content.location.description.zh : content.location.description.en,
-    techStackNameText: isZh ? content.techStack.name.zh : content.techStack.name.en,
-    techStackDescriptionText: isZh ? content.techStack.description.zh : content.techStack.description.en,
   };
 }
 
@@ -132,6 +127,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <div id="projects" className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:1px_900px]">
         <ProjectsSection title={projectsData.title} description={projectsData.description} items={projectsData.items} />
       </div>
+      <div className="[content-visibility:auto] [contain-intrinsic-size:1px_600px]">
+        <StatisticsSection />
+      </div>
       <div id="timeline" className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:1px_900px]">
         <TimelineSection />
       </div>
@@ -142,15 +140,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <AboutSection 
             typingAnimationText={aboutData.typingAnimationText}
             profileCtaText={aboutData.profileCtaText}
-            contributionsNameText={aboutData.contributionsNameText}
-            contributionsDescriptionText={aboutData.contributionsDescriptionText}
-            starsNameText={aboutData.starsNameText}
-            starsDescriptionText={aboutData.starsDescriptionText}
             musicCtaText={aboutData.musicCtaText}
             locationNameText={aboutData.locationNameText}
             locationDescriptionText={aboutData.locationDescriptionText}
-            techStackNameText={aboutData.techStackNameText}
-            techStackDescriptionText={aboutData.techStackDescriptionText}
           />
         </div>
       <div id="life" className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:1px_900px]">
