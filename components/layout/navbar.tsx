@@ -6,17 +6,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { GripVertical } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { siteConfig } from "@/config/site";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
-const navItems = [
-  { name: "Home", link: "/" },
-  { name: "Skills", link: "/#skills" },
-  { name: "Projects", link: "/#projects" },
-  { name: "About", link: "/#about" },
-  { name: "Life", link: "/#life" },
-  { name: "Blog", link: "/blog" },
-  { name: "Contact", link: "/#contact" },
-];
+const navItems = siteConfig.nav;
 
 export function Navbar() {
     const pathname = usePathname();

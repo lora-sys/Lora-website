@@ -23,11 +23,12 @@ export function LifeSection() {
 
         <BentoGrid className="mb-16">
           {life.hobbies.map((hobby) => {
-            const { Icon, ...rest } = hobby;
+            const { Icon, className, ...cardProps } = hobby;
             return (
               <BentoCard
-                key={rest.name}
-                {...rest}
+                key={hobby.name}
+                {...cardProps}
+                className={className}
                 name="" // Hide default name
                 description="" // Hide default description
                 Icon={
@@ -35,10 +36,10 @@ export function LifeSection() {
                     <Icon className="h-12 w-12 origin-left transform-gpu text-white transition-all duration-300 ease-in-out group-hover:scale-75" />
                     <div className="absolute inset-0 -m-4 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:group-hover:translate-y-10 pointer-events-none">
                       <h3 className="text-xl font-bold text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-300 mb-1">
-                        {rest.name}
+                        {hobby.name}
                       </h3>
                       <p className="text-neutral-200 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
-                        {rest.description}
+                        {hobby.description}
                       </p>
                     </div>
                   </>
@@ -46,8 +47,8 @@ export function LifeSection() {
                 background={
                   <div className="absolute inset-0">
                     <Image
-                      src={rest.background}
-                      alt={rest.name}
+                      src={hobby.background}
+                      alt={hobby.name}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-100"
                     />

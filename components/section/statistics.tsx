@@ -13,32 +13,9 @@ import {
   TrendingUp,
   Target
 } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
-// Inline statistics data
-const statisticsData = {
-  movies: {
-    total: 120,
-    averageRating: 4.2,
-    ratingDistribution: [
-      { rating: 5, count: 35 },
-      { rating: 4, count: 48 },
-      { rating: 3, count: 28 },
-      { rating: 2, count: 7 },
-      { rating: 1, count: 2 },
-    ],
-  },
-  music: {
-    yearlyHours: 350,
-    albumsCollected: 45,
-    topGenres: ["Rock", "Pop", "Indie", "Electronic"],
-  },
-  reading: {
-    totalBooks: 150,
-    yearlyGoal: 30,
-    completedThisYear: 18,
-    currentlyReading: "Three.js Journey",
-  },
-};
+const statisticsData = siteConfig.statistics;
 
 // Rating distribution chart component
 function RatingChart({ distribution }: { distribution: { rating: number; count: number }[] }) {

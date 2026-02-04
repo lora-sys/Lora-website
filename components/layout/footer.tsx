@@ -5,22 +5,18 @@ import { TextRevealCard, TextRevealCardDescription, TextRevealCardTitle } from "
 import { HyperText } from "@/components/ui/hyper-text";
 import Link from "next/link";
 import { Github, Twitter, Instagram, Video, Music } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 const iconMap: Record<string, any> = {
   github: Github,
   x: Twitter,
+  twitter: Twitter,
   instagram: Instagram,
   bilibili: Video,
   douyin: Music,
 };
 
-const socials = {
-  github: "https://github.com/lora-sys",
-  x: "https://twitter.com/lora1979391",
-  instagram: "https://instagram.com/lora",
-  bilibili: "https://space.bilibili.com/lora",
-  douyin: "https://v.douyin.com/lora",
-};
+const socials = siteConfig.socials;
 
 export function Footer() {
   return (
@@ -61,7 +57,7 @@ export function Footer() {
                 })}
             </div>
              <div className="text-center text-sm text-muted-foreground mt-10">
-                © {new Date().getFullYear()} LoraLG. All rights reserved.
+                © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
             </div>
         </div>
       </WavyBackground>

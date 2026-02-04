@@ -1,9 +1,8 @@
 "use client";
 
-import { aboutData } from "@/config/site-data";
 import { BentoGrid } from "@/components/ui/bento-grid";
 import dynamic from "next/dynamic";
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 
 const TypewriterEffect = dynamic(
   () => import("@/components/ui/typewriter-effect").then((mod) => mod.TypewriterEffect),

@@ -2,39 +2,16 @@
 
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { Marquee } from "@/components/ui/marquee";
+import { siteConfig } from "@/config/site";
 
 interface Skill {
   name: string;
-  level: number; // 0-100
+  level: number;
   category: string;
 }
 
-const skills: Skill[] = [
-  // Frontend
-  { name: "TypeScript", level: 90, category: "Frontend" },
-  { name: "JavaScript", level: 85, category: "Frontend" },
-  { name: "React", level: 88, category: "Frontend" },
-  { name: "Next.js", level: 85, category: "Frontend" },
-  { name: "Tailwind CSS", level: 92, category: "Frontend" },
-  
-  // Backend
-  { name: "Node.js", level: 80, category: "Backend" },
-  { name: "PostgreSQL", level: 75, category: "Backend" },
-  { name: "Prisma", level: 78, category: "Backend" },
-  { name: "Docker", level: 70, category: "Backend" },
-  
-  // Mobile
-  { name: "Flutter", level: 82, category: "Mobile" },
-  { name: "Dart", level: 80, category: "Mobile" },
-  { name: "Android", level: 65, category: "Mobile" },
-  
-  // Tools
-  { name: "Git", level: 85, category: "Tools" },
-  { name: "VS Code", level: 90, category: "Tools" },
-  { name: "Figma", level: 70, category: "Tools" },
-];
-
-const categories = ["Frontend", "Backend", "Mobile", "Tools"];
+const skills: Skill[] = siteConfig.skills.details;
+const categories = siteConfig.skills.categories;
 
 function SkillBar({ skill }: { skill: Skill }) {
   const filled = Math.round(skill.level / 10);
@@ -66,11 +43,12 @@ function SkillCategory({ title, skills }: { title: string; skills: Skill[] }) {
 }
 
 export function SkillsSection({ title, description }: { 
-  title: string; 
-  description: string;
+  title?: string; 
+  description?: string;
 }) {
-  const titleWords = [{ text: title, className: "text-foreground" }];
-  const descriptionWords = String(description || "").split(" ").map((word: string) => ({
+  const config = siteConfig.skills;
+  const titleWords = [{ text: title || config.title, className: "text-foreground" }];
+  const descriptionWords = String(description || config.description || "").split(" ").map((word: string) => ({
     text: word + " ",
     className: "text-muted-foreground"
   }));
@@ -99,9 +77,9 @@ export function SkillsSection({ title, description }: {
       {/* Marquee */}
       <div className="mt-12 opacity-60">
         <Marquee pauseOnHover className="[--duration:15s]">
-          {skills.map((skill) => (
-            <span key={skill.name} className="mx-4 text-xs font-mono text-muted-foreground uppercase tracking-widest">
-              {skill.name}
+          {config.slugs.map((slug: string) => (
+            <span key={slug} className="mx-4 text-xs font-mono text-muted-foreground uppercase tracking-widest">
+              {slug}
             </span>
           ))}
         </Marquee>

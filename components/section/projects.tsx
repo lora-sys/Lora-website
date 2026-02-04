@@ -6,6 +6,7 @@ import {
   Bot, ShoppingCart, BarChart, Smartphone, Terminal, ArrowRight 
 } from "lucide-react";
 import Link from "next/link";
+import { siteConfig } from "@/config/site";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   bot: Bot,
@@ -26,18 +27,12 @@ interface ProjectItem {
 }
 
 interface ProjectsSectionProps {
-  title: string;
-  description: string;
-  items: ProjectItem[];
+  title?: string;
+  description?: string;
+  items?: ProjectItem[];
 }
 
-const defaultProjects = [
-  { icon: "bot", href: "https://github.com/username/chat-agent", tags: ["React", "OpenAI API", "PostgreSQL", "Redis"], className: "col-span-1 md:col-span-2" },
-  { icon: "shopping-cart", href: "https://github.com/username/ecommerce-api", tags: ["Node.js", "Express", "MongoDB", "Stripe"], className: "col-span-1" },
-  { icon: "bar-chart", href: "https://github.com/username/dashboard", tags: ["Next.js", "D3.js", "Prisma", "Tailwind"], className: "col-span-1" },
-  { icon: "smartphone", href: "https://github.com/username/flashcards", tags: ["Flutter", "Firebase", "Riverpod"], className: "col-span-1 md:col-span-2" },
-  { icon: "terminal", href: "https://github.com/username/cli", tags: ["Rust", "Clap", "Ollama"], className: "col-span-1" },
-];
+const defaultProjects = siteConfig.projects.items;
 
 function ProjectCard({ item, defaultData }: { item: ProjectItem; defaultData: any }) {
   const IconComponent = iconMap[defaultData?.icon] || Bot;
@@ -77,8 +72,9 @@ function ProjectCard({ item, defaultData }: { item: ProjectItem; defaultData: an
 }
 
 export function ProjectsSection({ title, description, items }: ProjectsSectionProps) {
-  const titleWords = [{ text: title, className: "text-foreground" }];
-  const descriptionWords = String(description || "").split(" ").map((word: string) => ({
+  const config = siteConfig.projects;
+  const titleWords = [{ text: title || config.title, className: "text-foreground" }];
+  const descriptionWords = String(description || config.description || "").split(" ").map((word: string) => ({
     text: word + " ",
     className: "text-muted-foreground"
   }));
@@ -94,7 +90,7 @@ export function ProjectsSection({ title, description, items }: ProjectsSectionPr
       {/* Projects Grid */}
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
-          {items.map((item, i) => (
+          {(items || defaultProjects).map((item, i) => (
             <ProjectCard 
               key={i} 
               item={item} 

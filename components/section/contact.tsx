@@ -7,16 +7,10 @@ import { SiBilibili, SiTiktok } from "react-icons/si";
 import { MagicCard } from "@/components/ui/magic-card";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { siteConfig } from "@/config/site";
 
-const socials = {
-  github: "https://github.com/lora-sys",
-  x: "https://twitter.com/lora1979391",
-  instagram: "https://instagram.com/lora",
-  bilibili: "https://space.bilibili.com/lora",
-  douyin: "https://v.douyin.com/lora",
-};
-
-const email = "lora-sys@outlook.com";
+const socials = siteConfig.socials;
+const email = siteConfig.email;
 
 function FloatingParticles() {
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; delay: number }>>([]);
