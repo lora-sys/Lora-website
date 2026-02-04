@@ -1,17 +1,53 @@
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 import { HeroSection } from "@/components/section/hero";
-import { SkillsSection } from "@/components/section/skills";
-import { ProjectsSection } from "@/components/section/projects";
-import { TimelineSection } from "@/components/section/timeline";
-import { BlogSection } from "@/components/section/blog";
-import { AboutSection } from "@/components/section/about";
-import { LifeSection } from "@/components/section/life";
-import { ContactSection } from "@/components/section/contact";
-import { StatisticsSection } from "@/components/section/statistics";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { GridPattern } from "@/components/ui/grid-pattern";
 import type { Metadata } from "next";
 import "./globals.css";
+
+// Lazy load sections below the fold for better performance
+// Following Vercel best practice: bundle-dynamic-imports
+// Note: In App Router Server Components, we don't use ssr: false
+const SkillsSection = dynamic(
+  () => import("@/components/section/skills").then((mod) => mod.SkillsSection)
+);
+
+const ProjectsSection = dynamic(
+  () => import("@/components/section/projects").then((mod) => mod.ProjectsSection)
+);
+
+const StatisticsSection = dynamic(
+  () => import("@/components/section/statistics").then((mod) => mod.StatisticsSection)
+);
+
+const TimelineSection = dynamic(
+  () => import("@/components/section/timeline").then((mod) => mod.TimelineSection)
+);
+
+const BlogSection = dynamic(
+  () => import("@/components/section/blog").then((mod) => mod.BlogSection)
+);
+
+const AboutSection = dynamic(
+  () => import("@/components/section/about").then((mod) => mod.AboutSection)
+);
+
+const LifeSection = dynamic(
+  () => import("@/components/section/life").then((mod) => mod.LifeSection)
+);
+
+const ContactSection = dynamic(
+  () => import("@/components/section/contact").then((mod) => mod.ContactSection)
+);
+
+// Simple skeleton for lazy-loaded sections
+const sectionSkeleton = (
+  <div className="min-h-[50vh] w-full flex items-center justify-center">
+    <div className="w-24 h-24 animate-pulse bg-muted/30 rounded-lg" />
+  </div>
+);
 
 export const metadata: Metadata = {
   title: "Lora | Full-Stack Developer",
@@ -48,64 +84,80 @@ export default function IndexPage() {
             ]} />
           </div>
           <div id="skills" className="scroll-mt-28 content-visibility-auto">
-            <SkillsSection title="skills & technologies" description="Technologies I work with" />
+            <Suspense fallback={sectionSkeleton}>
+              <SkillsSection title="skills & technologies" description="Technologies I work with" />
+            </Suspense>
           </div>
           <div id="projects" className="scroll-mt-28 content-visibility-auto">
-            <ProjectsSection
-              title="Featured Projects"
-              description="Things I've built"
-              items={[
-                {
-                  name: "AI Chat Agent",
-                  description: "LLM-powered conversational agent with memory and context awareness",
-                  cta: "View Project"
-                },
-                {
-                  name: "E-commerce API",
-                  description: "Full-stack e-commerce backend with payment integration",
-                  cta: "View Project"
-                },
-                {
-                  name: "Analytics Dashboard",
-                  description: "Real-time data visualization and analytics platform",
-                  cta: "View Project"
-                },
-                {
-                  name: "Mobile Flashcards",
-                  description: "Cross-platform flashcard app with spaced repetition",
-                  cta: "View Project"
-                },
-                {
-                  name: "Dev Tools CLI",
-                  description: "Developer productivity CLI with multiple utilities",
-                  cta: "View Project"
-                }
-              ]}
-            />
+            <Suspense fallback={sectionSkeleton}>
+              <ProjectsSection
+                title="Featured Projects"
+                description="Things I've built"
+                items={[
+                  {
+                    name: "AI Chat Agent",
+                    description: "LLM-powered conversational agent with memory and context awareness",
+                    cta: "View Project"
+                  },
+                  {
+                    name: "E-commerce API",
+                    description: "Full-stack e-commerce backend with payment integration",
+                    cta: "View Project"
+                  },
+                  {
+                    name: "Analytics Dashboard",
+                    description: "Real-time data visualization and analytics platform",
+                    cta: "View Project"
+                  },
+                  {
+                    name: "Mobile Flashcards",
+                    description: "Cross-platform flashcard app with spaced repetition",
+                    cta: "View Project"
+                  },
+                  {
+                    name: "Dev Tools CLI",
+                    description: "Developer productivity CLI with multiple utilities",
+                    cta: "View Project"
+                  }
+                ]}
+              />
+            </Suspense>
           </div>
           <div className="content-visibility-auto">
-            <StatisticsSection />
+            <Suspense fallback={sectionSkeleton}>
+              <StatisticsSection />
+            </Suspense>
           </div>
           <div id="timeline" className="scroll-mt-28 content-visibility-auto">
-            <TimelineSection />
+            <Suspense fallback={sectionSkeleton}>
+              <TimelineSection />
+            </Suspense>
           </div>
           <div className="content-visibility-auto">
-            <BlogSection />
+            <Suspense fallback={sectionSkeleton}>
+              <BlogSection />
+            </Suspense>
           </div>
           <div id="about" className="scroll-mt-28 content-visibility-auto">
-            <AboutSection
-              typingAnimationText="I am LORA"
-              profileCtaText="View Profile"
-              musicCtaText="Listen"
-              locationNameText="Location"
-              locationDescriptionText="Xian, China"
-            />
+            <Suspense fallback={sectionSkeleton}>
+              <AboutSection
+                typingAnimationText="I am LORA"
+                profileCtaText="View Profile"
+                musicCtaText="Listen"
+                locationNameText="Location"
+                locationDescriptionText="Xian, China"
+              />
+            </Suspense>
           </div>
           <div id="life" className="scroll-mt-28 content-visibility-auto">
-            <LifeSection />
+            <Suspense fallback={sectionSkeleton}>
+              <LifeSection />
+            </Suspense>
           </div>
           <div id="contact" className="scroll-mt-28 content-visibility-auto">
-            <ContactSection />
+            <Suspense fallback={sectionSkeleton}>
+              <ContactSection />
+            </Suspense>
           </div>
         </main>
       </div>

@@ -151,6 +151,10 @@
 }
 
 :root {
+  /* 字体 - Geist Sans 为正文，Geist Mono 为代码 */
+  --font-geist-sans: "Geist Variable", system-ui, sans-serif;
+  --font-geist-mono: "Geist Mono Variable", "SF Mono", Monaco, "Cascadia Code", monospace;
+
   /* 背景 - 奶白色 */
   --background: oklch(98% 0.015 50);
   --foreground: oklch(20% 0.02 250);
@@ -270,6 +274,13 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-geist-sans);
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: var(--font-geist-mono);
   }
 }
 

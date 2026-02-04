@@ -2,10 +2,15 @@
 
 import { aboutData } from "@/config/site-data";
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
-import { Globe } from "@/components/ui/globe";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { Music, User, MapPin, BookOpen, Coffee, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+const Globe = dynamic(
+  () => import("@/components/ui/globe").then((mod) => mod.Globe),
+  { ssr: false }
+);
 
 // Inline lifestyle data
 const lifestyleData = {
