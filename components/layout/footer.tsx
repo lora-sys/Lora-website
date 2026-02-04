@@ -55,7 +55,7 @@ export function Footer() {
                     return (
                         <Link key={key} href={url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 group">
                              <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                             <HyperText text={key.charAt(0).toUpperCase() + key.slice(1)} className="text-muted-foreground group-hover:text-primary text-lg font-bold" />
+                             <HyperText text={key.charAt(0).toUpperCase() + key.slice(1)} className="text-muted-foreground group-hover:text-primary text-sm font-mono font-bold" />
                         </Link>
                     )
                 })}

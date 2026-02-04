@@ -142,7 +142,7 @@ export function StatisticsSection() {
             <div>
               <div className="flex items-baseline gap-1">
                 <motion.span 
-                  className="text-4xl font-bold text-rose-500"
+                  className="text-4xl font-bold font-mono text-rose-500"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, type: "spring" }}
@@ -156,7 +156,7 @@ export function StatisticsSection() {
             </div>
             <div className="flex items-center gap-1 text-amber-500">
               <Star className="w-4 h-4 fill-current" />
-              <span className="font-semibold">{statisticsData.movies.averageRating}</span>
+              <span className="font-mono font-semibold">{statisticsData.movies.averageRating}</span>
             </div>
           </div>
           <div className="flex-1" />
@@ -183,7 +183,7 @@ export function StatisticsSection() {
             <div>
               <div className="flex items-baseline gap-1">
                 <motion.span 
-                  className="text-4xl font-bold text-violet-500"
+                  className="text-4xl font-bold font-mono text-violet-500"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, type: "spring", delay: 0.1 }}
@@ -198,7 +198,7 @@ export function StatisticsSection() {
             <div className="text-right">
               <div className="flex items-center gap-1 text-violet-400">
                 <TrendingUp className="w-3 h-3" />
-                <span className="text-xs">{statisticsData.music.albumsCollected}</span>
+                <span className="font-mono text-xs">{statisticsData.music.albumsCollected}</span>
               </div>
               <p className="text-[10px] text-muted-foreground">Albums collected</p>
             </div>
@@ -227,7 +227,7 @@ export function StatisticsSection() {
             <div>
               <div className="flex items-baseline gap-1">
                 <motion.span 
-                  className="text-4xl font-bold text-emerald-500"
+                  className="text-4xl font-bold font-mono text-emerald-500"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, type: "spring", delay: 0.2 }}
@@ -241,7 +241,7 @@ export function StatisticsSection() {
             </div>
             <div className="flex items-center gap-1 text-amber-500">
               <Target className="w-4 h-4" />
-              <span className="text-xs">{statisticsData.reading.yearlyGoal}/year</span>
+              <span className="font-mono text-xs">{statisticsData.reading.yearlyGoal}/year</span>
             </div>
           </div>
           <div className="flex-1" />

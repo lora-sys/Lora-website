@@ -100,7 +100,7 @@ export function SkillsSection({ title, description }: {
       <div className="mt-12 opacity-60">
         <Marquee pauseOnHover className="[--duration:15s]">
           {skills.map((skill) => (
-            <span key={skill.name} className="mx-4 text-sm font-mono text-muted-foreground uppercase tracking-widest">
+            <span key={skill.name} className="mx-4 text-xs font-mono text-muted-foreground uppercase tracking-widest">
               {skill.name}
             </span>
           ))}

@@ -35,26 +35,26 @@ const Notification = ({ title, description, date, tag, color }: NotificationProp
         "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
       )}
     >
-      <div className="flex flex-row items-center gap-3">
-        <div
-          className={cn(
-            "flex size-10 items-center justify-center rounded-2xl",
-            color
-          )}
-        >
-          <span className="text-lg font-bold">{tag[0]}</span>
-        </div>
-        <div className="flex flex-col overflow-hidden">
-          <figcaption className="flex flex-row items-center whitespace-pre text-lg font-medium dark:text-white ">
-            <span className="text-sm sm:text-lg">{title}</span>
-            <span className="mx-1">·</span>
-            <span className="text-xs text-gray-500">{date}</span>
-          </figcaption>
-          <p className="text-sm font-normal dark:text-white/60">
-            {description}
-          </p>
-        </div>
-      </div>
+              <div className="flex flex-row items-center gap-3">
+                <div
+                  className={cn(
+                    "flex size-10 items-center justify-center rounded-2xl",
+                    color
+                  )}
+                >
+                  <span className="text-lg font-bold font-mono">{tag[0]}</span>
+                </div>
+                <div className="flex flex-col overflow-hidden">
+                  <figcaption className="flex flex-row items-center whitespace-pre text-lg font-medium dark:text-white ">
+                    <span className="text-sm sm:text-lg font-mono">{title}</span>
+                    <span className="mx-1">·</span>
+                    <span className="text-xs text-muted-foreground font-mono">{date}</span>
+                  </figcaption>
+                  <p className="text-sm font-normal dark:text-white/60">
+                    {description}
+                  </p>
+                </div>
+              </div>
     </figure>
   );
 };
@@ -123,7 +123,7 @@ export function BlogSection() {
                 )}
               >
                 <div className="flex flex-row items-center gap-2">
-                  <span className="text-sm font-medium">{tag}</span>
+                  <span className="text-xs font-mono font-medium">{tag}</span>
                 </div>
               </div>
             ))}

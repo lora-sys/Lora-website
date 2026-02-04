@@ -58,7 +58,7 @@ function ProjectCard({ item, defaultData }: { item: ProjectItem; defaultData: an
           
           <div className="mt-4 flex flex-wrap gap-2">
             {defaultData?.tags?.map((tag: string) => (
-              <span key={tag} className="px-2 py-0.5 text-xs rounded-full bg-primary/10 text-primary">
+              <span key={tag} className="px-2 py-0.5 text-xs font-mono rounded-full bg-primary/10 text-primary">
                 {tag}
               </span>
             ))}
@@ -66,9 +66,9 @@ function ProjectCard({ item, defaultData }: { item: ProjectItem; defaultData: an
           
           <Link 
             href={defaultData?.href || "#"}
-            className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-primary hover:underline"
+            className="inline-flex items-center gap-1 mt-4 text-xs font-mono font-medium text-primary hover:underline"
           >
-            {item.cta} <ArrowRight className="w-4 h-4" />
+            {item.cta} <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
       </div>

@@ -61,12 +61,12 @@ export function PostList({ posts }: PostListProps) {
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative z-10 flex flex-col h-full">
-                <div className="flex items-center gap-2 text-xs font-semibold text-primary mb-4 uppercase tracking-widest">
+                <div className="flex items-center gap-2 text-xs font-semibold font-mono text-primary mb-4 uppercase tracking-widest">
                   <CalendarIcon className="w-3 h-3" />
                   <time dateTime={post.date}>
                     {new Date(post.date).toLocaleDateString('en-US', {
                       year: 'numeric',
-                      month: 'long',
+                      month: 'short',
                       day: 'numeric'
                     })}
                   </time>

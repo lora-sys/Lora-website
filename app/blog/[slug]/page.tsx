@@ -314,7 +314,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <footer className="mt-16 pt-8 border-t border-border/50">
             <div className="flex flex-wrap gap-2 mb-8">
               {post.tags.map((tag) => (
-                <span key={tag} className="px-3 py-1 text-xs rounded-full bg-muted/50 text-muted-foreground">
+                <span key={tag} className="px-3 py-1 text-xs font-mono rounded-full bg-muted/50 text-muted-foreground">
                   {tag.toLowerCase()}
                 </span>
               ))}
