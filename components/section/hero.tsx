@@ -6,7 +6,7 @@ import { Suspense } from "react";
 const HeroAnimationsWrapper = dynamic(
   () => import("./hero-animations").then((mod) => mod.HeroAnimations),
   { 
-    ssr: false,
+    ssr: true,  // 恢复 SSR，让首屏立即显示内容
     loading: () => (
       <div className="relative w-full h-[60vh] flex items-center justify-center">
         <div className="w-32 h-32 animate-pulse bg-muted/30 rounded-lg" />

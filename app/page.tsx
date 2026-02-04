@@ -7,40 +7,21 @@ import { GridPattern } from "@/components/ui/grid-pattern";
 import type { Metadata } from "next";
 import "./globals.css";
 
-// Lazy load sections below the fold for better performance
-// Following Vercel best practice: bundle-dynamic-imports
-// Note: In App Router Server Components, we don't use ssr: false
-const SkillsSection = dynamic(
-  () => import("@/components/section/skills").then((mod) => mod.SkillsSection)
-);
-
-const ProjectsSection = dynamic(
-  () => import("@/components/section/projects").then((mod) => mod.ProjectsSection)
-);
-
-const StatisticsSection = dynamic(
-  () => import("@/components/section/statistics").then((mod) => mod.StatisticsSection)
-);
-
-const TimelineSection = dynamic(
-  () => import("@/components/section/timeline").then((mod) => mod.TimelineSection)
-);
-
+// 性能优化：对于个人作品集网站，减少动态导入数量
+// 只有真正复杂的组件才需要懒加载，避免过多请求
+// BlogSection 包含 markdown 解析，保持动态导入
 const BlogSection = dynamic(
   () => import("@/components/section/blog").then((mod) => mod.BlogSection)
 );
 
-const AboutSection = dynamic(
-  () => import("@/components/section/about").then((mod) => mod.AboutSection)
-);
-
-const LifeSection = dynamic(
-  () => import("@/components/section/life").then((mod) => mod.LifeSection)
-);
-
-const ContactSection = dynamic(
-  () => import("@/components/section/contact").then((mod) => mod.ContactSection)
-);
+// Skills, Projects, Statistics 等组件较小，同步加载更快
+import { SkillsSection } from "@/components/section/skills";
+import { ProjectsSection } from "@/components/section/projects";
+import { StatisticsSection } from "@/components/section/statistics";
+import { TimelineSection } from "@/components/section/timeline";
+import { AboutSection } from "@/components/section/about";
+import { LifeSection } from "@/components/section/life";
+import { ContactSection } from "@/components/section/contact";
 
 // Simple skeleton for lazy-loaded sections
 const sectionSkeleton = (
@@ -84,54 +65,46 @@ export default function IndexPage() {
             ]} />
           </div>
           <div id="skills" className="scroll-mt-28 content-visibility-auto">
-            <Suspense fallback={sectionSkeleton}>
-              <SkillsSection title="skills & technologies" description="Technologies I work with" />
-            </Suspense>
+            <SkillsSection title="skills & technologies" description="Technologies I work with" />
           </div>
           <div id="projects" className="scroll-mt-28 content-visibility-auto">
-            <Suspense fallback={sectionSkeleton}>
-              <ProjectsSection
-                title="Featured Projects"
-                description="Things I've built"
-                items={[
-                  {
-                    name: "AI Chat Agent",
-                    description: "LLM-powered conversational agent with memory and context awareness",
-                    cta: "View Project"
-                  },
-                  {
-                    name: "E-commerce API",
-                    description: "Full-stack e-commerce backend with payment integration",
-                    cta: "View Project"
-                  },
-                  {
-                    name: "Analytics Dashboard",
-                    description: "Real-time data visualization and analytics platform",
-                    cta: "View Project"
-                  },
-                  {
-                    name: "Mobile Flashcards",
-                    description: "Cross-platform flashcard app with spaced repetition",
-                    cta: "View Project"
-                  },
-                  {
-                    name: "Dev Tools CLI",
-                    description: "Developer productivity CLI with multiple utilities",
-                    cta: "View Project"
-                  }
-                ]}
-              />
-            </Suspense>
+            <ProjectsSection
+              title="Featured Projects"
+              description="Things I've built"
+              items={[
+                {
+                  name: "AI Chat Agent",
+                  description: "LLM-powered conversational agent with memory and context awareness",
+                  cta: "View Project"
+                },
+                {
+                  name: "E-commerce API",
+                  description: "Full-stack e-commerce backend with payment integration",
+                  cta: "View Project"
+                },
+                {
+                  name: "Analytics Dashboard",
+                  description: "Real-time data visualization and analytics platform",
+                  cta: "View Project"
+                },
+                {
+                  name: "Mobile Flashcards",
+                  description: "Cross-platform flashcard app with spaced repetition",
+                  cta: "View Project"
+                },
+                {
+                  name: "Dev Tools CLI",
+                  description: "Developer productivity CLI with multiple utilities",
+                  cta: "View Project"
+                }
+              ]}
+            />
           </div>
           <div className="content-visibility-auto">
-            <Suspense fallback={sectionSkeleton}>
-              <StatisticsSection />
-            </Suspense>
+            <StatisticsSection />
           </div>
           <div id="timeline" className="scroll-mt-28 content-visibility-auto">
-            <Suspense fallback={sectionSkeleton}>
-              <TimelineSection />
-            </Suspense>
+            <TimelineSection />
           </div>
           <div className="content-visibility-auto">
             <Suspense fallback={sectionSkeleton}>
@@ -139,25 +112,19 @@ export default function IndexPage() {
             </Suspense>
           </div>
           <div id="about" className="scroll-mt-28 content-visibility-auto">
-            <Suspense fallback={sectionSkeleton}>
-              <AboutSection
-                typingAnimationText="I am LORA"
-                profileCtaText="View Profile"
-                musicCtaText="Listen"
-                locationNameText="Location"
-                locationDescriptionText="Xian, China"
-              />
-            </Suspense>
+            <AboutSection
+              typingAnimationText="I am LORA"
+              profileCtaText="View Profile"
+              musicCtaText="Listen"
+              locationNameText="Location"
+              locationDescriptionText="Xian, China"
+            />
           </div>
           <div id="life" className="scroll-mt-28 content-visibility-auto">
-            <Suspense fallback={sectionSkeleton}>
-              <LifeSection />
-            </Suspense>
+            <LifeSection />
           </div>
           <div id="contact" className="scroll-mt-28 content-visibility-auto">
-            <Suspense fallback={sectionSkeleton}>
-              <ContactSection />
-            </Suspense>
+            <ContactSection />
           </div>
         </main>
       </div>
