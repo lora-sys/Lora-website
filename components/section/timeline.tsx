@@ -6,42 +6,14 @@ import { Marquee } from "@/components/ui/marquee";
 import { Meteors } from "@/components/ui/meteors";
 import { Timeline } from "@/components/ui/timeline";
 import dynamic from "next/dynamic";
+import { siteConfig } from "@/config/site";
 
 const TypewriterEffect = dynamic(
   () => import("@/components/ui/typewriter-effect").then((mod) => mod.TypewriterEffect),
   { ssr: false }
 );
 
-const timelineData = {
-  title: "Timeline",
-  description: "My journey and achievements",
-  tags: ["Hackathon", "Award", "Projects", "Learning"],
-  items: [
-    {
-      title: "2025-09-20 | Monad Blitz Hackathon",
-      description: "Won first prize with Blockchain Certificate System project at Monad Blitz Hackathon (Chengdu). Built on Monad testnet using NFT and security verification.",
-      links: [
-        { href: "https://github.com/lora-sys/demo", label: "View Code (GitHub)" },
-        { href: "https://www.xxpie.com/m/album?id=68cd19e6c4b884328e315ecd", label: "Photos" },
-      ],
-    },
-    {
-      title: "Registration / Team Formation",
-      description: "Defined project scope, formed team, and established MVP goals. Focused on 'make it work' approach.",
-      link: { href: "/#projects", label: "View Related Projects" },
-    },
-    {
-      title: "Sprint Development",
-      description: "Rapid iteration: prototype → interaction → API integration → Bugfix. Made visible progress every hour.",
-      link: { href: "/blog", label: "Read Post-mortem" },
-    },
-    {
-      title: "Demo / Retrospective",
-      description: "Presented clearly: problem, solution, highlights, results. Organized demo path and retrospective notes.",
-      link: { href: "https://github.com/lora-sys", label: "Open Demo / Code" },
-    },
-  ],
-};
+const timelineData = siteConfig.timeline;
 
 export function TimelineSection() {
   return (

@@ -72,20 +72,17 @@ export function Navbar() {
 
                 {/* Nav Items */}
                 <div className="flex-1 flex items-center justify-center gap-2 md:gap-6 overflow-hidden px-2">
-                    {Array.isArray(navItems) && navItems.map((item: any, idx: number) => {
-                        const name = typeof item.name === 'string' ? item.name : (item.name as any)?.value;
-                        const link = typeof item.link === 'string' ? item.link : (item.link as any)?.value;
-                        
+                    {navItems.map((item, idx) => {
                         return (
                             <Link 
-                                key={`${name}-${idx}`} 
-                                href={link}
+                                key={`${item.name}-${idx}`} 
+                                href={item.href}
                                 className={cn(
                                     "text-sm font-medium transition-colors hover:text-primary whitespace-nowrap px-3 py-1.5 rounded-full hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
-                                    isActive(link) ? "text-primary bg-muted/50" : "text-muted-foreground"
+                                    isActive(item.href) ? "text-primary bg-muted/50" : "text-muted-foreground"
                                 )}
                             >
-                                {name}
+                                {item.name}
                             </Link>
                         );
                     })}
